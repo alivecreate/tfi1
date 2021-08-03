@@ -100,7 +100,7 @@ $(".status-switch").on('change', function() {
                     <span class="text-danger">@error('category_description') {{$message}} @enderror</span>
                     </div>
                   </div>
-
+                  <input type="hidden" name="parent_id" value="0">
                   
                 <div class="form-group">
                   <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
@@ -129,7 +129,7 @@ $(".status-switch").on('change', function() {
                 <h3 class="card-title">Sub Category</h3>
               </div>
              
-              <form method="post" class="form-horizontal"  action="{{route('admin.category.petaKacheriStore')}}">
+              <form method="post" class="form-horizontal"  action="{{route('admin.category.subCategoryStore')}}">
               
               <input type="hidden" name="type" value="peta_kacheri">
               @csrf
@@ -236,7 +236,8 @@ $(".status-switch").on('change', function() {
 
                   <div class="form-group">
                     <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                      <input type="checkbox" class="custom-control-input status-switch" name="status" value="0" id="customSwitch3">
+                      <input type="checkbox" class="custom-control-input status-switch" name="status" 
+                        value="0" id="customSwitch3">
                       <label class="custom-control-label float-right" for="customSwitch3">Status</label>
                     </div>
                   </div>

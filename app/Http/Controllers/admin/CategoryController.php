@@ -54,26 +54,33 @@ class CategoryController extends Controller
 
         $request->validate([
             'category' => 'required|max:255',
-            'description' => 'max:255',
         ]);
 
         $status = ($request->status == null ? 0 : 1);
         $category = new Category;
         $category->name = $request->category;
-        $category->description  = $request->kacheri_description ;
+        $category->description  = $request->category_description ;
 
         $category->status  = $status;
-        $category->parent_id  = 0;
+
+        // if($request->parent_id == null){
+        //     $parent_id = 0;
+        // }else{
+        //     $parent_id = $request->parent_id;
+        // }
+
+        $category->parent_id  = $request->parent_id;
+
         $save = $category->save();
 
         if($save){
-            return back()->with('success', 'New Kacheri Added...');
+            return back()->with('success', 'New Category Added...');
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }
     }
 
-    public function petaKacheriStore(Request $request)
+    public function subCategoryStore(Request $request)
     {
         // dd($request->input());
         $request->validate([
@@ -87,10 +94,13 @@ class CategoryController extends Controller
         $category->name = $request->subcategory_name;
         $category->description  = $request->subcategory_description ;
         $category->parent_id  = $request->category_parent_id1;
+        $status = ($request->status == null ? 0 : 1);
+        $category->status  = $status;
+        
         $save = $category->save();
 
         if($save){
-            return back()->with('success', 'New Sub Category Kacheri Added...');
+            return back()->with('success', 'New Sub Category Added...');
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }
@@ -113,10 +123,12 @@ class CategoryController extends Controller
         $category->name = $request->subcategory2_name;
         $category->description  = $request->subcategory2_description ;
         $category->parent_id  = $request->subcategory_parent_id;
+        $status = ($request->status == null ? 0 : 1);
+        $category->status  = $status;
         $save = $category->save();
 
         if($save){
-            return back()->with('success', 'New Department Added...');
+            return back()->with('success', 'New Sub Category2 Added...');
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }

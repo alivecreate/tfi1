@@ -65,7 +65,7 @@ Route::post('/admin/auth/check', [AdminAuthController::class, 'check'])->name('a
 Route::get('/admin/auth/logout', [AdminAuthController::class, 'logout'])->name('auth.logout');
 
 // Route::get('/admin/category/petaKacheriStore',[CategoryController::class, 'petaKacheriStore'])->name('admin.petaKacheriStore');
-Route::post('/admin/category/petaKacheriStore', [CategoryController::class, 'petaKacheriStore'])->name('admin.category.petaKacheriStore');
+Route::post('/admin/category/subCategoryStore', [CategoryController::class, 'subCategoryStore'])->name('admin.category.subCategoryStore');
 Route::post('/admin/category/departmentStore', [CategoryController::class, 'departmentStore'])->name('admin.category.departmentStore');
 
 
