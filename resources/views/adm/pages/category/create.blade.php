@@ -189,7 +189,7 @@ $(".status-switch").on('change', function() {
                 <h3 class="card-title">Sub Category 2</h3>
               </div>
              
-              <form method="post" class="form-horizontal" action="{{route('admin.category.departmentStore')}}">
+              <form method="post" class="form-horizontal" action="{{route('admin.category.subCategory2Store')}}">
               <input type="hidden" name="type" value="department">
               @csrf
                 <div class="card-body p-2 pt-4">

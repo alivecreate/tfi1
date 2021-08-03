@@ -66,7 +66,7 @@ Route::get('/admin/auth/logout', [AdminAuthController::class, 'logout'])->name('
 
 // Route::get('/admin/category/petaKacheriStore',[CategoryController::class, 'petaKacheriStore'])->name('admin.petaKacheriStore');
 Route::post('/admin/category/subCategoryStore', [CategoryController::class, 'subCategoryStore'])->name('admin.category.subCategoryStore');
-Route::post('/admin/category/departmentStore', [CategoryController::class, 'departmentStore'])->name('admin.category.departmentStore');
+Route::post('/admin/category/subCategory2Store', [CategoryController::class, 'subCategory2Store'])->name('admin.category.subCategory2Store');
 
 
 Route::group(['middleware'=> ['AuthCheck']], function(){

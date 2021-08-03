@@ -108,7 +108,7 @@ class CategoryController extends Controller
     }
 
 
-    public function departmentStore(Request $request)
+    public function subCategory2Store(Request $request)
     {
         // dd($request->input());
         $request->validate([
