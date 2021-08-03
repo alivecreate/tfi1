@@ -1,0 +1,94 @@
+.table-border-none tr td{
+    border:none;
+}
+
+.table-border-none tr td:hover, .table-border-none tr:hover{
+color: #212529;
+background-color: transparent !important;
+}
+.object-fit{
+    object-fit: cover;
+}
+
+.object-fit-sm{
+    object-fit: cover;
+    width: 70px;
+    height: 70px;
+}
+
+.comment-right .direct-chat-text {
+    background: whitesmoke;
+}
+
+.no-before:before{
+    
+    border-radius: .0px;
+    background-color: transparent;
+}
+.timeline-right-block{
+
+    background: whitesmoke;
+    padding-top: 6px;
+    border: 1px solid #e9e9e9;
+}
+.label-style1{
+    padding-right: 20px !important;
+    border-top-right-radius: 20px;
+    border-left: 3px solid #343a40;
+}
+.nav-treeview .nav-item a {
+    background: #12584f;
+    border: 0.5px solid silver;
+    width: 100% !important;
+}
+[class*=sidebar-dark-] {
+    background-color: #156c80;
+}
+.navbar-white {
+    background-color: #0b869c;
+    color: white;
+}
+[class*=sidebar-dark] .brand-link {
+    border-bottom: 1px solid #d8d8d8;
+    background: #0e5a6b;
+}
+a.brand-link span {
+    font-weight: 500 !important;
+}
+.nav.nav-pills.nav-sidebar.flex-column {
+    padding-bottom: 60px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link:hover {
+    background-color: rgb(9 48 55);
+    color: #fff;
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link, [class*=sidebar-dark-] .sidebar a {
+    color: #ffffff;
+}
+.active-menu
+{
+    background: #093137 !important;
+}
+
+.user-panel .image img {
+    background: white;
+}
+li ul.nav > .nav-item > .nav.nav-treeview {
+    padding-left: 19px;
+}
+li ul.nav > .nav-item > .nav.nav-treeview a {
+    background: #073e46 !important;
+    border-left: 3px solid;
+    padding: 5px;
+}
+
+.nav-sidebar .nav-link {
+    border-radius: 0px !important;
+    margin-bottom: 0px !important;
+    border: 0px !important;
+    border-bottom: 0.4px solid #f3f3f352 !important;
+}

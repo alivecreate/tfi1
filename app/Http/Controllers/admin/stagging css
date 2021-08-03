@@ -1,0 +1,29 @@
+.wpcf7-form .wpcf7-quiz, .wpcf7-form input[type="number"], .wpcf7-form input[type="date"], .wpcf7-form input.wpcf7-text {
+    padding: 10px;
+    padding-left: 10px;
+}
+i.fa.fa-user,i.fa.fa-phone,i.fa.fa-envelope,i.fa.fa-globe,i.fa.fa-comments {
+    padding: 16px 10px 13px 0px !important;
+}
+input.wpcf7-form-control.wpcf7-submit {
+    
+}
+@media screen and (min-width:1920px){
+    textarea.wpcf7-form-control.wpcf7-textarea.wpcf7-validates-as-required {
+        height: 175px !important;
+    }
+}
+
+.wpcf7-form .wpcf7-quiz, .wpcf7-form input[type="number"], .wpcf7-form input[type="date"], .wpcf7-form input.wpcf7-text {
+    padding: 10px;
+    padding-left: 10px;
+}
+i.fa.fa-user,i.fa.fa-phone,i.fa.fa-envelope,i.fa.fa-globe,i.fa.fa-comments {
+    padding: 16px 10px 13px 0px !important;
+}
+
+@media screen and (min-width:1920px){
+    textarea.wpcf7-form-control.wpcf7-textarea.wpcf7-validates-as-required {
+        height: 175px !important;
+    }
+}
