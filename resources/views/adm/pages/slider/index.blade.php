@@ -3,74 +3,6 @@
 @section('content')
 @include('adm.widget.table-search-draggable')
 
-{{-- 
-
-@section('custom-js')
-
-<script src="{{asset('adm')}}/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{asset('adm')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{asset('adm')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{asset('adm')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="{{asset('adm')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{asset('adm')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="{{asset('adm')}}/plugins/jszip/jszip.min.js"></script>
-<script src="{{asset('adm')}}/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="{{asset('adm')}}/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="{{asset('adm')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="{{asset('adm')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="{{asset('adm')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
-
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-12:eq(0)');
-
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-
-  var fixHelperModified = function(e, tr) {
-		var $originals = tr.children();
-		var $helper = tr.clone();
-		$helper.children().each(function(index) {
-			$(this).width($originals.eq(index).width())
-		});
-		return $helper;
-	},
-		updateIndex = function(e, ui) {
-			$('td.index', ui.item.parent()).each(function (i) {
-				$(this).html(i+1);
-			});
-			$('input[type=text]', ui.item.parent()).each(function (i) {
-				$(this).val(i + 1);
-			});
-		};
-
-	$("#example1 tbody").sortable({
-		helper: fixHelperModified,
-		stop: updateIndex
-	}).disableSelection();
-	
-		$("tbody").sortable({
-		distance: 5,
-		delay: 100,
-		opacity: 0.6,
-		cursor: 'move',
-		update: function() {}
-			});
-
-</script>
-@endsection --}}
-
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
@@ -104,22 +36,38 @@
                 </div>
               </div>
              
-              <form class="form-horizontal">
+              <form method="post" class="form-horizontal" action="{{route('slider.store')}}">
+                @csrf
+
                 <div class="card-body p-2 pt-4">
                   <div class="form-group row">
                     <div class="col-sm-12">
-                    <input type="hidden" class="form-control" name="slider_id" value="1">
+                    <input type="hidden" class="form-control">
                       
                       <input type="text" class="form-control" name="title"
-                         placeholder="Title">
+                         placeholder="Slider Title">
+                         
+                      <span class="text-danger">@error('title') {{$message}} @enderror</span>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <input type="descriotion" class="form-control" name="description"
-                         placeholder="Description">
+                      <textarea class="form-control" name="description"
+                         placeholder="Slider Description"></textarea>
+
+                      <span class="text-danger">@error('description') {{$message}} @enderror</span>
                     </div>
                   </div>
+                  
+                  <div class="form-group row">
+                    <div class="col-sm-12">
+                      <input type="url" class="form-control" name="url"
+                         placeholder="Slider Url">
+
+                      <span class="text-danger">@error('url') {{$message}} @enderror</span>
+                    </div>
+                  </div>
+                  
                 <div class="form-group row">
                     
                     <div class="col-sm-12">
@@ -128,21 +76,15 @@
                       </div>
                   </div>
 
-                  <div class="form-group row">
-                    <div class="col-sm-6">
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                        <label class="form-check-label" for="exampleCheck2">Status</label>
-                      </div>
-                    </div>
                     
-                  <div class="col-sm-6">
-                      <div class="form-check">
-                        <img src="https://mailvadodara.com/web/media/sm/1623500729_340.jpeg"
-                          width="100%" alt="" class="img-thumbnail">
+                    <div class="form-group">
+                      <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                        <input type="checkbox" class="custom-control-input status-switch" 
+                          name="status" value="0" id="customSwitch1">
+                        <label class="custom-control-label float-right" for="customSwitch1">Status</label>
                       </div>
                     </div>
-                  </div>
+                  
                   </div>
                 </div>
 
@@ -160,9 +102,8 @@
               </div>
               
             <div class="card">
-              <!-- /.card-header -->
               <div class="card-body">
-                <table  class="table table-bordered table-striped">
+                <table id="example2" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>Id</th>

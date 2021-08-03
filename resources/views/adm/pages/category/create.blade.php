@@ -10,11 +10,9 @@
 <script>
 $('.category_parent_id').on('change', function() {
         var parent = $(this).find(':selected').val();
-    // alert(parent);
 
         $.get( `{{url('api')}}/get/getPetaKacheri/`+parent, { category_parent_id: parent })
         .done(function( data ) {
-          // alert(JSON.stringify(data));
         if(JSON.stringify(data.length) == 0){
             $('.subcategory_parent_id').html('<option>Select Sub Category S</option>');
         }
@@ -31,19 +29,6 @@ $('.category_parent_id').on('change', function() {
     
 $(".category").addClass( "menu-is-opening menu-open");
 $(".category a").addClass( "active-menu");
-
-
-var switchStatus = false;
-$(".status-switch").on('change', function() {
-    if ($(this).is(':checked')) {
-        switchStatus = $(this).is(':checked');
-        $(this).val(1);
-    }
-    else {
-       switchStatus = $(this).is(':checked');
-       $(this).val(0);
-    }
-});
 
 </script>
 @endsection

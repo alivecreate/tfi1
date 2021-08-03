@@ -62,4 +62,5 @@
 </body>
 <script src="{{asset('adm')}}/dist/js/demo.js"></script>
 <script src="{{asset('adm')}}/dist/js/pages/dashboard2.js"></script>
+
 </html>

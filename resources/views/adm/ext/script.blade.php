@@ -14,8 +14,8 @@
 <!-- Sparkline -->
 <script src="{{asset('adm')}}/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<!-- <script src="{{asset('adm')}}/plugins/jqvmap/jquery.vmap.min.js"></script> -->
-<!-- <script src="{{asset('adm')}}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
+{{-- <!-- <script src="{{asset('adm')}}/plugins/jqvmap/jquery.vmap.min.js"></script> -->
+<!-- <script src="{{asset('adm')}}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> --> --}}
 
 <!-- jQuery Knob Chart -->
 <script src="{{asset('adm')}}/plugins/jquery-knob/jquery.knob.min.js"></script>
@@ -33,10 +33,13 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('adm')}}/dist/js/demo.js"></script>
 <script src="{{asset('adm')}}/dist/js/custom.js"></script>
+
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!-- <script src="{{asset('adm')}}/dist/js/pages/dashboard.js"></script> -->
+{{-- <!-- <script src="{{asset('adm')}}/dist/js/pages/dashboard.js"></script> --> --}}
 
 <script src="{{asset('adm')}}/plugins/chart.js/Chart.min.js"></script>
 
 <script src="{{asset('adm')}}/sweetalert2/sweetalert2.min.js"></script>
 <script src="{{asset('adm')}}/plugins/toastr/toastr.min.js"></script>
+
+<script src="{{asset('adm')}}/dist/js/custom.js"></script>

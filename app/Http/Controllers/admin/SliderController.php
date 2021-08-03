@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\admin\Slider;
 
 class SliderController extends Controller
 {
@@ -35,7 +36,26 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'url' => 'url|max:255',
+        ]);
+
+        $image_name = uploadImageThumb($request);
+        $slider = new Slider;
+        $slider->slider_no = $request->slider_no;
+        $slider->title = $request->title;
+        $slider->description = $request->description;
+        $slider->url = $request->url;
+        $slider->admin_id = session('LoggedUser')->id;
+               
+        $save = $client->save();
+
+        if($save){
+            return back()->with('success', 'Client Added...');
+        }else{
+            return back()->with('fail', 'Something went wrong, try again later...');
+        }
     }
 
     /**
