@@ -49,7 +49,8 @@
                          
                       <span class="text-danger">@error('title') {{$message}} @enderror</span>
                     </div>
-                  </div>
+                  </div> 
+                  
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <textarea class="form-control" name="description"

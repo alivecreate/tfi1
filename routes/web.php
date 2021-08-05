@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\TrashedController;
 use App\Http\Controllers\admin\TaskController;
 use App\Http\Controllers\admin\TaskAssignController;
 use App\Http\Controllers\admin\TaskStatus;
+use App\Http\Controllers\admin\ProductController;
 
 
 
@@ -77,6 +78,7 @@ Route::resources([
     '/admin/client' => ClientController::class,
     '/admin/task' => TaskController::class,
     '/admin/task-assign' => TaskAssignController::class,
+    '/admin/product' => ProductController::class,
     
 ]);
 

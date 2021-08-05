@@ -21,12 +21,12 @@ $(".category a").addClass( "active-menu");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-8">
-            <h3>Add New :- Category / Sub Category / Sub Category 2</h3>
+            <h3>Add New :- Product</h3>
           </div>
           <div class="col-sm-4">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">Category</li>
+              <li class="breadcrumb-item active">Product</li>
             </ol>
           </div>
         </div>
@@ -46,8 +46,10 @@ $(".category a").addClass( "active-menu");
                   <thead>
                     <tr>
                       <th class="bg-gray">ID</th>
-                      <th class="bg-info">Category</th>
-                      <th class="bg-danger">Sub Category</th>
+                      <th class="bg-info">Image</th>
+                      <th class="bg-info">Name</th>
+                      <th class="bg-info">Title</th>
+                      <th class="bg-danger">Description</th>
                       <th class="bg-warning">Sub Category 2</th>
                     </tr>
                   </thead>
