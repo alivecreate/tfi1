@@ -33,7 +33,7 @@ $(".category a").addClass( "active-menu");
       </div>
     </section>
 
-
+    
     <section class="content">
       <div class="container-fluid">
       
@@ -46,8 +46,6 @@ $(".category a").addClass( "active-menu");
                   <thead>
                     <tr>
                       <th class="bg-gray">ID</th>
-                      <th class="bg-info">Image</th>
-                      <th class="bg-info">Name</th>
                       <th class="bg-info">Title</th>
                       <th class="bg-danger">Description</th>
                       <th class="bg-warning">Sub Category 2</th>
