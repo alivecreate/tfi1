@@ -56,11 +56,12 @@ $(".task a").addClass( "active-menu");
                 <table class="table table-hover bg-nowrap" p-1>
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>ટાસ્કનું નામ</th>
-                      <th>અરજદારનું નામ</th>
-                      <th>અરજદારનું ફોટો</th>
-                      <th>કચેરીનું નામ</th>
+                      
+                      <th class="bg-gray">ID</th>
+                      <th class="bg-info">Image</th>
+                      <th class="bg-info">Name</th>
+                      <th class="bg-info">Title</th>
+                      <th class="bg-danger">Description</th>
                       <th>Action</th>
                     </tr>
                   </thead>

@@ -75,6 +75,7 @@ $(".task a").addClass( "active-menu");
 @section('content')
 
 
+
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
@@ -82,6 +83,7 @@ $(".task a").addClass( "active-menu");
           <div class="col-sm-6">
             <h1>ADD: New Product </h1>
           </div>
+          
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
@@ -151,7 +153,7 @@ $(".task a").addClass( "active-menu");
                     <div class="col-sm-12">
                       <label for="short_description">Short Desctiption</label>
                       <input type="text" class="form-control" name="short_description" 
-                         placeholder="Product Name" value="{{old('short_description')}}">
+                         placeholder="Product Short Desctiption" value="{{old('short_description')}}">
                          
                     <span class="text-danger">@error('short_description') {{$message}} @enderror</span>
                     </div>
@@ -160,50 +162,69 @@ $(".task a").addClass( "active-menu");
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <label for="full_description">Full Desctiption</label>
-                      <textarea type="text" class="form-control" name="full_description" 
-                         placeholder="Product Name" value="{{old('full_description')}}"></textarea>
-                         
+                        <textarea id="summernote" name="full_description" placeholder="Product Descriptions">
+                        </textarea>
+                                  
                     <span class="text-danger">@error('full_description') {{$message}} @enderror</span>
+                    </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                        <label for="image_alt">Featured Image</label><br>
+                        <input type="file" name="featured_image" class="Featured_image " id="Featured_image">
+                      </div>
+
+                      <div class="col-sm-4">
+                        <label for="image_alt">Image Alt</label>
+                        <input type="text" class="form-control" name="image_alt" 
+                          placeholder="Image Alter Text (SEO)" value="{{old('image_alt')}}">
+                          
+                        <span class="text-danger">@error('image_alt') {{$message}} @enderror</span>
+                      </div>
+                      
+                      <div class="col-sm-5">
+                        <label for="image_alt">Image Title</label>
+                        <input type="text" class="form-control" name="image_alt" 
+                          placeholder="Product Image Title (SEO)" value="{{old('image_alt')}}">
+                          
+                        <span class="text-danger">@error('image_alt') {{$message}} @enderror</span>
+                      </div>
+                    </div>
+                    
+                  <div class="form-group row">
+                    <h5 class="bg-dark pl-4 pr-4">SEO CONTENTS</h5>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" class="text-danger" for="seo_title">SEO Title</label>
+                      <input type="text" class="form-control" name="seo_title" 
+                        placeholder="Seo Friendly Title" value="{{old('seo_title')}}">
+                      <span class="text-danger">@error('seo_title') {{$message}} @enderror</span>
+                    </div>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" for="seo_keyword">Keyword</label>
+                      <input type="text" class="form-control" name="seo_keyword" 
+                        placeholder="Seo Keywords with ," value="{{old('seo_keyword')}}">
+                      <span class="text-danger">@error('seo_keyword') {{$message}} @enderror</span>
+                    </div>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" for="seo_title">Description</label>
+                      <textarea type="text" class="form-control" name="seo_title" 
+                        placeholder="Seo Friendly Title" value="{{old('seo_title')}}"></textarea>
+                      <span class="text-danger">@error('seo_title') {{$message}} @enderror</span>
                     </div>
                   </div>
 
-
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Multiple</label>
-                  <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                    <option>Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                  </select>
-                </div>
-                <!-- /.form-group -->
-                <div class="form-group">
-                  <label>Disabled Result</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option disabled="disabled">California (disabled)</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                  </select>
-                </div>
-                <!-- /.form-group -->
-              </div>
+                  </div>
 
 
+                  <div class="form-group row">
+{{mt_rand(1000, 9999).mt_rand(50000,99999)}}
+                 @include('adm.widget.multiple-image-upload')
+        
                     <div class="card-footer container">
                        <button type="submit" class="btn btn-info float-right"><i class="fas fa-save"></i>&nbsp;&nbsp;ટાસ્ક સેવ કરો</button>
                     </div>
-                    
               </form>
-
               </div>
 
 

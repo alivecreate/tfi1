@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="{{url('home')}}/css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="{{url('home')}}/css/magnific-popup.css" type="text/css" />
 
+	<link rel="stylesheet" href="{{url('home')}}/plugins/summernote/summernote-bs4.min.css">
 
 	<link rel="stylesheet" href="{{url('home')}}/css/custom.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />

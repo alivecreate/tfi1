@@ -156,14 +156,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
+                <a href="{{route('product.index')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
                   <p>Product List</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
+                <a href="{{route('product.create')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
                   <p>Add New</p>
                 </a>

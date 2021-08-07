@@ -18,9 +18,9 @@ class CategoryController extends Controller
     public function __construct(){
         $this->parent_categories = category::where(['parent_id'=>0])->orderBy('id','DESC')->get();
 
-        function customRedirect($routeName, $id, $type){
-            return redirect(route($routeName, $id, $type))->with('success', 'Category Updated...');
-        }
+        // function customRedirect($routeName, $id, $type){
+        //     return redirect(route($routeName, $id, $type))->with('success', 'Category Updated...');
+        // }
     }
     
 

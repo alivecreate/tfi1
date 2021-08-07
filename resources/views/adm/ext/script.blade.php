@@ -1,9 +1,11 @@
 
+<script src="{{asset('js')}}/app.js"></script>
 <!-- jQuery -->
 <script src="{{asset('adm')}}/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('adm')}}/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
@@ -39,7 +41,26 @@
 
 <script src="{{asset('adm')}}/plugins/chart.js/Chart.min.js"></script>
 
-<script src="{{asset('adm')}}/sweetalert2/sweetalert2.min.js"></script>
+<script src="{{asset('adm')}}/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="{{asset('adm')}}/plugins/toastr/toastr.min.js"></script>
 
 <script src="{{asset('adm')}}/dist/js/custom.js"></script>
+
+<script src="{{asset('adm')}}/dist/js/demo.js"></script>
+
+{{-- <script src="{{asset('adm')}}/dist/js/pages/dashboard2.js"></script> --}}
+
+
+<script src="{{asset('adm')}}/plugins/summernote/summernote-bs4.min.js"></script>
+
+<script>
+  $(function () {
+      $('#summernote').summernote({
+        placeholder: 'Product Description',
+        tabsize: 2,
+        height: 100
+      });
+  })  
+  
+
+</script>
