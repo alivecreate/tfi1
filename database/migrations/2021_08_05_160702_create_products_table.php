@@ -16,18 +16,17 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
 
             $table->id();
-            $table->text('name');
-            $table->text('short_description');
-            $table->text('full_description');
-            $table->text('image');
-            $table->text('image_alt');
-            $table->text('image_title');
-            $table->float('price');
+            $table->text('name')->nullable();
+            $table->text('short_description')->nullable();
+            $table->text('full_description')->nullable();
+            $table->text('image')->nullable();
+            $table->text('image_alt')->nullable();
+            $table->text('image_title')->nullable();
+            $table->float('price')->nullable();
 
-            $table->text('meta_title');
-            $table->text('meta_keyword');
-            $table->text('meta_description');
-
+            $table->text('meta_title')->nullable();
+            $table->text('meta_keyword')->nullable();
+            $table->text('meta_description')->nullable();
             
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
@@ -37,6 +36,7 @@ class CreateProductsTable extends Migration
 
             $table->text('status')->default(0);
             $table->timestamps();
+            
         });
     }
 

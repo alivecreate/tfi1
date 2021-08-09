@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Category;
+use App\Models\admin\Product;
 
 class ProductController extends Controller
 {
@@ -13,16 +14,32 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */    
+    // public function __construct(){
+    //     $this->parent_categories = category::where(['parent_id'=>0])->orderBy('id','DESC')->get();
+
+    // }
+
+    // public function index()
+    // {
+    //     // $data = ['parent_categories' =>  $this->parent_categories];
+    //     // return view('adm.pages.product.index', $data);
+    // }
+
     public function __construct(){
+        $this->products = Product::orderBy('id','DESC')->get();
         $this->parent_categories = category::where(['parent_id'=>0])->orderBy('id','DESC')->get();
 
     }
 
     public function index()
     {
-        // $data = ['parent_categories' =>  $this->parent_categories];
-        // return view('adm.pages.product.index', $data);
+        $data = [
+            'products' =>  $this->products,
+            'parent_categories' =>  $this->parent_categories
+        ];
+        return view('adm.pages.product.index', $data);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -44,44 +61,40 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
+        // dd($request->input());
 
         $request->validate([
-            'task_id' => 'required',
-            'note_no' => 'required',
-            'type' => 'required',
-            'description' => 'required',
-            'admin_id' => 'required',
-            'date_inward' => 'required',
-            'date_check' => 'required',
-            'file_live_status' => 'required',
-            'computer_file_status' => 'required',
-            'cupboard_file_status' => 'required',
+            'name' => 'required',
+            'short_description' => 'required',
+            'full_description' => 'required',
+            'meta_title' => 'required',
+            'meta_keyword' => 'required',
+            'meta_description' => 'required',
 
         ]);
 
-        $task = new TaskAssign;
-        $task->task_id = $request->task_id;   
-        $task->note_no = $request->note_no;             
-        $task->type = $request->type;      
-        $task->description = $request->description;  
-        $task->admin_id  = $request->employee_id ; 
-        $task->date_inward = $request->date_inward;      
-        $task->date_check  = $request->date_check;
-        $task->file_live_status  = $request->file_live_status;
-        $task->computer_file_status  = $request->computer_file_status;
-        $task->cupboard_file_status  = $request->cupboard_file_status;
-        $save = $task->save();
+        $image_name = uploadImageThumb($request);
+        // dd($image_name);
+        $product = new Product;
+        $product->name = $request->name;   
+        $product->short_description = $request->short_description;             
+        $product->full_description = $request->full_description;      
+        $product->image  = $image_name ; 
+        $product->image_alt = $request->image_alt;      
+        $product->meta_title  = $request->meta_title;
+        $product->meta_keyword  = $request->meta_keyword;
+        $product->meta_description  = $request->meta_description;
+        $product->category_id  = $request->category_id;
+        $save = $product->save();
+
         // dd($task->id);
 
         if($save){
-
-            $taskStatus = new TaskStatus;
-            $taskStatus->status_id  = 1 ; 
-            $taskStatus->task_assign_id = $task->id;
-            $taskStatus->save();
-
-            return back()->with('success', 'Task Assigned...');
+            // $taskStatus = new TaskStatus;
+            // $taskStatus->status_id  = 1 ; 
+            // $taskStatus->task_assign_id = $task->id;
+            // $taskStatus->save();
+            return back()->with('success', 'New Product Added...');
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }
@@ -127,8 +140,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product = $product->delete();
+        if($product){
+            return back()->with('success', 'Product Deleted...');
+        }else{
+            return back()->with('fail', 'Something went wrong, try again later...');
+        }
     }
 }

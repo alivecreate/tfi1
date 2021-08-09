@@ -12,14 +12,14 @@ $( document ).ready(function() {
     var delete_id = $(this).attr('data-id');
     var data_title = $(this).attr('data-title');
     
-    $('.delete-form').attr('action','/admin/task/'+ delete_id);
+    $('.delete-form').attr('action','/admin/product/'+ delete_id);
     $('.delete-title').html(data_title);
   });  
 });
 
 
-$(".task").addClass( "menu-is-opening menu-open");
-$(".task a").addClass( "active-menu");
+$(".product").addClass( "menu-is-opening menu-open");
+$(".product a").addClass( "active-menu");
 
 </script>
 @endsection
@@ -32,12 +32,12 @@ $(".task a").addClass( "active-menu");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>task List: કર્મચારી</h1>
+            <h1>product List: કર્મચારી</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">task</li>
+              <li class="breadcrumb-item active">product</li>
             </ol>
           </div>
         </div>
@@ -57,53 +57,53 @@ $(".task a").addClass( "active-menu");
                   <thead>
                     <tr>
                       
-                      <th class="bg-gray">ID</th>
-                      <th class="bg-info">Image</th>
-                      <th class="bg-info">Name</th>
-                      <th class="bg-info">Title</th>
-                      <th class="bg-danger">Description</th>
+                      <th>ID</th>
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Short Description</th>
+                      <th>Full Description</th>
+                      <th>Category</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($tasks as $i => $task)
-                      <tr>
-                        <td>{{++$i}}</td>
+                    @foreach($products as $i => $product)
+                      <tr> 
+                        @if(isset($product->image))
+                        <td>{{++$i}}</td><td><img class="img-circle elevation-2 object-fit"  height="30" width="30"
+                          src="{{asset('web')}}/media/xs/{{$product->image}}"></td>
+                          @else
 
-                        <td>{{$task->name}}</td>
-                        <td>{{$task->client->name}}</td>
-                        @if($task->client->image)
-                        <td><img class="img-circle elevation-2 object-fit"  height="40" width="40"
-                            src="{{asset('web')}}/media/lg/{{$task->client->image}}"></td>
-                            @else
-                            
-                        <td><img class="img-circle elevation-2 object-fit-sm" 
-                            src="{{asset('adm')}}/img/no-user.jpeg"></td>
-                        @endif
+                        <td><img class="img-circle elevation-2"  height="30" width="30"
+                          src="{{asset('adm')}}/img/no-item.jpeg"></td>
+                          @endif
+                        <td>{{$product->name}}</td>
+                        <td>{{$product->short_description}}</td>
+                        <td>{{$product->full_description}}</td>
                         
+
                         <td>
-                        @if($task->getParent($task->category_id)['kacheri'])
-                          <span class='bg-primary p-1'>{{$task->getParent($task->category_id)['kacheri']->name}}</span>
+                        @if(getParentCategory($product->category_id)['category'])
+                          <span class='bg-primary p-1'>{{getParentCategory($product->category_id)['category']->name}}</span>
                         @endif
 
                         
-                        @if($task->getParent($task->category_id)['petaKacheri'])
-                          <span class='bg-danger p-1'>{{$task->getParent($task->category_id)['petaKacheri']->name}}</span>
+                        @if(getParentCategory($product->category_id)['subcategory'])
+                          <span class='bg-danger p-1'>{{getParentCategory($product->category_id)['subcategory']->name}}</span>
                         @endif
 
                         
-                        @if($task->getParent($task->category_id)['department'])
-                          <span class='bg-warning p-1'>{{$task->getParent($task->category_id)['department']->name}}</span>
+                        @if(getParentCategory($product->category_id)['subcategory2'])
+                          <span class='bg-warning p-1'>{{getParentCategory($product->category_id)['subcategory2']->name}}</span>
                         @endif
-                        
-                        
+                                                
                         
                         </td>
                         
                         <td>
                         
-                        <a href="{{route('task.edit',$task->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit task"><i class="far fa-edit"></i></a>
-                          <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete task"  data-id="{{ $task->id}}" data-title="{{ $task->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                        <a href="{{route('product.edit',$product->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit product"><i class="far fa-edit"></i></a>
+                          <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete product"  data-id="{{ $product->id}}" data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                           </button>
                       
                       
@@ -128,13 +128,13 @@ $(".task a").addClass( "active-menu");
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Delete task</h4>
+              <h4 class="modal-title">Delete product</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-            <label>કર્મચારીનું નામ</label>
+            <label>Product Name</label>
             <h5 class="modal-title delete-title">Delete Category</h5>
             </div>
             <div class="modal-footer justify-content-between d-block ">

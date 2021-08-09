@@ -103,7 +103,7 @@ $(".task a").addClass( "active-menu");
             
             <div class="col-md-12">
                  
-              <form enctype="multipart/form-data" method="post" class="form-horizontal" 
+              <form enctype="multipart/form-data" method="post" class="form-horizontal"  
                 action="{{route('product.store')}}">
                 @csrf
                   <div class="form-group row">
@@ -172,7 +172,7 @@ $(".task a").addClass( "active-menu");
                     <div class="form-group row">
                         <div class="col-sm-3">
                         <label for="image_alt">Featured Image</label><br>
-                        <input type="file" name="featured_image" class="Featured_image " id="Featured_image">
+                        <input type="file" name="image" class="image " id="image">
                       </div>
 
                       <div class="col-sm-4">
@@ -195,35 +195,32 @@ $(".task a").addClass( "active-menu");
                   <div class="form-group row">
                     <h5 class="bg-dark pl-4 pr-4">SEO CONTENTS</h5>
                     <div class="col-sm-12">
-                      <label  class="text-danger" class="text-danger" for="seo_title">SEO Title</label>
-                      <input type="text" class="form-control" name="seo_title" 
-                        placeholder="Seo Friendly Title" value="{{old('seo_title')}}">
-                      <span class="text-danger">@error('seo_title') {{$message}} @enderror</span>
+                      <label  class="text-danger" class="text-danger" for="meta_title">SEO Title</label>
+                      <input type="text" class="form-control" name="meta_title" 
+                        placeholder="Seo Friendly Title" value="{{old('meta_title')}}">
+                      <span class="text-danger">@error('meta_title') {{$message}} @enderror</span>
                     </div>
                     <div class="col-sm-12">
-                      <label  class="text-danger" for="seo_keyword">Keyword</label>
-                      <input type="text" class="form-control" name="seo_keyword" 
-                        placeholder="Seo Keywords with ," value="{{old('seo_keyword')}}">
-                      <span class="text-danger">@error('seo_keyword') {{$message}} @enderror</span>
+                      <label  class="text-danger" for="meta_keyword">Keyword</label>
+                      <input type="text" class="form-control" name="meta_keyword" 
+                        placeholder="Seo Keywords with ," value="{{old('meta_keyword')}}">
+                      <span class="text-danger">@error('meta_keyword') {{$message}} @enderror</span>
                     </div>
                     <div class="col-sm-12">
-                      <label  class="text-danger" for="seo_title">Description</label>
-                      <textarea type="text" class="form-control" name="seo_title" 
-                        placeholder="Seo Friendly Title" value="{{old('seo_title')}}"></textarea>
-                      <span class="text-danger">@error('seo_title') {{$message}} @enderror</span>
+                      <label  class="text-danger" for="meta_description">Description</label>
+                      <textarea type="text" class="form-control" name="meta_description" 
+                        placeholder="Seo Friendly Title">{{old('meta_description')}}</textarea>
+                      <span class="text-danger">@error('meta_description') {{$message}} @enderror</span>
                     </div>
                   </div>
 
-                  </div>
+                  
+                <div class="card-footer">
+                  <button type="submit" class="float-right btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    Save Product</button>
+                </div>
 
-
-                  <div class="form-group row">
-{{mt_rand(1000, 9999).mt_rand(50000,99999)}}
-                 @include('adm.widget.multiple-image-upload')
-        
-                    <div class="card-footer container">
-                       <button type="submit" class="btn btn-info float-right"><i class="fas fa-save"></i>&nbsp;&nbsp;ટાસ્ક સેવ કરો</button>
-                    </div>
+              </div>
               </form>
               </div>
 

@@ -1,5 +1,6 @@
 <?php
 use App\Models\admin\TaskComment;
+use App\Models\admin\Category;
 
 function getTaskComments(){
     // TaskComment::where('admin_id', session('LoggedUser')->id);session('LoggedUser')->id
@@ -55,8 +56,9 @@ function getTaskStatus($id){
 }
 
 function getSubCategories($id){
-        $data = DB::table('categories')
-        ->where('parent_id',$id)
-        ->get();
-        return $data;
+    $data = DB::table('categories')
+    ->where('parent_id',$id)
+    ->get();
+    return $data;
 }
+

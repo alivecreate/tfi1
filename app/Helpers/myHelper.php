@@ -1,7 +1,9 @@
 <?php
+use App\Models\admin\Category;
 
 function uploadImageThumb($request){
     // return $image;
+    // dd($request);
     if($request->file('image')){
         $image = $request->file('image');
         // dd($image);
@@ -158,3 +160,34 @@ function getStatusTextColor($status){
     }
 }
 
+function test1(){
+    dd('testing helper');
+}
+
+function getParentCategory($id){
+    // $data = DB::table('categories')
+    // ->where('id',$parent_id)
+    // ->get();
+
+    // dd($data);
+    // return $data;
+
+    
+    $category = Category::find($id);
+
+    if($category->parent_id == 0){
+        return (['category'=>$category, 'subcategory' => null, 'subcategory2' => null]);
+    }
+    else{
+        $subcategory = Category::find($category->parent_id);
+        if($subcategory->parent_id == 0){
+            
+            return (['category'=>$subcategory, 'subcategory' => $category, 'subcategory2' => null]);
+        }else{
+           $subcategory2 = Category::find($subcategory->parent_id);
+           
+            return(['category'=>$subcategory2, 'subcategory' => $subcategory, 'subcategory2' => $category]);
+
+        }
+    }
+}
