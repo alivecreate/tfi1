@@ -102,7 +102,8 @@ $(".product a").addClass( "active-menu");
                         
                         <td>
                         
-                        <a href="{{route('product.edit',$product->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit product"><i class="far fa-edit"></i></a>
+                          <a href="{{route('product.edit',$product->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit product"><i class="far fa-edit"></i></a>
+                          {{-- <a href="{{route('product-image.edit',$product->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Upload product Images"><i class="far fa-edit"></i></a> --}}
                           <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete product"  data-id="{{ $product->id}}" data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                           </button>
                       

@@ -71,6 +71,7 @@ $(".category a").addClass( "active-menu");
              
               <form method="post" class="form-horizontal" action="{{route('admin.category.update', $data->id)}}">
                 @csrf
+                @method('PUT')
                 <div class="card-body p-2 pt-4">
                   <div class="form-group row">
                     <div class="col-sm-12">

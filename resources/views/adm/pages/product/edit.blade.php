@@ -9,47 +9,43 @@
 
 
 <script>
-$('.kacheri_parent_id').on('change', function() {
-  
+$('.category_parent_id').on('change', function() {
         var parent = $(this).find(':selected').val();
     // alert(parent);
 
-      $('.department_id').html('<option value="">ડિપાર્ટમેન્ટ સિલેક્ટ કરો</option>');
-        $.get( `{{url('api')}}/get/getPetaKacheri/`+parent, { kacheri_parent_id: parent })
+        $.get( `{{url('api')}}/get/getPetaKacheri/`+parent, { category_parent_id: parent })
         .done(function( data ) {
-          // alert(JSON.stringify(data));
 
         if(JSON.stringify(data.length) == 0){
-            $('.petaKacheri_parent_id').html('<option>પેટાકચેરી સિલેક્ટ કરો</option>');
+            $('.sub_category_parent_id').html('<option>Sub Category</option>');
         }
         else{
-                $('.petaKacheri_parent_id').empty();     
-            $('.petaKacheri_parent_id').html('<option value="">પેટાકચેરી સિલેક્ટ કરો</option>');
+                $('.sub_category_parent_id').empty();     
+            $('.sub_category_parent_id').html('<option value="">Sub Category</option>');
             for(var i = 0 ; i < JSON.stringify(data.length); i++){  
-                $('.petaKacheri_parent_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
+                $('.sub_category_parent_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
             }
         }
     });
+    $('.category_id').val(parent);
 
-    $('.category_id').val(parent);       
     });
 
 
-
-    $('.petaKacheri_parent_id').on('change', function() {
+    $('.sub_category_parent_id').on('change', function() {
         var parent = $(this).find(':selected').val();
     // alert(parent);
 
-        $.get( `{{url('api')}}/get/getDepartment/`+parent, { petaKacheri_parent_id: parent })
+        $.get( `{{url('api')}}/get/getDepartment/`+parent, { sub_category_parent_id: parent })
         .done(function( data ) {
           // alert(JSON.stringify(data));
 
         if(JSON.stringify(data.length) == 0){
-            $('.department_id').html('<option>ડિપાર્ટમેન્ટ સિલેક્ટ કરો</option>');
+            $('.department_id').html('<option>Select Sub Category2</option>');
         }
         else{
                 $('.department_id').empty();     
-            $('.department_id').html('<option value="">ડિપાર્ટમેન્ટ સિલેક્ટ કરો</option>');
+            $('.department_id').html('<option value="">Select Sub Category2</option>');
             for(var i = 0 ; i < JSON.stringify(data.length); i++){  
                 $('.department_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
             }
@@ -71,10 +67,10 @@ $('.kacheri_parent_id').on('change', function() {
 $(".task").addClass( "menu-is-opening menu-open");
 $(".task a").addClass( "active-menu");
 
-
 </script>
 @endsection
 @section('content')
+
 
 
 <div class="content-wrapper">
@@ -82,12 +78,13 @@ $(".task a").addClass( "active-menu");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Task: કામગીરી પત્રક / ટાસ્ક </h1>
+            <h1>Edit: Product </h1>
           </div>
+          
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">Task</li>
+              <li class="breadcrumb-item active">Edit Product</li>
             </ol>
           </div>
         </div>
@@ -102,116 +99,166 @@ $(".task a").addClass( "active-menu");
             <div class="form-horizontal row">
             
             <div class="col-md-12">
-
-            <form enctype="multipart/form-data" method="post" class="form-horizontal" 
-                action="{{route('task.update', $task->id)}}">
+                 
+              <form enctype="multipart/form-data" method="post" class="form-horizontal"  
+                action="{{route('product.update', $product->id)}}">
                 @csrf
                 @method('PUT')
                   <div class="form-group row">
                     <div class="col-sm-4">
-                      <label for="name"><span class="text-danger">*</span> ટાસ્કનું નામ</label>
-                      <input type="text" class="form-control" name="name" 
-                         placeholder="ટાસ્કનું નામ" 
-                          value="@if(old('name')){{old('name')}}@else{{$task->name}}@endif">
-                         
-                    <span class="text-danger">@error('name') {{$message}} @enderror</span>
-                    </div>
+                    <label for="client_id">Category</label>
+                      {{-- <input type="text" disabled value="{{}}"> --}}
+                      
+                      {{-- @if(getParentCategory($product->category_id)['subcategory2'])
+                        <span class='bg-warning p-1'>{{getParentCategory($product->category_id)['subcategory2']->name}}</span>
+                      @endif
+                                 --}}
 
-                    <div class="col-sm-4">
-                      <label for="client_id">અરજદારનું નામ</label>
-
-                      <select name="client_id" id="" class="form-control">
-                          <option value="">અરજદારનું નામ સિલેક્ટ કરો</option>
-                        @foreach($clients as $client)
-                            <option value="{{$client->id}}"
-
-                            @if($client->id == $task->client_id )
-                             selected
-                            @endif    
-
-                            >{{$client->name}}</option>
-                        @endforeach
-                      </select>
-
-                      <span class="text-danger">@error('client_id') {{$message}} @enderror</span>
-                    </div>
-
-                  </div>
-
-                  <hr>
-
-                  <div class="form-group row">
-                    <div class="col-sm-4">
-                    <label for="client_id">કચેરીનું નામ</label>
-                      <select name="kacheri_parent_id" class="form-control kacheri_parent_id">
-                        <option value="">કચેરી સિલેક્ટ કરો</option>
-
+                      <select name="category_parent_id" class="form-control category_parent_id">
+                        <option value="">Select Category</option>
                           @foreach($parent_categories as $parent_category)
                               <option value="{{$parent_category->id}}"
-                              
-                            @if($task->getParent($task->category_id)['kacheri'])
-                              @if($task->getParent($task->category_id)['kacheri'] && $parent_category->id == $task->getParent($task->category_id)['kacheri']->id)
-                                  selected
-                              @endif
-                              >{{$parent_category->name}}</option>
-                              @endif
 
+                                @if(isset(getParentCategory($product->category_id)['category']))
+                                  @if($parent_category->id == getParentCategory($product->category_id)['category']->id)
+                                    selected
+                                  @endif
+                                @endif
+
+                                >{{$parent_category->name}}</option>
                           @endforeach
                       </select>
+
                       <span class="text-danger">@error('category_id') {{$message}} @enderror</span>
                     </div>
                     
-                    <!-- {{$task->category->parent_id}} -->
-
-                
-
                     <div class="col-sm-4">
-                    <label for="client_id">પેટાકચેરીનું નામ</label>
-                      <select name="petaKacheri_parent_id"  class="form-control petaKacheri_parent_id">
-                      
-                    @if($task->getParent($task->category_id)['petaKacheri'])
-                        <option value="{{$task->getParent($task->category_id)['petaKacheri']->id}}"
-                        @if($task->getParent($task->category_id)['petaKacheri'] && $parent_category->id == $task->getParent($task->category_id)['petaKacheri']->id)
-                            selected
+                    <label for="client_id">Sub Category</label>
+                      <select name="sub_category_parent_id"  class="form-control sub_category_parent_id">
+                        <option value="">Select Sub Category</option>
+                        
+                        @if(getParentCategory($product->category_id)['subcategory'])
+                          <option selected value="{{getParentCategory($product->category_id)['subcategory']->id}}">{{getParentCategory($product->category_id)['subcategory']->name}}</option>
                         @endif
-                        >{{$task->getParent($task->category_id)['petaKacheri']->name}}</option>
 
-                        @else
-                        <option value="">પેટાકચેરી સિલેક્ટ કરો</option>
-                      @endif
                       </select>
-                      <span class="text-danger">@error('petaKacheri_parent_id') {{$message}} @enderror</span>
+                      <span class="text-danger">@error('sub_category_parent_id') {{$message}} @enderror</span>
                     </div>
-
+    
+                    
                     <div class="col-sm-4">
-                    <label for="client_id">ડિપાર્ટમેન્ટનું નામ</label>
-                      <select name="department_id"  class="form-control department_id">
+                     <label for="client_id">Sub Category 2</label>
+                      
+                     <select name="department_id"  class="form-control department_id">
+                        <option value="">Select Sub Category2</option>
 
-                      @if($task->getParent($task->category_id)['department'])
-                        <option value="{{$task->getParent($task->category_id)['department']->id}}"
-                        @if($task->getParent($task->category_id)['department'] && $parent_category->id == $task->getParent($task->category_id)['department']->id)
-                            selected
-                        @endif
-                        >{{$task->getParent($task->category_id)['department']->name}}</option>
-                        @else
-                        <option value="">ડિપાર્ટમેન્ટ સિલેક્ટ કરો</option>
+                        @if(getParentCategory($product->category_id)['subcategory2'])
+                          <option selected value="{{getParentCategory($product->category_id)['subcategory2']->id}}">{{getParentCategory($product->category_id)['subcategory2']->name}}</option>
                         @endif
 
                       </select>
+
                       <span class="text-danger">@error('department_id') {{$message}} @enderror</span>
                       <input type="hidden" name="category_id" class="category_id">
                       <input type="hidden" name="admin_id" value="{{session('LoggedUser')->id}}">
-                    </div>
-                    
-
+                    </div>                 
                   </div>
-                    <div class="card-footer container">
-                       <button type="submit" class="btn btn-info float-right"><i class="fas fa-save"></i>&nbsp;&nbsp;ટાસ્ક સેવ કરો</button>
+                  
+                  <div class="form-group row">
+                    <div class="col-sm-12">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" name="name" 
+                         placeholder="Product Name" 
+                         value="@if(old('name')){{old('name')}}@else{{$product->name}}@endif">
+                         
+                    <span class="text-danger">@error('name') {{$message}} @enderror</span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <div class="col-sm-12">
+                      <label for="short_description">Short Desctiption</label>
+                      <input type="text" class="form-control" name="short_description" 
+                         placeholder="Product Short Desctiption" 
+                         value="@if(old('short_description')){{old('short_description')}}@else{{$product->short_description}}@endif">
+                         
+                    <span class="text-danger">@error('short_description') {{$message}} @enderror</span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <div class="col-sm-12">
+                      <label for="full_description">Full Desctiption</label>
+                        <textarea id="summernote" name="full_description" placeholder="Product Descriptions">
+                          @if(old('full_description')){{old('full_description')}}@else{{$product->full_description}}@endif 
+                        </textarea>
+                                  
+                    <span class="text-danger">@error('full_description') {{$message}} @enderror</span>
+                    </div>
                     </div>
                     
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                        <label for="image_alt">Featured Image</label><br>
+                        <input type="file" name="image" class="image " id="image">
+                        <img class="mt-2" width="100" src="{{asset('web')}}/media/xs/{{$product->image}}">
+                      </div>
+
+                      <div class="col-sm-4">
+                        <label for="image_alt">Image Alt</label>
+                        <input type="text" class="form-control" name="image_alt" 
+                          placeholder="Image Alter Text (SEO)" 
+                          value="@if(old('image_alt')){{old('image_alt')}}@else{{$product->image_alt}}@endif">
+                          
+                        <span class="text-danger">@error('image_alt') {{$message}} @enderror</span>
+                      </div>
+                      
+                      <div class="col-sm-5">
+                        <label for="image_title">Image Title</label>
+                        <input type="text" class="form-control" name="image_title" 
+                          placeholder="Product Image Title (SEO)" 
+                          value="@if(old('image_title')){{old('image_title')}}@else{{$product->image_title}}@endif">
+                          
+                        <span class="text-danger">@error('image_title') {{$message}} @enderror</span>
+                      </div>
+                    </div>
+                    
+                  <div class="form-group row">
+                    <h5 class="bg-dark pl-4 pr-4">SEO CONTENTS</h5>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" class="text-danger" for="meta_title">SEO Title</label>
+                      <input type="text" class="form-control" name="meta_title" 
+                        placeholder="Seo Friendly Title" 
+                        value="@if(old('meta_title')){{old('meta_title')}}@else{{$product->meta_title}}@endif">
+
+                      <span class="text-danger">@error('meta_title') {{$message}} @enderror</span>
+                    </div>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" for="meta_keyword">Keyword</label>
+                      <input type="text" class="form-control" name="meta_keyword" 
+                        placeholder="Seo Keywords with ," 
+                        value="@if(old('meta_keyword')){{old('meta_keyword')}}@else{{$product->meta_keyword}}@endif">
+
+                      <span class="text-danger">@error('meta_keyword') {{$message}} @enderror</span>
+                    </div>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" for="meta_description">Description</label>
+                      <textarea type="text" class="form-control" name="meta_description" 
+                        placeholder="Seo Friendly Title">@if(old('meta_description')){{old('meta_description')}}@else{{$product->meta_description}}@endif
+                      </textarea>
+                      <span class="text-danger">@error('meta_description') {{$message}} @enderror</span>
+                    </div>
+                  </div>
+
+                  
+                <div class="card-footer">
+                  <button type="submit" class="float-right btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    Save Product</button>
+                </div>
+
+              </div>
               </form>
-
-                  </div>
+              </div>
 
 
 

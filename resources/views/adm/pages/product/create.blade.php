@@ -184,11 +184,11 @@ $(".task a").addClass( "active-menu");
                       </div>
                       
                       <div class="col-sm-5">
-                        <label for="image_alt">Image Title</label>
-                        <input type="text" class="form-control" name="image_alt" 
-                          placeholder="Product Image Title (SEO)" value="{{old('image_alt')}}">
+                        <label for="image_title">Image Title</label>
+                        <input type="text" class="form-control" name="image_title" 
+                          placeholder="Product Image Title (SEO)" value="{{old('image_title')}}">
                           
-                        <span class="text-danger">@error('image_alt') {{$message}} @enderror</span>
+                        <span class="text-danger">@error('image_title') {{$message}} @enderror</span>
                       </div>
                     </div>
                     

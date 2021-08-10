@@ -74,7 +74,6 @@ class ProductController extends Controller
         ]);
 
         $image_name = uploadImageThumb($request);
-        // dd($image_name);
         $product = new Product;
         $product->name = $request->name;   
         $product->short_description = $request->short_description;             
@@ -119,7 +118,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'product' =>  Product::find($id), 'parent_categories' => $this->parent_categories
+        ];
+
+        return view('adm.pages.product.edit', $data);
     }
 
     /**
@@ -131,7 +134,35 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $request->validate([
+            'name' => 'required',
+            'short_description' => 'required',
+            'full_description' => 'required',
+            'meta_title' => 'required',
+            'meta_keyword' => 'required',
+            'meta_description' => 'required',
+
+        ]);
+
+        $image_name = uploadImageThumb($request);
+        $product =  Product::find($id);
+        $product->name = $request->name;   
+        $product->short_description = $request->short_description;             
+        $product->full_description = $request->full_description;      
+        $product->image  = $image_name ; 
+        $product->image_alt = $request->image_alt;      
+        $product->meta_title  = $request->meta_title;
+        $product->meta_keyword  = $request->meta_keyword;
+        $product->meta_description  = $request->meta_description;
+        $product->category_id  = $request->category_id;
+        $save = $product->save();
+
+        if($save){
+            return back()->with('success', 'New Product Added...');
+        }else{
+            return back()->with('fail', 'Something went wrong, try again later...');
+        }
     }
 
     /**
@@ -149,4 +180,6 @@ class ProductController extends Controller
             return back()->with('fail', 'Something went wrong, try again later...');
         }
     }
+
+
 }
