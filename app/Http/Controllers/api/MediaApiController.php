@@ -20,11 +20,7 @@ class MediaApiController extends Controller
 {
     public function index(){
         header("Access-Control-Allow-Origin: *");
-        
-        // $result = Media::paginate(10);
-        // return $result;
-        // // return Media::all();
-        
+             
         $getPosts = DB::table('media')
         ->orderBy('media.id','desc')
         ->get();
@@ -32,9 +28,35 @@ class MediaApiController extends Controller
         return response()->json($getPosts);
 
     }
+
+    public function getProductImages($id){
+        header("Access-Control-Allow-Origin: *");
+        $getPosts = DB::table('media')
+        ->orderBy('media.id','desc')
+        ->where('media_id',$id)
+        ->get();
+
+        return response()->json($getPosts);
+    }
+
+    public function updateProductImage(Request $request){
+        dd($request->input());
+        $media = Media::find($request->id);
+        $media->id = $request->id;
+        $media->image_alt = $request->image_alt;
+        $media->image_title = $request->image_title;
+        if($media->save()){        
+            return 'Product Image Data Saved';
+        }else{
+            return 'something went wrong, try again later.';    
+        }
+
+    }
+
+    
     public function mediaStore(Request $request){
-        // dd($request->input());
-        $image = $request->file('images');
+        
+        $image = $request->file('image');
             
         $input['imagename'] = time().'_'.rand(1111,9999).'.'.$image->extension();
         
@@ -75,11 +97,9 @@ class MediaApiController extends Controller
 
                 $media = new Media;
                 $media->media_id = $request->media_id;
-                // $media->image_type = $request->image_type;
-                // $media->image_alt = $request->image_alt;
-                // $media->image_title = $request->image_title;
-                // $media->image_desc = $request->image_desc;
-                $media->image_type = 'product';
+                $media->image_type = $request->image_type;
+                $media->image_alt = $request->image_alt;
+                $media->image_title = $request->image_title;
                 $media->image = $input['imagename'];
                 if($media->save()){        
                     return url('web').'/media/icon/'.$input['imagename'];

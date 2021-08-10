@@ -8,6 +8,7 @@
 
 <script>
   $.widget.bridge('uibutton', $.ui.button)
+
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('adm')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -34,7 +35,6 @@
 <script src="{{asset('adm')}}/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('adm')}}/dist/js/demo.js"></script>
-<script src="{{asset('adm')}}/dist/js/custom.js"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {{-- <!-- <script src="{{asset('adm')}}/dist/js/pages/dashboard.js"></script> --> --}}
@@ -62,5 +62,8 @@
       });
   })  
   
+
+
+  // $('body').hide();
 
 </script>

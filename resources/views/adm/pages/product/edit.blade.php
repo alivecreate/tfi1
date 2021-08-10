@@ -9,65 +9,78 @@
 
 
 <script>
-$('.category_parent_id').on('change', function() {
-        var parent = $(this).find(':selected').val();
-    // alert(parent);
 
-        $.get( `{{url('api')}}/get/getPetaKacheri/`+parent, { category_parent_id: parent })
-        .done(function( data ) {
+$(".editProductImage").on('click', function() {
+    alert('editmode');
+});
 
-        if(JSON.stringify(data.length) == 0){
-            $('.sub_category_parent_id').html('<option>Sub Category</option>');
-        }
-        else{
-                $('.sub_category_parent_id').empty();     
-            $('.sub_category_parent_id').html('<option value="">Sub Category</option>');
-            for(var i = 0 ; i < JSON.stringify(data.length); i++){  
-                $('.sub_category_parent_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
-            }
-        }
-    });
-    $('.category_id').val(parent);
+// $(".editProductImage").click(){
+//   alert('editmode');
 
-    });
+// }
 
 
-    $('.sub_category_parent_id').on('change', function() {
-        var parent = $(this).find(':selected').val();
-    // alert(parent);
-
-        $.get( `{{url('api')}}/get/getDepartment/`+parent, { sub_category_parent_id: parent })
-        .done(function( data ) {
-          // alert(JSON.stringify(data));
-
-        if(JSON.stringify(data.length) == 0){
-            $('.department_id').html('<option>Select Sub Category2</option>');
-        }
-        else{
-                $('.department_id').empty();     
-            $('.department_id').html('<option value="">Select Sub Category2</option>');
-            for(var i = 0 ; i < JSON.stringify(data.length); i++){  
-                $('.department_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
-            }
-        }
-    });
-    
-    $('.category_id').val(parent);
-       
-    });
-    
-    $('.department_id').on('change', function() {
-        var parent = $(this).find(':selected').val();
-        $('.category_id').val(parent);
-       
-    });
-
-    
-    
-$(".task").addClass( "menu-is-opening menu-open");
-$(".task a").addClass( "active-menu");
-
-</script>
+  $('.category_parent_id').on('change', function() {
+          var parent = $(this).find(':selected').val();
+      // alert(parent);
+  
+          $.get( `{{url('api')}}/get/getPetaKacheri/`+parent, { category_parent_id: parent })
+          .done(function( data ) {
+            // alert(JSON.stringify(data));
+  
+          if(JSON.stringify(data.length) == 0){
+              $('.sub_category_parent_id').html('<option>Sub Category</option>');
+          }
+          else{
+                  $('.sub_category_parent_id').empty();     
+              $('.sub_category_parent_id').html('<option value="">Sub Category</option>');
+              for(var i = 0 ; i < JSON.stringify(data.length); i++){  
+                  $('.sub_category_parent_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
+              }
+          }
+      });
+      $('.category_id').val(parent);
+  
+      });
+  
+  
+      $('.sub_category_parent_id').on('change', function() {
+          var parent = $(this).find(':selected').val();
+  
+          $.get( `{{url('api')}}/get/getDepartment/`+parent, { sub_category_parent_id: parent })
+          .done(function( data ) {
+            // alert(JSON.stringify(data));
+  
+          if(JSON.stringify(data.length) == 0){
+              $('.subcategory2_id').html('<option>Select Sub Category2</option>');
+          }
+          else{
+                  $('.subcategory2_id').empty();     
+              $('.subcategory2_id').html('<option value="">Select Sub Category2</option>');
+              for(var i = 0 ; i < JSON.stringify(data.length); i++){  
+                  $('.subcategory2_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
+              }
+          }
+      });
+      
+      $('.category_id').val(parent);
+         
+      });
+      
+      $('.subcategory2_id').on('change', function() {
+          var parent = $(this).find(':selected').val();
+          $('.category_id').val(parent);
+         
+      });
+  
+      
+      
+  $(".product").addClass( "menu-is-opening menu-open");
+  $(".product a").addClass( "active-menu");
+  
+  </script>
+  
+  
 @endsection
 @section('content')
 
@@ -149,7 +162,7 @@ $(".task a").addClass( "active-menu");
                     <div class="col-sm-4">
                      <label for="client_id">Sub Category 2</label>
                       
-                     <select name="department_id"  class="form-control department_id">
+                     <select name="subcategory2_id"  class="form-control subcategory2_id">
                         <option value="">Select Sub Category2</option>
 
                         @if(getParentCategory($product->category_id)['subcategory2'])
@@ -158,8 +171,11 @@ $(".task a").addClass( "active-menu");
 
                       </select>
 
-                      <span class="text-danger">@error('department_id') {{$message}} @enderror</span>
-                      <input type="hidden" name="category_id" class="category_id">
+                      <span class="text-danger">@error('subcategory2_id') {{$message}} @enderror</span>
+
+                      <input type="hidden" name="category_id" class="category_id" value="{{$product->category_id}}">
+                      
+
                       <input type="hidden" name="admin_id" value="{{session('LoggedUser')->id}}">
                     </div>                 
                   </div>
@@ -250,7 +266,12 @@ $(".task a").addClass( "active-menu");
                     </div>
                   </div>
 
+
+                  <input type="hidden" name="old_image" value="{{$product->image}}">
+                  <input type="hidden" class="media_id" value="{{$product->id}}">
                   
+                  <input type="hidden" class="image_type" value="product">
+
                 <div class="card-footer">
                   <button type="submit" class="float-right btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                     Save Product</button>
@@ -258,8 +279,13 @@ $(".task a").addClass( "active-menu");
 
               </div>
               </form>
+
               </div>
 
+
+              <div id="product_mul_images">
+                    
+              </div>
 
 
           </div>

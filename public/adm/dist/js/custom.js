@@ -1,3 +1,5 @@
+
+
 $( document ).ready(function() {
     
       $(".category-color span:nth-child(1)").addClass( "bg-primary");
@@ -15,5 +17,8 @@ $( document ).ready(function() {
              switchStatus = $(this).is(':checked');
              $(this).val(0);
           }
-      });
+
+      
+});
+
 });

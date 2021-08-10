@@ -69,8 +69,9 @@ $(".product a").addClass( "active-menu");
                   <tbody>
                     @foreach($products as $i => $product)
                       <tr> 
+                        <td>{{++$i}}</td>
                         @if(isset($product->image))
-                        <td>{{++$i}}</td><td><img class="img-circle elevation-2 object-fit"  height="30" width="30"
+                        <td><img class="img-circle elevation-2 object-fit"  height="30" width="30"
                           src="{{asset('web')}}/media/xs/{{$product->image}}"></td>
                           @else
 

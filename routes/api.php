@@ -23,8 +23,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('media/get-media',[MediaApiController::class, 'index']);
+Route::get('media/get-product-images/{mediaId}',[MediaApiController::class, 'getProductImages']);
 
 Route::post('media/media-store',[MediaApiController::class, 'mediaStore']);
+
+
+Route::post('media/update-product-image',[MediaApiController::class, 'updateProductImage']);
 
 Route::get('media/media-delete/{id}',[MediaApiController::class, 'mediaDelete']);
 

@@ -6,6 +6,7 @@ const MediaContext = React.createContext();
 export const MediaProvider = (props) => {
 
     const [medias, setMedias] = React.useState([]);
+    const [productImageArray, setProductImageArray] = React.useState([]);
     
     const [file, setFile] = React.useState(null);
     const [fileObj, setFileObj] = React.useState([]);
@@ -47,10 +48,10 @@ export const MediaProvider = (props) => {
         setSubmitBtn('enabled');
         setChooseBtn('disabled');
       }
+
       
   const uploadFiles = (e) => {
     e.preventDefault();
-
     const options = {
         onUploadProgress: (progressEvent) => {
             const {loaded, total} = progressEvent;
@@ -108,25 +109,88 @@ export const MediaProvider = (props) => {
               elements[ii].value = "";
             }
           }
-
                      
         if (i === totalFiles) {
             getMedias();
            setIsLoadding('disabled');
            onClickClear();
        }
-          
-        // setProgress(progress => progress);
-        // console.log('pp -'+progress);
-        
         resp ++;
         })
-       
-        console.log('res-'+ i + 1  +'total-'+ totalFiles + 'progress - ' + progress);
-        
-        
+        console.log('res-'+ i + 1  +'total-'+ totalFiles + 'progress - ' + progress);        
     }
   }
+  
+    const productFileUpload = (e) => {
+
+      console.log(fileArrayDesp.length);
+      fileObj.push(e.target.files);
+      
+      setProgress(0);
+      setTotalProgress(0);
+      setTotalProgress(fileObj[0].length);
+      for (let i = 0; i < fileObj[0].length; i++) {
+        fileArrayDesp.push(URL.createObjectURL(fileObj[0][i]));
+        fileArray.push(fileObj[0][i]);
+      }
+  
+      setFile(fileArray);
+      setSubmitBtn('enabled');
+      setChooseBtn('disabled');
+          
+    }
+      
+  const productFileSave = (e) => { e.preventDefault();
+    const options = {
+        onUploadProgress: (progressEvent) => {
+            const {loaded, total} = progressEvent;
+            let percent = Math.floor ( (loaded * 100) / total );
+            console.log ( `${loaded}kb of ${total}kb | ${percent}%` );
+        }
+    }
+
+    var d = new Date();
+    var random = Math.floor(Math.random() * 9999) + 1000;
+    var post_key = d.getTime() + random;
+    setSubmitBtn('disabled');
+    setChooseBtn('disabled');
+
+    var totalFiles = fileObj[0].length;
+    console.log('length' + totalFiles);
+
+    setIsLoadding('enabled');
+    var resp = 1 ;
+
+    for (var i = 0; i < totalFiles; i++) {
+
+      const formData = new FormData();
+      formData.append('image', file[i]);
+      formData.append('post_key', post_key);
+      
+      formData.append('image_type', document.querySelector('.image_type').value);
+      formData.append('media_id', document.querySelector('.media_id').value);
+      formData.append('image_alt', document.querySelector('.image_alt').value);
+      formData.append('image_title', document.querySelector('.image_title').value);
+
+      axios.post(GLOBAL.API + 'media/media-store', formData, options)
+        .then(res => {
+          console.log(res.data);
+          var response = Math.floor ( (resp * 100) / totalFiles );
+          setProgress(response);
+        
+          $("#productImageForm").trigger('reset'); 
+        if (i === totalFiles) {
+            getProductImages();
+           setIsLoadding('disabled');
+           onClickClear();
+       }
+        resp ++;
+        })
+        console.log('res-'+ i + 1  +'total-'+ totalFiles + 'progress - ' + progress);        
+    }
+  }
+  
+
   
   async function getMedias() {
     axios.get(GLOBAL.API+'media/get-media',{
@@ -134,11 +198,39 @@ export const MediaProvider = (props) => {
     .then(res => {
         console.log(res.data);
         setMedias(res.data);
-        
         // setMovies(prevMovies => [...prevMovies, {name: name, price: price, id : id}])
-
     })
 }
+
+async function getProductImages(){
+  var mediaId = document.querySelector('.media_id').value;
+  await axios.get(GLOBAL.API + 'media/get-product-images/'+mediaId)
+    .then(res => {
+          setProductImageArray(res.data);
+  })
+}
+
+
+async function updateProductImage(e) {
+  e.preventDefault();
+
+  alert('test'+e.target.image_alt.value);
+  const formData = new FormData();
+  formData.append('image_alt', e.target.image_alt.value);
+  formData.append('image_title', e.target.image_title.value);
+
+  axios.post(GLOBAL.API + 'media/update-product-image', formData)
+  .then(res => {
+    if(res.data == 'success'){
+        getMedias();
+        console.log('done');  
+    }
+    else if(res.data == 'not-exists'){
+        console.log('file Already deleted');
+    }
+  })
+}
+
 async function deleteMedia(e) {
     e.preventDefault();
     var delid = e.target.delid.value;
@@ -146,7 +238,7 @@ async function deleteMedia(e) {
     .then(res => {
         console.log(res.data);
         if(res.data == 'success'){
-            getMedias();
+            getProductImages();
             console.log('done');  
         }
         else if(res.data == 'not-exists'){
@@ -160,14 +252,15 @@ async function deleteMedia(e) {
 
     useEffect(() => {
 
-        getMedias();
+      getProductImages();
     }, [])
 
     return(
         <MediaContext.Provider value={{ 
                 medias, setMedias, uploadMultipleFiles, isLoadding,
                 chooseBtn, fileArrayDesp, uploadFiles, submitBtn, setSubmitBtn, deleteMedia,
-                progress, setProgress
+                progress, setProgress, productFileUpload, productFileSave, getProductImages, 
+                productImageArray, setProductImageArray, updateProductImage
             }}>
             {props.children}
         </MediaContext.Provider>

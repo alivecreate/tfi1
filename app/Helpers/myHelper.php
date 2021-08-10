@@ -169,9 +169,7 @@ function getParentCategory($id){
     // ->where('id',$parent_id)
     // ->get();
 
-    dd($id);
-    // return $data;
-
+    // dd($id);
     
     $category = Category::find($id);
 
@@ -188,7 +186,6 @@ function getParentCategory($id){
             $subcategory2 = Category::find($subcategory->parent_id);
             
                 return(['category'=>$subcategory2, 'subcategory' => $subcategory, 'subcategory2' => $category]);
-
             }
         }
     }else{
