@@ -35,20 +35,19 @@ $('.category_parent_id').on('change', function() {
 
     $('.sub_category_parent_id').on('change', function() {
         var parent = $(this).find(':selected').val();
-    // alert(parent);
 
         $.get( `{{url('api')}}/get/getDepartment/`+parent, { sub_category_parent_id: parent })
         .done(function( data ) {
           // alert(JSON.stringify(data));
 
         if(JSON.stringify(data.length) == 0){
-            $('.department_id').html('<option>Select Sub Category2</option>');
+            $('.subcategory2_id').html('<option>Select Sub Category2</option>');
         }
         else{
-                $('.department_id').empty();     
-            $('.department_id').html('<option value="">Select Sub Category2</option>');
+                $('.subcategory2_id').empty();     
+            $('.subcategory2_id').html('<option value="">Select Sub Category2</option>');
             for(var i = 0 ; i < JSON.stringify(data.length); i++){  
-                $('.department_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
+                $('.subcategory2_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
             }
         }
     });
@@ -57,7 +56,7 @@ $('.category_parent_id').on('change', function() {
        
     });
     
-    $('.department_id').on('change', function() {
+    $('.subcategory2_id').on('change', function() {
         var parent = $(this).find(':selected').val();
         $('.category_id').val(parent);
        
@@ -65,12 +64,11 @@ $('.category_parent_id').on('change', function() {
 
     
     
-$(".task").addClass( "menu-is-opening menu-open");
-$(".task a").addClass( "active-menu");
-
-
+$(".product").addClass( "menu-is-opening menu-open");
+$(".product a").addClass( "active-menu");
 
 </script>
+
 @endsection
 @section('content')
 
@@ -130,11 +128,12 @@ $(".task a").addClass( "active-menu");
                     
                     <div class="col-sm-4">
                      <label for="client_id">Sub Category 2</label>
-                      <select name="department_id"  class="form-control department_id">
+                      <select name="subcategory2_id"  class="form-control subcategory2_id">
                         <option value="">Select Sub Category2</option>
                       </select>
-                      <span class="text-danger">@error('department_id') {{$message}} @enderror</span>
+                      <span class="text-danger">@error('subcategory2_id') {{$message}} @enderror</span>
                       <input type="hidden" name="category_id" class="category_id">
+                      
                       <input type="hidden" name="admin_id" value="{{session('LoggedUser')->id}}">
                     </div>                 
                   </div>
