@@ -87,4 +87,57 @@ $(".box-shadow1").hover(function(){
     //     $(this).removeClass("active");
 
     // }
+    
+ 
+    // $( ".link-hover-toggel" )
+    // .mouseout(function() {
+        
+    //     $(this).css('background','red');
+    // })
+    // .mouseover(function() {
+        
+    //     $(this).css('background','green');
+    // });
+    
+    $( ".link-hover-toggel" ).hover(
+        function() {
+            alert('enter');
+          $( this ).append( $( "<span> ***</span>" ) );
+        }, function() {
+          $( this ).find( "span" ).last().remove();
+        }
+      );
+ 
+      
 })
+$('.owl-carousel').owlCarousel({
+    // stagePadding: 0,
+    // loop:true,
+    // margin:10,
+    // nav: false,
+    // autoplay: true,
+    // slideTransition: 'linear',
+    // autoplayTimeout: 3000,
+    // autoplaySpeed: 3000,
+    // autoplayHoverPause: true,
+    // responsive:{
+    //     0:{
+    //         items:2
+    //     },
+    //     600:{
+    //         items:3
+    //     },
+    //     1000:{
+    //         items:5
+    //     }
+    // }
+})
+
+// $( ".link-hover-toggel img" ).hover(
+//     function() {
+//         // alert('enter');
+//       $( this ).append( $( "<span> ***</span>" ) );
+//     }, function() {
+//       $( this ).find( "span" ).last().remove();
+//     }
+// );

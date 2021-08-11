@@ -27,6 +27,18 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+
+    // public function render($request, Exception $exception)
+    // {
+    //     if (!$request->expectsJson() && $exception instanceof MethodNotAllowedHttpException) {
+    //         // return redirect(route('admin.login'));
+    //         return 'page not working';
+    //     } 
+
+    //     return parent::render($request, $exception);
+    // }
+
+
     /**
      * Register the exception handling callbacks for the application.
      *
@@ -38,4 +50,6 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+
 }

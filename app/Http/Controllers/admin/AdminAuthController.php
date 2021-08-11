@@ -45,6 +45,7 @@ class AdminAuthController extends Controller
 
 
     function check (Request $request){
+        
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:5|max:15'
@@ -62,6 +63,7 @@ class AdminAuthController extends Controller
                 return back()->with('fail', 'Incorrectt Passord');
             }
         }
+
     }
 
     function logout(){

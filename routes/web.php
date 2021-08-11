@@ -71,6 +71,8 @@ Route::post('/admin/category/subCategory2Store', [CategoryController::class, 'su
 
 
 Route::group(['middleware'=> ['AuthCheck']], function(){
+    
+    
 
 
 Route::resources([
@@ -79,6 +81,8 @@ Route::resources([
     '/admin/task' => TaskController::class,
     '/admin/task-assign' => TaskAssignController::class,
     '/admin/product' => ProductController::class,
+
+    '/' => HomeController::class,
     
 ]);
 

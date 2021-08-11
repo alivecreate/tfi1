@@ -1,10 +1,23 @@
 @extends('home.layout.front-index')
 @section('title','WELCOME TO CCPL WORLD An ISO 9001 : 2008 certified company')
+
+@section('custom-js')
+
+@endsection
 @section('content')
+<style>
+.home-about-section{
+	background:#f2f2f2;
+}
+.block-light{
+	background:white;
+	border-radius:8px;
+}
+</style>
 		<section id="content">
 			<div class="content-wrap">
 
-				<div class="promo promo-light promo-full header-stick border-top-0 p-5"
+				<div class="promo promo-light promo-full header-stick border-top-0"
 				style="
 					background:url(http://localhost:8000/home/images/ccpl/world-map.jpg);
 					background-size: 90%;
@@ -13,392 +26,201 @@
 					"
 				>
 
-					<!-- <div class="container clearfix">
-						<div class="row align-items-center">
-							<div class="col-12 col-lg">
-								<h3>Try Premium Free for <span>30 Days</span> and you'll never regret it!</h3>
-								<span>Starts at just <em>$0/month</em> afterwards. No Ads, No Gimmicks and No SPAM. Just Real Content.</span>
-							</div>
-							<div class="col-12 col-lg-auto mt-4 mt-lg-0">
-								<a href="#" class="button button-large button-circle m-0">Start Trial</a>
-							</div>
-						</div>
-					</div> -->
-
-
-			<div class="row col-mb-50"
-					style="background: #ffffffed;border-bottom: 1px solid #e8e8e8;"
-					>					
-				<div class="col-md-5">
-				
-					<iframe width="853" height="480" src="https://www.youtube.com/embed/GKvOfty9Tm8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-				</div>
-
-				<div class="col-md-7">
-					<div class="heading-block mb-0">
-						<h3>WHO WE ARE?</h3>
-					</div>
-
-					<p><span><strong>
-						It was small beginning Like a speed flowering into a Giant Tree. Charotar
-						Corporation is a sole Proprietorship Firm was established in the year 1993 at
-						Waghodia (Vadodara, Gujarat), engaged in manufacturing the best Quality range
-						of manufacturing Items Under the guidance of “Mr. Piyush Patel, the Firm has been
-						able to provide maximum satisfaction to the clients.
-					</strong></span>
-					</p>
-
-					<div class="row col-mb-30">
-					<strong><u>Manufacturing Units</u></strong>
-					<div class="col-sm-6 col-md-6 col-lg-6">
-							<ul class="iconlist iconlist-color mb-0">
-								<li><i class="icon-caret-right"></i> Plastic Articals</li>
-								<li><i class="icon-caret-right"></i> Electrical Parts</li>
-								<li><i class="icon-caret-right"></i> Plastic Engineering Moulding</li>
-								<li><i class="icon-caret-right"></i> PP, Pet & HDPE</li>
-							</ul>
-						</div>
-						
-						<div class="col-sm-6 col-md-6 col-lg-6">
-							<ul class="iconlist iconlist-color mb-0">
-								<li><i class="icon-caret-right"></i> LDPE Blow Moulding</li>
-								<li><i class="icon-caret-right"></i> SMC/DMC Moulding</li>
-								<li><i class="icon-caret-right"></i> Power Press Parts</li>
-								<li><i class="icon-caret-right"></i> Plastic Mould & Dies</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				</div>
-
 				</div>
 
 				<div class="row clearfix p-3" 
-					style="background:url(http://localhost:8000/home/images/ccpl/bg-web1.jpg);background-size: 102%;background-position: 0px -706px;"	
-				>
-				<div class="row col-mb-50 mb-2 block-style-1">
+							>
+				<div class="row col-mb-50 mb-2 block-style-2">
 				
-					<div class="heading-block center mb-0">
-						<h3>Items we manufacturing</h3>
-						<span>We have large category of manufacturing units as below</span>
-
-						<div class="divider seprator1 divider-center"><i class="icon-circle"></i></div>
-					
+					<div class="heading-block center">
+						<h3>TOP INFLATABLES</h3>
+						<hr class="hr1"/>
+						<span>Home to a huge collection of in-stock and custom</span>					
 					</div>
 
-					<!-- <div class="divider divider-sm divider-center"><i class="icon-crop"></i></div> -->
 							
-					<div class="col-sm-6 col-lg-3 box-shadow1">
-							<div class="feature-box fbox-center fbox-light fbox-effect border-bottom-0">
+	<div id="oc-images" class="owl-carousel image-carousel carousel-widget" data-items-xs="1" data-items-sm="2" data-items-lg="3" data-items-xl="3">
 
-						<div class="entry-image hover06 column">
-							<a href="#">
-							<img class="p-4 rounded-circle" src="{{url('home')}}/images/ccpl/44.png" alt="Image"></a>
-						
-						</div>
-								<div class="fbox-content">
-									<h3>Engineering Plastics<span class="subtitle">We use durable, quality based raw matrials for plastic manufacturing.</span></h3>
-								</div>
-							</div>
-						</div>
+<div class="oc-item m-1 custom-box1">
+	<div class="title_bg">
+	Custom Giant Infitables
+	</div>
+		<a href="#"><img class="image-bg" src="{{url('home')}}/images/portfolio/4/4-1.jpg" alt="Image 1"></a>
+		<div class="row bottom-button m-0">
+			<a class="col text-start link-invert" href=""><i class="icon-line2-eye align-middle" aria-hidden="true"></i>&nbsp;&nbsp;View All</a>
+			<a class="col  text-end link-invert" href=""><i class="icon-email3 align-middle" aria-hidden="true"></i>&nbsp;&nbsp;Enquire Now </a>
+		</div>
+	</div>
+</div>
 
-						<div class="col-sm-6 col-lg-3 box-shadow1">
-							<div class="feature-box fbox-center fbox-light fbox-effect border-bottom-0">
-						<div class="entry-image hover15">
-							<a href="#">
-							<img class="p-4 rounded-circle" src="{{url('home')}}/images/ccpl/healthcare.jpg" alt="Image"></a>
-						</div>
-								<div class="fbox-content">
-									<h3>HealthCare<span class="subtitle">We build healthcare items like bottle, eyedroper, tool box etc.</span></h3>
-								</div>
-							</div>
-						</div>
-						
 
-						<div class="col-sm-6 col-lg-3 box-shadow1">
-							<div class="feature-box fbox-center fbox-light fbox-effect border-bottom-0">
-						<div class="entry-image hover15">
-							<a href="#">
-							<img class="p-4 rounded-circle" src="{{url('home')}}/images/ccpl/cosmetics-item.jpg" alt="Image"></a>
-						</div>
-								<div class="fbox-content">
-									<h3>HealthCare<span class="subtitle">We build healthcare items like bottle, eyedroper, tool box etc.</span></h3>
-								</div>
-							</div>
-						</div>
-						
-
-						<div class="col-sm-6 col-lg-3 box-shadow1">
-							<div class="feature-box fbox-center fbox-light fbox-effect border-bottom-0">
-						<div class="entry-image hover15">
-							<a href="#">
-							<img class="p-4 rounded-circle" src="{{url('home')}}/images/ccpl/plastic-items2.jpg" alt="Image"></a>
-						</div>
-								<div class="fbox-content">
-									<h3>HealthCare<span class="subtitle">We build healthcare items like bottle, eyedroper, tool box etc.</span></h3>
-								</div>
-							</div>
-						</div>
-						
+<div class="clear"></div>
 				</div>
-<!-- 
-				<div class="section topmargin-lg">
-					<div class="container clearfix">
+				
+				
+				<div class="section parallax m-0 border-0 d-flex"> 
+					<div class="vertical-middle">
+						<div class="row p-2">
 
 						<div class="heading-block center">
-							<h2>Features that you are gonna Love</h2>
-							<span>Canvas comes with 100+ Feature oriented Shortcodes that are easy to use too.</span>
+						<h3>Click & Explore</h3>
+							<hr class="hr1"/>
+							<!-- <span>Home to a huge collection of in-stock and custom</span> -->
 						</div>
-
-						<div class="row justify-content-center col-mb-50">
-							<div class="col-sm-6 col-lg-4">
-								<div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-phone2"></i></a>
-									</div>
-									<div class="fbox-content">
-										<h3>Responsive Layout</h3>
-										<p>Powerful Layout with Responsive functionality that can be adapted to any screen size.</p>
-									</div>
-								</div>
+						<div class="row">
+							<div class="title_bg col m-2 link-hover-toggel">
+								<a href="#" class="link-invert2 text-strong">
+								<img src="{{url('home')}}/images/home/link_hand_icon.png" width="22" alt="">
+								&nbsp;&nbsp;Custom Giant Infitables
+								</a>
 							</div>
-
-							<div class="col-sm-6 col-lg-4">
-								<div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn" data-delay="200">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-eye"></i></a>
-									</div>
-									<div class="fbox-content">
-										<h3>Retina Ready Graphics</h3>
-										<p>Looks beautiful &amp; ultra-sharp on Retina Displays with Retina Icons, Fonts &amp; Images.</p>
-									</div>
-								</div>
+							<div class="title_bg col m-2 link-hover-toggel">
+								<a href="#" class="link-invert2 text-strong">
+								<img src="{{url('home')}}/images/home/link_hand_icon.png" width="22" alt="">
+								&nbsp;&nbsp;Custom Giant Infitables
+								</a>
 							</div>
-
-							<div class="col-sm-6 col-lg-4">
-								<div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn" data-delay="400">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-star2"></i></a>
-									</div>
-									<div class="fbox-content">
-										<h3>Powerful Performance</h3>
-										<p>Optimized code that are completely customizable and deliver unmatched fast performance.</p>
-									</div>
-								</div>
+							<div class="title_bg col m-2 link-hover-toggel">
+								<a href="#" class="link-invert2 text-strong">
+								<img src="{{url('home')}}/images/home/link_hand_icon.png" width="22" alt="">
+								&nbsp;&nbsp;Custom Giant Infitables
+								</a>
 							</div>
-
-							<div class="col-sm-6 col-lg-4">
-								<div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn" data-delay="600">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-video"></i></a>
-									</div>
-									<div class="fbox-content">
-										<h3>HTML5 Video</h3>
-										<p>Canvas provides support for Native HTML5 Videos that can be added to a Full Width Background.</p>
-									</div>
-								</div>
+							<div class="title_bg col m-2 link-hover-toggel">
+								<a href="#" class="link-invert2 text-strong">
+								<img src="{{url('home')}}/images/home/link_hand_icon.png" width="22" alt="">
+								&nbsp;&nbsp;Custom Giant Infitables
+								</a>
 							</div>
-
-							<div class="col-sm-6 col-lg-4">
-								<div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn" data-delay="800">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-params"></i></a>
-									</div>
-									<div class="fbox-content">
-										<h3>Parallax Support</h3>
-										<p>Display your Content attractively using Parallax Sections that have unlimited customizable areas.</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6 col-lg-4">
-								<div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn" data-delay="1000">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-fire"></i></a>
-									</div>
-									<div class="fbox-content">
-										<h3>Endless Possibilities</h3>
-										<p>Complete control on each &amp; every element that provides endless customization possibilities.</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6 col-lg-4">
-								<div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn" data-delay="1200">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-bulb"></i></a>
-									</div>
-									<div class="fbox-content">
-										<h3>Light &amp; Dark Color Schemes</h3>
-										<p>Change your Website's Primary Scheme instantly by simply adding the dark class to the body.</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6 col-lg-4">
-								<div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn" data-delay="1400">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-heart2"></i></a>
-									</div>
-									<div class="fbox-content">
-										<h3>Boxed &amp; Wide Layouts</h3>
-										<p>Stretch your Website to the Full Width or make it boxed to surprise your visitors.</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-sm-6 col-lg-4">
-								<div class="feature-box fbox-sm fbox-plain" data-animate="fadeIn" data-delay="1600">
-									<div class="fbox-icon">
-										<a href="#"><i class="icon-note"></i></a>
-									</div>
-									<div class="fbox-content">
-										<h3>Extensive Documentation</h3>
-										<p>We have covered each &amp; everything in our Documentation including Videos &amp; Screenshots.</p>
-									</div>
-								</div>
+							<div class="title_bg col m-2 link-hover-toggel">
+								<a href="#" class="link-invert2 text-strong">
+								<img src="{{url('home')}}/images/home/link_hand_icon.png" width="22" alt="">
+								&nbsp;&nbsp;Custom Giant Infitables
+								</a>
 							</div>
 						</div>
 
+						</div>
 					</div>
-				</div> -->
-
-
-				<!-- <div class="section">			
-
-					<div class="container">
-
-						<div class="heading-block center">
-							<h2>Features List.</h2>
-							<span>We provide a wide array of Usable &amp; Flexible Features</span>
-						</div>
-
-						<div class="row col-mb-50">
-
-							<div class="col-lg-4 text-center text-lg-start">
-								<img data-animate="fadeInLeftBig" 
-									src="{{url('home')}}/images/ccpl/ccpl-products.jpeg" alt="iPhone">
-							</div>
-
-							<div class="col-lg-4 col-md-6 topmargin">
-
-								<div class="w-100 mb-5">
-
-									<div class="feature-box fbox-plain fbox-sm fbox-dark">
-										<div class="fbox-icon">
-											<a href="#"><i class="icon-line-monitor"></i></a>
-										</div>
-										<div class="fbox-content">
-											<h3>Responsive Layout</h3>
-											<p>Powerful Layout with Responsive functionality that can be adapted to any screen size. Resize browser to view the changes.</p>
-										</div>
-									</div>
-
-								</div>
-
-								<div class="w-100 mb-5">
-
-									<div class="feature-box fbox-plain fbox-sm fbox-dark">
-										<div class="fbox-icon">
-											<a href="#"><i class="icon-line-eye"></i></a>
-										</div>
-										<div class="fbox-content">
-											<h3>Retina Ready Graphics</h3>
-											<p>Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons, Fonts &amp; all others graphics are optimized.</p>
-										</div>
-									</div>
-
-								</div>
-
-								<div class="w-100">
-
-									<div class="feature-box fbox-plain fbox-sm fbox-dark">
-										<div class="fbox-icon">
-											<a href="#"><i class="icon-line-power"></i></a>
-										</div>
-										<div class="fbox-content">
-											<h3>Powerful Performance</h3>
-											<p>Canvas includes tons of optimized code that are completely customizable and deliver unmatched fast performance.</p>
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-
-							<div class="col-lg-4 col-md-6 topmargin">
-
-								<div class="w-100 mb-5">
-
-									<div class="feature-box fbox-plain fbox-sm fbox-dark">
-										<div class="fbox-icon">
-											<a href="#"><i class="icon-line-layers"></i></a>
-										</div>
-										<div class="fbox-content">
-											<h3>Premium Sliders Included</h3>
-											<p>Canvas included 20+ custom designed Slider Pages with Premium Sliders like Layer, Revolution, Swiper &amp; others.</p>
-										</div>
-									</div>
-
-								</div>
-
-								<div class="w-100 mb-5">
-
-									<div class="feature-box fbox-plain fbox-sm fbox-dark">
-										<div class="fbox-icon">
-											<a href="#"><i class="icon-line-star"></i></a>
-										</div>
-										<div class="fbox-content">
-											<h3>Unlimited Color Options</h3>
-											<p>Change the Color Scheme of the Theme in a flash just by changing the 6-digit HEX code provided in the colors.php file.</p>
-										</div>
-									</div>
-
-								</div>
-
-								<div class="w-100">
-
-									<div class="feature-box fbox-plain fbox-sm fbox-dark">
-										<div class="fbox-icon">
-											<a href="#"><i class="icon-line-anchor"></i></a>
-										</div>
-										<div class="fbox-content">
-											<h3>CUSTOMIZABLE FONTS</h3>
-											<p>Use any Font you like from Google Web Fonts, Typekit or other Web Fonts. They will blend in perfectly.</p>
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div> -->
+				</div>
 
 				
-				<div class="section parallax min-vh-100 m-0 border-0 d-flex" 
-					style="background-image: url('{{url('home')}}/images/ccpl/bg-img-ccpl.png');" data-bottom-top="background-position:-200px -250px;" data-top-bottom="background-position:0px -400px;">
+				
+				<div class="section parallax m-0 border-0 d-flex home-about-section"> 
 					<div class="vertical-middle">
-						<div class="container">
+						<div class="row p-2">
+						<div class="heading-block center">
+						<h3>About Giant Inflatable</h3>
+							<hr class="hr1"/>
+							<!-- <span>Home to a huge collection of in-stock and custom</span> -->
+						</div>
+						<div class="row px-5">
+							<div class="col-md-7 home-about-block px-4">
+								<div class="block-light px-2">
+								<p class="text-center">
+									<img src="{{url('home')}}/images/home/logo.png" width="250px">
+								</p>
+								<div class="home-about-text">
+									<span class="GreaT" style="color:red"> Greetings !</span>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+										Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+										Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-							<div class="row">
-								<div class="col-md-5">
-									<div class="emphasis-title">
-										<h2>Bottles, Jars & Caps</h2>
-										<p class="lead topmargin-sm">
-								We design beatiful bottles for Personal Car, Pet Bottles, Perfume & Body Mist Bottle,
-								Cream Jars, Hair Oil Bottle and Many More.
-										</p>
-									</div>
+								</p>
+							</div>
+								<p class="text-center">
+									<a href="#;" class="red_btn d-inline-block">Read More</a>
+								</p>
+
 								</div>
 							</div>
+							<div class="col-md-2 home-client-block px-2">
+							<div class="block-light px-2">
+								<h3 class="text-center text-dark p-2 m-0">our clients</h3>
+								<img class="col-12" src="{{url('home')}}/images/events/thumbs/1.jpg" alt="">
+								<img class="col-12" src="{{url('home')}}/images/events/thumbs/1.jpg" alt="">
+							</div>
+							</div>
+							
+							<div class="col-md-3 home-contact-form px-2">
+								<div class="block-light px-2">
+									<p class="menu-item send-inquiry text-end mb-0" style="font-size: 16px; font-weight: bold">
+										<i class="icon-email3 align-middle"></i>&nbsp;&nbsp;<span>SEND YOUR INQUIRY</span></p>
+										
+										@include('home.widget.contact-form1')
+								</div>
+							</div>
+						</div>
 
 						</div>
 					</div>
 				</div>
+
+				
+				<div class="section parallax m-0 border-0 d-flex home-about-section"> 
+					<div class="vertical-middle">
+						<div class="row">
+							<div class="heading-block center">
+							<h3>Speak with one of our experts</h3>
+								<hr class="hr1"/>
+								<!-- <span>Home to a huge collection of in-stock and custom</span> -->
+							</div>
+							<div class="row block-light">
+								
+							<div class="d-flex justify-content-center"> 
+										<div class="p-4"><a href="mailto:sales@giantiflatables.com"> <i class="box-shadow1 align-middle icon-email3 bg-light"></i>
+											<span class="text-dark text-strong">sales@giantiflatables.com</span></a></div>
+										<div class="p-4"><a href="mailto:sales@giantiflatables.com"> <i class="box-shadow1 align-middle icon-chat-3 bg-light"></i>
+											<span class="text-dark text-strong">Chat </span> </a></div>
+										<div class="p-4"><a href="mailto:sales@giantiflatables.com"> <i class="box-shadow1 align-middle icon-line-phone-call bg-light"></i>
+										<span class="text-dark text-strong">(866) 705-1595 </span> </a></div>
+							</div>
+
+
+							<div class="heading-block center">
+								<h3>Giant Inflatable Media World</h3>
+									<hr class="hr1"/>
+							<!-- <span>Home to a huge collection of in-stock and custom</span>	 -->
+
+							<div class="row px-5 mt-2">
+								<div class="col">
+									<div class="title_bg">Custom Giant Infitables</div>
+										<a href="#"><img class="image-bg" src="{{url('home')}}/images/portfolio/4/4-1.jpg" alt="Image 1"></a>
+										<div class="bottom-button m-0 text-center">
+											<a href="#;" class="d-inline-block red_btn">SEE ALL</a>
+										</div>
+								</div>
+								<div class="col">
+									<div class="title_bg">Custom Giant Infitables</div>
+										<a href="#"><img class="image-bg" src="{{url('home')}}/images/portfolio/4/4-1.jpg" alt="Image 1"></a>
+										<div class="row bottom-button m-0">
+											<a class="col text-start link-invert" href=""><i class="icon-line2-eye align-middle" aria-hidden="true"></i>&nbsp;&nbsp;View All</a>
+											<a class="col  text-end link-invert" href=""><i class="icon-email3 align-middle" aria-hidden="true"></i>&nbsp;&nbsp;Enquire Now </a>
+										</div>
+								</div>
+								<div class="col">
+								
+									<div class="title_bg">Custom Giant Infitables</div>
+										<a href="#"><img class="image-bg" src="{{url('home')}}/images/portfolio/4/4-1.jpg" alt="Image 1"></a>
+										<div class="row bottom-button m-0">
+											<a class="col text-start link-invert" href=""><i class="icon-line2-eye align-middle" aria-hidden="true"></i>&nbsp;&nbsp;View All</a>
+											<a class="col  text-end link-invert" href=""><i class="icon-email3 align-middle" aria-hidden="true"></i>&nbsp;&nbsp;Enquire Now </a>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+
+							</div>
+
+
+							</div>
+
+							
+						</div>
+					</div>
+				</div>
+
 
 				<div class="row p-0 align-items-stretch">
 
