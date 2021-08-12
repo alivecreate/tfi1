@@ -119,6 +119,25 @@
 
             </ul>
           </li>
+          
+          <li class="nav-item page">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Url Manage
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('url.group')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>Url Group</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
 
           <li class="nav-item category">
             <a href="#" class="nav-link">
