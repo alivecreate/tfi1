@@ -72,7 +72,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
+                <a href="{{route('slider.index')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
                   <p>Sliders</p>
                 </a>

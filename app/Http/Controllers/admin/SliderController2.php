@@ -4,9 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\admin\Slider;
 
-class SliderController extends Controller
+class SliderController2 extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,7 @@ class SliderController extends Controller
         $data = [
             'sliders' =>  Slider::orderBy('id', 'DESC')->where('status',1)->get()
         ];
-        return view('adm.pages.slider.index', $data);
+        // return view('adm.pages.slider.index', $data);
     }
 
     /**
@@ -39,38 +38,7 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            // 'title' => 'required|max:255',
-            // 'url' => 'url|max:255',
-        ]);
-
-        $slider_no = Slider::orderBy('created_at', 'desc')->first();
-
-        if($slider_no){
-            $slider_no =  $slider_no->id + 1;
-        }else{
-            $slider_no = 1;
-        }
-
-        $image_name = uploadImageThumb($request);
-        $slider = new Slider;
-        $slider->slider_no = $slider_no;
-        $slider->title = $request->title;
-        $slider->image = $image_name;
-        $slider->description = $request->description;
-        $slider->url = $request->url;
-        $slider->youtube_embed = $request->youtube_embed;
-        
-        $slider->status = $request->status;
-        // $slider->admin_id = session('LoggedUser')->id;
-               
-        $save = $slider->save();
-
-        if($save){
-            return back()->with('success', 'Slider Added...');
-        }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
-        }
+        //
     }
 
     /**
@@ -113,14 +81,8 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slider $slider)
+    public function destroy($id)
     {
-        
-        $slider = $slider->delete();
-        if($slider){
-            return back()->with('success', 'Slider Deleted...');
-        }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
-        }
+        //
     }
 }

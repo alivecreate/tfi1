@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\TaskController;
 use App\Http\Controllers\admin\TaskAssignController;
 use App\Http\Controllers\admin\TaskStatus;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\HomeEditorController;
 
 
 
@@ -68,6 +69,14 @@ Route::get('research-development', [HomeController::class, 'research_development
 // });
 
 Route::resource('/admin/slider',SliderController::class);
+// Route::resource('/admin/top-inflatables',SliderController2::class);
+
+Route::get('/admin/top-inflatable', [HomeEditorController::class, 'topInflatableCreate'])->name('top.inflatable');
+Route::post('/admin/top-inflatable/store', [HomeEditorController::class, 'topInflatableStore'])->name('top.inflatable.store');
+Route::delete('/admin/top-inflatable/delete/{id}', [HomeEditorController::class, 'topInflatableDelete'])->name('top.inflatable.delete');
+
+
+
 // Route::resource('/admin/employee',EmployeeController::class);
 
 Route::post('/admin/register/save', [AdminAuthController::class, 'save'])->name('register.save');

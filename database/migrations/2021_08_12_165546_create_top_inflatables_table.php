@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSlidersTable extends Migration
+class CreateTopInflatablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('sliders', function (Blueprint $table) {
+        Schema::create('top_inflatables', function (Blueprint $table) {
             $table->id();
             $table->text('slider_no')->nullable();
             $table->text('image')->nullable();
             $table->text('title')->nullable();
             $table->text('type')->nullable();
-            $table->text('description')->nullable();
             $table->text('url')->nullable();
-            $table->text('youtube_embed')->nullable();
             $table->text('status')->default(0);
             $table->timestamps();
 
@@ -35,6 +33,6 @@ class CreateSlidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sliders');
+        Schema::dropIfExists('top_inflatables');
     }
 }

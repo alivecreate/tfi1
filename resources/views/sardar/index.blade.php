@@ -6,222 +6,111 @@
 @endsection
 @section('content')
 
-@include('sardar.ext.slider')
 
-	<section class="experts bg_lightdark">
-		<div class="container-fluid">
-			<div class="col-12">
-				<div class="header-t py-4">
-					<h1>Speak with one of our experts</h1>
-				</div>	
+<section class="leading_area">
+		<div class="banner-part">
+			<img src="{{url('web')}}/media/lg/{{$sliders->image}}" class="img-fluid absolute_img">
+			<div class="content_banners">
+				<h3>{{$sliders->title}}</h3>
+				<a href="{{$sliders->url}}" class="view_now">View Now </a>
 			</div>	
 		</div>	
 	</section>
 
-	<section class="experts bg-white py-4">
-		<div class="container-fluid">
-			<div class="col-12">
-				<ul>
-					<li><a href="mailto:sales@giantiflatables.com"> <div class="bXs"><img src="{{url('sardar')}}/images/email_red_icon.png"></div>
-						<span>sales@giantiflatables.com</span></a></li>
-					<li><a href="mailto:sales@giantiflatables.com"> <div class="bXs"><img src="{{url('sardar')}}/images/chat_red_icon.png"> </div>
-						<span>Chat </span> </a></li>
-					<li><a href="mailto:sales@giantiflatables.com"> <div class="bXs"><img src="{{url('sardar')}}/images/phone_red_icon.png"></div>
-					 <span>(866) 705-1595 </span> </a></li>
-				</ul>
-			</div>	
-		</div>	
-	</section>
-	
-
-	<section class="media_world bg-white">
+	<section class="collection-slider bg-white">
 		<div class="container-fluid">
 			<div class="col-12">
 
 				<div class="header-t">
-					<h1>Giant Inflatable Media World</h1>
+					<h1>TOP INFLATABLES</h1>
+					<p>Home to a huge collection of in-stock and custom</p>
 				</div>	
-
-				<div class="notinflatables_slider">
-					<div class="inflatables">
-						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/speak-icon.png" class="d-inline-block mr-3"> Custom Infatable Game </div>
-						<div class="body_media mb-4">
+				
+				<div class="inflatables_slider">
+					@foreach($topInflatables as $topInflatable)
+						<div class="inflatables">
+							<div class="top-buttons infa_bg">{{$topInflatable->title}} </div>
 							<div class="img_thumbnail m-auto">
-								<img class="img-fluid" src="{{url('sardar')}}/images/media_img_1.jpg">
+								<img class="img-fluid" src="{{url('web')}}/media/md/{{$topInflatable->image}}">
 							</div>
-							<div class="mediaWordFooter">
-								<div class="descr">	
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
+							<div class="bottom_links d-flex justify-content-between">
+								<div class="bottom_links1">
+									<a href="{{$topInflatable->url}}"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
 								</div>
-								<div class="col-12 text-center">	
-									<a href="#;" class="d-inline-block red_btn">SEE ALL</a>
-								</div>	
-							</div>	
-						</div>	
-					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/video_icon.png" class="d-inline-block mr-3"> Custom Infatable Game </div>
-						<div class="body_media mb-4">
-							<div class="img_thumbnail m-auto">
-								<img class="img-fluid" src="{{url('sardar')}}/images/media_img_2.jpg">
-								<div class="Play_Vbtn">
-									<img class="img-fluid IconVideo" src="{{url('sardar')}}/images/video_play_button.png">
+								<div class="bottom_links1">
+									<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
 								</div>
-							</div>
-							<div class="mediaWordFooter">
-								<div class="descr">	
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
-								</div>		
-								<div class="col-12 text-center">	
-									<a href="#;" class="d-inline-block red_btn">VIEW ALL</a>
-								</div>	
-							</div>	
-						</div>	
-					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/new_icon.png" class="d-inline-block mr-3"> Custom Infatable Game </div>
-						<div class="body_media mb-4">	
-							<div class="img_thumbnail m-auto">
-								<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-							</div>
-							<div class="mediaWordFooter">
-								<div class="descr">	
-									<p><b>Inflatables for the 2017 AFL season:</b></p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
-								</div>
-								<div class="col-12 text-center">	
-									<a href="#;" class="d-inline-block red_btn">CHECK ALL</a>
-								</div>	
 							</div>	
 						</div>
-					</div>
-				</div>	
+					@endforeach
+
+				</div>	ð
 			</div>	
 		</div>	
 	</section>
 
-
-	<section class="about_giant pb-4">
+	<section class="clickANDexplore bg-white">
 		<div class="container-fluid">
-			<div class="col-12">
+			<div class="col-12 p-0 px-lg-3">
 
 				<div class="header-t mb-3">
-					<h1>Explore Now</h1>
+					<h1>Click & Explore</h1>
 				</div>	
 
-				<div class="ExploreNowslider">
-					<div class="explore-slide">
-						<div class="ex_inner">
-							<div class="head-slide">Custom Inflatable Games</div>
-							<ul class="d-block">
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Arenas Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> FArenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields Courts</li>
-							</ul>
-							<a href="#;" class="red_btn">More </a>
-						</div>						
-					</div>
-					<div class="explore-slide">
-						<div class="ex_inner">
-							<div class="head-slide">Custom Inflatable Games</div>
-							<ul class="d-block">
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Arenas Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> FArenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields Courts</li>
-							</ul>
-							<a href="#;" class="red_btn">More </a>
-						</div>
-					</div>
-					<div class="explore-slide">
-						<div class="ex_inner">
-							<div class="head-slide">Custom Inflatable Games</div>
-							<ul class="d-block">
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Arenas Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> FArenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields Courts</li>
-							</ul>
-							<a href="#;" class="red_btn">More </a>
-						</div>
-					</div>
-					<div class="explore-slide">
-						<div class="ex_inner">
-							<div class="head-slide">Custom Inflatable Games</div>
-							<ul class="d-block">
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Arenas Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> FArenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields Courts</li>
-							</ul>
-							<a href="#;" class="red_btn">More </a>
-						</div>
-					</div>
-					<div class="explore-slide">
-						<div class="ex_inner">
-							<div class="head-slide">Custom Inflatable Games</div>
-							<ul class="d-block">
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Arenas Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> FArenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields Courts</li>
-							</ul>
-							<a href="#;" class="red_btn">More </a>
-						</div>
-					</div>
-					<div class="explore-slide">
-						<div class="ex_inner">
-							<div class="head-slide">Custom Inflatable Games</div>
-							<ul class="d-block">
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields, Arenas, And</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Arenas Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> FArenas, And Courts</li>
-								<li><img src="{{url('sardar')}}/images/plus-icon.png" width="15" class="d-inline-block mr-2"> Fields Courts</li>
-							</ul>
-							<a href="#;" class="red_btn">More </a>
-						</div>
-					</div>
+				<div class="ParentclickExplore">
+					<div class="c_explores"><a href="#;" class="btn clickExplore active"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr"> Trade Shows </a></div>
+					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> High Visibility & Events </a></div>
+					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
+					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
+					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
 				</div>
-
-
+				<div class="ParentclickExplore">
+					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr"> Trade Shows </a></div>
+					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
+					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
+					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
+					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
+				</div>		
 			</div>	
 		</div>	
-	</section>
+	</section>	
 
-
-
-	<section class="about_giant pb-5 bg-white wiThmap">
+	<section class="about_giant pb-5">
 		<div class="container-fluid">
 			<div class="col-12">
 
 				<div class="header-t mb-3">
-					<h1>Connect With Us</h1>
+					<h1>About Giant Inflatable</h1>
 				</div>	
 
 				<div class="many_partition">
-					<div class="facebooks_posts">
-						<img src="{{url('sardar')}}/images/facebooksdemo.png" class="img-fluid">
-					</div>
-					
-					<div class="map_part">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.198518805097!2d73.17775031490606!3d22.308330685319373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8ad0f8aef55%3A0x4788d9c0fa43addc!2sLalita%20Tower!5e0!3m2!1sen!2sin!4v1625899768295!5m2!1sen!2sin" width="300" height="425" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-					</div>
+					<div class="about_part bg-white">
+						<div class="ab_logo text-center">	
+							<img src="{{url('sardar')}}/images/logo.png" class="img-fluid">
+						</div>
+						<div class="text-left">	
+							<p><span class="GreaT"> Greetings ! </span></p>	
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+							<p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+							<p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+						</div>	
+						<div class="col-12 text-center d-block mt-xl-3 pt-xl-3">	
+							<a href="#;" class="red_btn d-inline-block">Read More</a>
+						</div>	
+					</div>	
 
 
-					<div class="enquiry_form bg-white m-md-0 mb-md-0">
+					<div class="our_clients bg-white">	
+						<h2>our clients</h2>
+							<div class="w-100 d-block">							
+								<img src="{{url('sardar')}}/images/client_logo_1.png" class="img-fluid mb-4">
+							</div>	
+							<div class="w-100 d-block">									
+								<img src="{{url('sardar')}}/images/client_logo_2.jpg" class="img-fluid">
+							</div>	
+					</div>	
+
+					<div class="enquiry_form bg-white">
 						<div class="form_header">
 							<img src="{{url('sardar')}}/images/email_icon.png" class="img-fluid">
 							<h2>SEND US YOUR ENQUIRY</h2>
@@ -259,106 +148,7 @@
 
 						</form>
 					</div>		
-
-					<div class=" bg-white connect_with">
-						<div class="ab_logo text-center">	
-							<a href="#;">
-								<img src="{{url('sardar')}}/images/logo.png" class="img-fluid">
-							</a>	
-						</div>
-						<div class="social_footer text-center d-block">	
-							<ul>
-								<li><a href="#;"><img src="{{url('sardar')}}/images/youtube_icon.png"></a></li>
-								<li><a href="#;"><img src="{{url('sardar')}}/images/printrest_icon.png"></a></li>
-								<li><a href="#;"><img src="{{url('sardar')}}/images/twitter_icon.png"></a></li>
-								<li><a href="#;"><img src="{{url('sardar')}}/images/fb_icon.png"></a></li>
-							</ul>
-
-							<address>504, Lalita Tower, Nr.Railway Station, VADODARA</address>
-						</div>	
-					</div>	
-					
 				</div>	
-
-			</div>	
-		</div>	
-	</section>
-
-	<section class="about_giant py-4">
-		<div class="container-fluid">
-			<div class="col-12 p-0 px-lg-3">
-
-				<div class="bootomExploreNowslider">
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Information</div>
-							<ul class="d-block pl-3">
-								<li><a href="#;">Home</a></li>
-								<li><a href="#;">Our products</a></li>
-								<li><a href="#;">About</a></li>
-								<li><a href="#;">Blog</a></li>
-								<li><a href="#;">Contact</a></li>
-							</ul>
-						</div>						
-					</div>
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Categories</div>
-							<ul class="d-block pl-3 p-xl-0">
-								<li><a href="#;">Custom inflatables Games</a> </li>
-								<li><a href="#;">Fields, Arenas</a> </li>
-								<li><a href="#;">Fields, Arenas, And</a> </li>
-								<li><a href="#;">Arenas Courts</a> </li>
-								<li><a href="#;">FArenas, And Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-							</ul>
-						</div>						
-					</div>
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Products</div>
-							<ul class="d-block pl-3 p-xl-0">
-								<li><a href="#;">Custom inflatables Games</a> </li>
-								<li><a href="#;">Fields, Arenas</a> </li>
-								<li><a href="#;">Fields, Arenas, And</a> </li>
-								<li><a href="#;">Arenas Courts</a> </li>
-								<li><a href="#;">FArenas, And Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-							</ul>
-						</div>						
-					</div>
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Blog</div>
-							<div class="blog-text">
-								<a href="#;">Lorem ipsum dolor sit adipiscing elit, sed do eiusmod tempor.</a>
-								<a href="#;">sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
-								<a href="#;">consectetur adipiscing elit, sed magna aliqua.</a>
-								<a href="#;">Lorem ipsum dolor sit amet</a>
-								<a href="#;">consectetur adipiscing elit, sed magna aliqua.</a>
-							</div>	
-						</div>						
-					</div>
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Testimonials</div>
-							<ul class="d-block pl-3 p-xl-0">
-								<li><a href="#;">Custom inflatables Games</a> </li>
-								<li><a href="#;">Fields, Arenas</a> </li>
-								<li><a href="#;">Fields, Arenas, And</a> </li>
-								<li><a href="#;">Arenas Courts</a> </li>
-								<li><a href="#;">FArenas, And Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-							</ul>
-						</div>						
-					</div>
-					
-				</div>
-
 
 			</div>	
 		</div>	

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\admin\Slider;
+use App\Models\admin\TopInflatables;
 
 class HomeController extends Controller
 {
@@ -14,7 +16,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('sardar.index');
+        $data = [
+            'sliders' =>  Slider::orderBy('created_at', 'desc')->first(),
+            'topInflatables' =>  TopInflatables::where('status',1)->orderBy('created_at', 'desc')->get(),
+
+        ];
+        return view('sardar.index', $data);
     }
     public function product()
     {
