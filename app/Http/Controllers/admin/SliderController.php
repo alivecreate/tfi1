@@ -37,22 +37,32 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:255',
-            'url' => 'url|max:255',
+            // 'title' => 'required|max:255',
+            // 'url' => 'url|max:255',
         ]);
+
+        $slider_no = Slider::orderBy('created_at', 'desc')->first();
+        // if($slider_no == null){
+        //     $slider_no = 1;
+        // }else{
+        //     $slider_no = $slider_no + 1;
+        // }
+
+        // dd($slider_no);
 
         $image_name = uploadImageThumb($request);
         $slider = new Slider;
-        $slider->slider_no = $request->slider_no;
+        $slider->slider_no = $slider_no;
         $slider->title = $request->title;
+        $slider->image = $request->image_name;
         $slider->description = $request->description;
         $slider->url = $request->url;
-        $slider->admin_id = session('LoggedUser')->id;
+        // $slider->admin_id = session('LoggedUser')->id;
                
-        $save = $client->save();
+        $save = $slider->save();
 
         if($save){
-            return back()->with('success', 'Client Added...');
+            return back()->with('success', 'Slider Added...');
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }

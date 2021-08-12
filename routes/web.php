@@ -40,6 +40,7 @@ Route::resources([
 
 
 Route::get('about', [HomeController::class, 'about']);
+Route::get('product', [HomeController::class, 'product']);
 Route::get('about2', [HomeController::class, 'about2']);
 Route::get('contact', [HomeController::class, 'contact']);
 Route::get('manufacturing', [HomeController::class, 'manufacturing']);

@@ -17,8 +17,10 @@ class CreateSlidersTable extends Migration
             $table->id();
             $table->text('slider_no');
             $table->text('title')->nullable();
+            $table->text('type')->nullable();
             $table->text('description')->nullable();
             $table->text('url')->nullable();
+            $table->text('youtube_embed')->nullable();
             $table->text('status')->default(0);
             $table->timestamps();
 

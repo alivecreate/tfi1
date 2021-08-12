@@ -14,50 +14,66 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        return view('sardar.index');
     }
-
+    public function product()
+    {
+        return view('sardar.product');
+    }
+    
     public function about()
     {
-        return view('home.about');
+        return view('sardar.about');
     }
-    public function about2()
+    public function testimonials()
     {
-        return view('home.about2');
+        return view('sardar.testimonial');
     }
-    public function contact()
+    public function videos()
     {
-        return view('home.contact');
+        return view('sardar.about');
     }
 
+    public function blog()
+    {
+        return view('sardar.blog');
+    }
+
+    public function contact()
+    {
+        return view('sardar.contact');
+    }
+
+
+    // CCPL
     public function manufacturing()
     {
-        return view('home.manufacturing');
+        return view('sardar.manufacturing');
     }
 
 
     public function infrastructure ()
     {
-        return view('home.infrastructure ');
+        return view('sardar.infrastructure ');
     }
 
 
     public function corporate_video()
     {
-        return view('home.corporate_video');
+        return view('sardar.corporate_video');
     }
 
     public function brochure()
     {
-        return view('home.brochure');
+        return view('sardar.brochure');
     }
     public function team()
     {
-        return view('home.team');
+        return view('sardar.team');
     }
     public function research_development()
     {
-        return view('home.research_development');
+        return view('sardar.research_development');
     }
 
     /**
