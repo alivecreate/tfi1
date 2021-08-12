@@ -32,7 +32,7 @@ $(".product a").addClass( "active-menu");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>product List: કર્મચારી</h1>
+            <h1>product List</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

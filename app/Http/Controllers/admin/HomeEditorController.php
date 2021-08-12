@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\TopInflatables;
+use App\Models\admin\Pages;
+use App\Models\admin\UrlList;
+
 use DB;
 
 class HomeEditorController extends Controller
@@ -61,5 +64,79 @@ class HomeEditorController extends Controller
             return back()->with('fail', 'Something went wrong, try again later...');
         }
     }
+
+
+    public function homeEditorIndex()
+    {   
+        $data = [
+            'topInflatables' =>  TopInflatables::orderBy('id', 'DESC')->where('status',1)->get(),
+            'homeAbout' =>  Pages::where('type', 'home_about')->first(),
+            'homeUrls1' =>  UrlList::where('type', 'home_url1')->get()
+        ];
+        return view('adm.pages.home-editor.index', $data);
+    }
+
+    public function homeEditorAboutStore(Request $request)
+    {   
+        $ifExist = Pages::where('type', $request->type)->first();
+        if($ifExist){
+
+            $homeAbout = Pages::find($ifExist->id);
+            $homeAbout->type = $request->type;
+            $homeAbout->description = $request->description;
+            $homeAbout->url = $request->url;
+            $homeAbout->status = 1;
+            $save = $homeAbout->save();
+            if($save){
+                return back()->with('success', 'Home About Details Updated...');
+            }else{
+                return back()->with('fail', 'Something went wrong, try again later...');
+            }
+        }
+        else{
+            $homeAbout = new Pages;
+            $homeAbout->type = $request->type;
+            $homeAbout->description = $request->description;
+            $homeAbout->url = $request->url;
+            $homeAbout->status = 1;
+            $save = $homeAbout->save();
+            if($save){
+                return back()->with('success', 'Home About Details Added...');
+            }else{
+                return back()->with('fail', 'Something went wrong, try again later...');
+            }
+        }
+    }
+
+
+    
+    
+    public function urlListStore1(Request $request){
+        $urlList = new UrlList;
+        $urlList->type = $request->type;
+        $urlList->title = $request->title;
+        $urlList->url = $request->url;
+        $urlList->target = $request->target;
+        $urlList->status = $request->status;
+        $save = $urlList->save();
+
+        if($save){
+            return back()->with('success', 'Top Inflatable Added...');
+        }else{
+            return back()->with('fail', 'Something went wrong, try again later...');
+        }
+    }
+    
+    
+    public function urlListDelete1($id){
+        $urlList = DB::table('url_list')->where('id',$id)->delete();
+
+        if($urlList){
+            return back()->with('success', 'Url Deleted...');
+        }else{
+            return back()->with('fail', 'Something went wrong, try again later...');
+        }
+    }
+    
 
 }

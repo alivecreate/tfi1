@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Slider;
 use App\Models\admin\TopInflatables;
+use App\Models\admin\UrlList;
+use App\Models\admin\Pages;
+
 
 class HomeController extends Controller
 {
@@ -19,7 +22,8 @@ class HomeController extends Controller
         $data = [
             'sliders' =>  Slider::orderBy('created_at', 'desc')->first(),
             'topInflatables' =>  TopInflatables::where('status',1)->orderBy('created_at', 'desc')->get(),
-
+            'homeUrls1' =>  UrlList::where('type', 'home_url1')->where('status',1)->get(),
+            'homeAbout' =>  Pages::where('type', 'home_about')->first(),
         ];
         return view('sardar.index', $data);
     }

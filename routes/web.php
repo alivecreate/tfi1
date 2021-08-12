@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\TaskAssignController;
 use App\Http\Controllers\admin\TaskStatus;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\HomeEditorController;
+use App\Http\Controllers\admin\UrlListController;
 
 
 
@@ -75,6 +76,12 @@ Route::get('/admin/top-inflatable', [HomeEditorController::class, 'topInflatable
 Route::post('/admin/top-inflatable/store', [HomeEditorController::class, 'topInflatableStore'])->name('top.inflatable.store');
 Route::delete('/admin/top-inflatable/delete/{id}', [HomeEditorController::class, 'topInflatableDelete'])->name('top.inflatable.delete');
 
+Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('home.editor');
+
+Route::post('/admin/about-store', [HomeEditorController::class, 'homeEditorAboutStore'])->name('about.store');
+
+Route::post('/admin/url-list1/store', [HomeEditorController::class, 'urlListStore1'])->name('url-list1.store');
+Route::delete('/admin/url-list1/delete/{id}', [HomeEditorController::class, 'urlListDelete1'])->name('url-list1.delete');
 
 
 // Route::resource('/admin/employee',EmployeeController::class);
