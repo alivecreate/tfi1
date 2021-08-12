@@ -1,5 +1,5 @@
 @extends('sardar.layout.front-index')
-@section('title','Product Internal')
+@section('title','Product Details')
 
 @section('custom-js')
 
@@ -8,7 +8,8 @@
 
 @include('sardar.ext.slider')
 
-	<section class="clickANDexplore bg-white pb-0">
+
+<section class="clickANDexplore bg-white pb-0">
 		<div class="container-fluid">
 			<div class="col-12 p-0 px-lg-3">
 
@@ -55,6 +56,7 @@
 
 				<div class="header-t mb-3">
 					<h1>CUSTOM INFLATABLE GAMES</h1>
+					<!-- <div class="BrdR"></div> -->
 				</div>	
 
 				<div class="col-12">
@@ -116,185 +118,118 @@
 								</div>
 							</div>	
 						</div>
-
 						<div class="col-md-7 col-lg-9 pr-md-0 set_max_80">
 							<div class="">
-								<div class="Innerinflatables_slider mb-3">
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
+
+								<div class="BigInnerinflatableSub_slider mb-3">
+									<div class="Biginflatables">
 										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
 										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
 									</div>
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
+									<div class="Biginflatables">
 										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_3.jpg">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
 										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
 									</div>
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
+									<div class="Biginflatables">
 										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
 										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
 									</div>
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
+									<div class="Biginflatables">
 										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
 										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
+									</div>
+									<div class="Biginflatables">
+										<div class="img_thumbnail m-auto">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
+										</div>
+									</div>
+									<div class="Biginflatables">
+										<div class="img_thumbnail m-auto">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
+										</div>
+									</div>
+									<div class="Biginflatables">
+										<div class="img_thumbnail m-auto">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
+										</div>
+									</div>
+									<div class="Biginflatables">
+										<div class="img_thumbnail m-auto">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
+										</div>
+									</div>
+									<div class="Biginflatables">
+										<div class="img_thumbnail m-auto">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
+										</div>
+									</div>
+									<div class="Biginflatables">
+										<div class="img_thumbnail m-auto">
+											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
+										</div>
 									</div>
 								</div>	
-								
-								<div class="Innerinflatables_slider mb-3">
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
+
+								<div class="col-md-12 mb-4">	
+									<div class="BigInnerinflatableSub_Nav mb-3">
+
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
+											</div>
 										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
 											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
-									</div>
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_3.jpg">
 										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
 											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
-									</div>
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
 										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
 											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
-									</div>
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
 										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
 											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
+										</div>
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
 											</div>
-										</div>	
+										</div>
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
+											</div>
+										</div>
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
+											</div>
+										</div>
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
+											</div>
+										</div>
+										<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
+											</div>
+										</div>
 									</div>
 								</div>	
-					
-								<div class="Innerinflatables_slider">
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
-										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
-									</div>
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_3.jpg">
-										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
-									</div>
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
-										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
-									</div>
-									<div class="inflatables">
-										<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
-										</div>
-										<div class="bottom_links d-flex justify-content-between">
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-											</div>
-											<div class="bottom_links1">
-												<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-											</div>
-										</div>	
-									</div>
-								</div>	
+
 
 								<div class="FieldsTexts bg-white w-100 p-2 ml-1">
 									<div class="text-left">	
@@ -318,42 +253,55 @@
     <script src="{{url('sardar')}}/js/bootstrap.min.js"></script>
   
   <script type="text/javascript" src="{{url('sardar')}}/js/slick.min.js"></script>
+  
   <script type="text/javascript">
-  	$('.Innerinflatables_slider').slick({
-      arrows: true,
-      infinite: true,
-      speed:300,
-      autoplay: true,
-      slidesToShow:3,
-      slidesToScroll:1,
-      centerPadding: '50px',
-      centerMode: false,
-      responsive: [
+  	$('.BigInnerinflatableSub_slider').slick({
+      slidesToShow: 1,
+	  slidesToScroll: 1,
+	  arrows: false,
+	  fade: true,
+	  asNavFor: '.BigInnerinflatableSub_Nav'
+    });  
+
+    $('.BigInnerinflatableSub_Nav').slick({
+	  slidesToShow:9,
+	  slidesToScroll:1,
+	  asNavFor: '.BigInnerinflatableSub_slider',
+	  dots: false,
+	  centerMode: false,
+	  focusOnSelect: true,
+	  responsive: [
        
         {
           breakpoint:1200,
           settings: {
-            slidesToShow:2
+            slidesToShow:6
           }
         },
         {
           breakpoint:1000,
           settings: {
-            slidesToShow:1,
-      		arrows: true
-
+            slidesToShow:4
           }
         },
         {
-          breakpoint: 767,
+          breakpoint:767,
           settings: {
-            arrows: true,
-            centerPadding: '40px',
-            slidesToShow: 1
+            slidesToShow:4
+          }
+        },
+        {
+          breakpoint:400,
+          settings: {
+            slidesToShow:3
           }
         }
       ]
-    });  
+	});
+
+
+
+
 
     $('.ExploreNowslider').slick({
       arrows: true,

@@ -21,17 +21,27 @@ class HomeController extends Controller
         return view('sardar.product');
     }
     
+    public function product_internal()
+    {
+        return view('sardar.product-internal');
+    }
+
+    public function product_details()
+    {
+        return view('sardar.product-detail');
+    }
+    
     public function about()
     {
         return view('sardar.about');
     }
     public function testimonials()
     {
-        return view('sardar.testimonial');
+        return view('sardar.testimonials');
     }
     public function videos()
     {
-        return view('sardar.about');
+        return view('sardar.videos');
     }
 
     public function blog()
@@ -41,7 +51,7 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view('sardar.contact');
+        return view('sardar.contact-us');
     }
 
 

@@ -3,7 +3,7 @@
 		<div class="top_header">
 			<div class="left-aligns">  
 			  <div class="logo">
-			  	<a class="navbar-brand" href="index.html"><img src="{{url('sardar')}}/img/logo.png" class="img-fluid"> </a>
+			  	<a class="navbar-brand" href="{{url('')}}"><img src="{{url('sardar')}}/img/logo.png" class="img-fluid"> </a>
 			  </div>	
 			  <div class="search-bar">
 			  	<input type="text" placeholder="enhanced by" name="">

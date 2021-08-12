@@ -16,5 +16,6 @@
     @include('sardar.ext.footer')
     @include('sardar.ext.script')
 	
+	@yield('custom-js')
 </body>
 </html>
