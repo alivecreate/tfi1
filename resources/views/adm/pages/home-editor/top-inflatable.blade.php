@@ -69,7 +69,6 @@ $(".topInflatable a").addClass( "active-menu");
                   <div class="form-group row">
                     <div class="col-sm-12">
                     <input type="hidden" class="form-control">
-                      
                       <input type="text" class="form-control" name="title"
                          placeholder="topInflatable Title">
                          

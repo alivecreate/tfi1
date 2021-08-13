@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\HomeEditorController;
 use App\Http\Controllers\admin\UrlListController;
 use App\Http\Controllers\admin\UrlGroupController;
+use App\Http\Controllers\admin\SettingController;
 
 
 
@@ -85,6 +86,7 @@ Route::post('/admin/url-list1/store', [HomeEditorController::class, 'urlListStor
 Route::delete('/admin/url-list1/delete/{id}', [HomeEditorController::class, 'urlListDelete1'])->name('url-list1.delete');
 
 Route::get('/admin/url-group', [UrlGroupController::class, 'UrlGroupIndex'])->name('url.group');
+Route::get('/admin/settings/social-medai', [SettingController::class, 'socialMediaIndex'])->name('setting.social-media');
 
 
 // Route::resource('/admin/employee',EmployeeController::class);

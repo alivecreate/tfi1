@@ -5,7 +5,6 @@
 
     <div class="sidebar">
 
-
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         
@@ -38,7 +37,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="{{route('admin.category.create')}}" class="nav-link">
+                <a href="{{route('setting.social-media')}}" class="nav-link">
                   <i class="fa fa-plus-square nav-icon"></i>
                   <p>Social Media</p>
                 </a>
@@ -240,15 +239,15 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-suitcase"></i>
               <p>
-                Infitable World
+                Inflatables World
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
+                <a href="{{route('client.index')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
-                  <p>Row 1</p>
+                  <p>Client</p>
                 </a>
               </li>
 

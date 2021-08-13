@@ -55,44 +55,44 @@ $(".topInflatable a").addClass( "active-menu");
             
             <div class="col-md-12 card card-info">
               <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">About Giant Inflatables</h3>
-                <div id="example1_wrapper">
+                <div class="card-header">
+                  <h3 class="card-title">About Giant Inflatables</h3>
+                  <div id="example1_wrapper">
 
-                </div>
-              </div>
-             
-              <form method="post" enctype="multipart/form-data"  class="form-horizontal" action="{{route('about.store')}}">
-                @csrf
-
-                <div class="card-body p-2 pt-4">
-
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      <label for="description">About Desctiption</label>
-                        <textarea id="summernote" name="description" placeholder="Product Descriptions">
-                        {{$homeAbout->description}}</textarea>
-                        <span class="text-danger">@error('description') {{$message}} @enderror</span>
-                        </div>
-                    </div>
-                    
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      <label for="url">Page Url</label>
-                    <input type="hidden" class="form-control">
-                      <input type="url" class="form-control" name="url"
-                         placeholder="Aboutus Page Url" value="{{$homeAbout->url}}">
-                      <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
-                    </div>
-                  </div> 
-                  <input type="hidden" name="type" value="home_about">               
                   </div>
                 </div>
+             
+                <form method="post" enctype="multipart/form-data"  class="form-horizontal" action="{{route('about.store')}}">
+                  @csrf
 
-                <div class="card-footer text-right">
-                  <button type="submit" class="btn btn-info">Save Home About</button>
-                </div>
-              </form>
+                  <div class="card-body p-2 pt-4">
+
+                    <div class="form-group row">
+                      <div class="col-sm-12">
+                        <label for="description">About Desctiption</label>
+                          <textarea id="summernote" name="description" placeholder="Product Descriptions">
+                          {{$homeAbout->description}}</textarea>
+                          <span class="text-danger">@error('description') {{$message}} @enderror</span>
+                          </div>
+                      </div>
+                      
+                    <div class="form-group row">
+                      <div class="col-sm-12">
+                        <label for="url">Page Url</label>
+                      <input type="hidden" class="form-control">
+                        <input type="url" class="form-control" name="url"
+                          placeholder="Aboutus Page Url" value="{{$homeAbout->url}}">
+                        <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
+                      </div>
+                    </div> 
+                    <input type="hidden" name="type" value="home_about">               
+                    </div>
+                  </div>
+
+                  <div class="card-footer text-right">
+                    <button type="submit" class="btn btn-info">Save Home About</button>
+                  </div>
+                </form>
             </div>
                 <div class="col-md-6 card card-info">
                     <div class="card card-info">

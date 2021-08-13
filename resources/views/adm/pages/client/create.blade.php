@@ -82,7 +82,6 @@ $(".client a").addClass( "active-menu");
                          
                     <span class="text-danger">@error('ref_name') {{$message}} @enderror</span>
                     </div>
-
                   </div>
                   
                   <div class="form-group row">

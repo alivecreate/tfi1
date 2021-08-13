@@ -70,6 +70,7 @@ class ProductController extends Controller
             'meta_title' => 'required',
             'meta_keyword' => 'required',
             'meta_description' => 'required',
+            'image' => 'required',
 
         ]);
 
@@ -142,6 +143,7 @@ class ProductController extends Controller
             'meta_title' => 'required',
             'meta_keyword' => 'required',
             'meta_description' => 'required',
+            
 
         ]);
 

@@ -29,15 +29,12 @@ $(".client a").addClass( "active-menu");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Client List: અરજદાર</h1>
+            <h1>Client List</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
               <li class="breadcrumb-item active">Client</li>
-              <li class="breadcrumb-item active">
-                <a class="btn btn-sm btn-danger" href="{{route('admin.trashed','client')}}">
-                <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Trashed</a></li>
             
             </ol>
           </div>
@@ -50,60 +47,95 @@ $(".client a").addClass( "active-menu");
       <div class="container-fluid">
       
         <div class="row">
-          <div class="col-12">
-            <div class="card">
-              
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>ફોટો</th>
-                      <th>અરજદારનું નામ</th>
-                      <th>રેફરેન્સનું નામ</th>
-                      <th>ફોન નં 1</th>
-                      <th>ફોન નં 2</th>
-                      <th>સરનામું</th>
-                      <th>નોંધ</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($clients as $i => $client)
-                      <tr>
-                        <td>{{++$i}}</td>
-                        @if($client->image)
-                        <td><img class="img-circle elevation-2 object-fit-sm" 
-                            src="{{asset('web')}}/media/lg/{{$client->image}}"></td>
-                            @else
-                            
-                        <td><img class="img-circle elevation-2 object-fit-sm" 
-                            src="{{asset('adm')}}/img/no-user.jpeg"></td>
-                        @endif
 
-                        <td>{{$client->name}}</td>
-                        <td>{{$client->ref_name}}</td>
-                        <td>{{$client->phone1}}</td>
-                        <td>{{$client->phone2}}</td>
-                        <td>{{$client->address}}</td>
-                        <td>{{$client->note}}</td>
-                        <td>
-                        
-                        <a href="{{route('client.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit client"><i class="far fa-edit"></i></a>
-                          <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete client"  data-id="{{ $client->id}}" data-title="{{ $client->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
-                          </button>
-                      
-                      
-                      </td>
-                      </tr>
-                    @endforeach
-
-                  </tbody>
-                </table>
+          <div class="col-md-5 card card-dark">
+              <div class="card-header">
+                      <h3 class="card-title">Add Client</h3>
+                </div>
                 
+
+                <form method="post" enctype="multipart/form-data"  class="form-horizontal" action="{{route('client.store')}}">
+                  @csrf
+
+                  <div class="card-body p-2 pt-4">
+
+                  <div class="form-group row">
+                      <div class="col-sm-12">
+                        <label for="name">Client Name</label>
+                          <input class="form-control" type="text" name="name" placeholder="Product name">
+                          <span class="text-danger">@error('name') {{$message}} @enderror</span>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                      <div class="col-sm-12">
+                        <label for="note">Client Note</label>
+                          <textarea class="form-control" type="text" name="note" placeholder="Client Note"></textarea>
+                          <span class="text-danger">@error('note') {{$message}} @enderror</span>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-12">
+                        <label for="image_alt">Logo</label><br>
+                        <input type="file" name="image" class="image " id="image" require>
+                        <span class="text-danger">@error('image') {{$message}} @enderror</span>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="card-footer text-right">
+                    <button type="submit" class="btn btn-info">Save Client</button>
+                  </div>
+                </form>
+
               </div>
-            </div>
-          </div>
+           
+           <div class="col-md-7 card card-info">
+              <div class="card-header">
+                      <h3 class="card-title">Clien Lists</h3>
+                </div>
+                <div class="card-body table-responsive p-0">
+                  <table class="table table-hover text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Logo</th>
+                        <th>Note</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($clients as $i => $client)
+                        <tr>
+                          <td>{{++$i}}</td>
+                          <td>{{$client->name}}</td>
+                          @if($client->image)
+                          <td><img class="img-circle elevation-2 object-fit-sm" 
+                              src="{{asset('web')}}/media/lg/{{$client->image}}"></td>
+                              @else
+                              
+                          <td><img class="img-circle elevation-2 object-fit-sm" 
+                              src="{{asset('adm')}}/img/no-user.jpeg"></td>
+                          @endif
+
+                          <td>{{$client->note}}</td>
+                          <td>
+                          <!-- <a href="{{route('client.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit client"><i class="far fa-edit"></i></a> -->
+                            <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete client"  data-id="{{ $client->id}}" data-title="{{ $client->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                            </button>                      
+                        </td>
+                        </tr>
+                      @endforeach
+
+                    </tbody>
+                  </table>
+                  
+                </div>
+              </div>
+           </div>
+           
         </div>
 
 
@@ -121,7 +153,7 @@ $(".client a").addClass( "active-menu");
               </button>
             </div>
             <div class="modal-body">
-            <label>અરજદારનું નામ</label>
+            <label>Client Name</label>
             <h5 class="modal-title delete-title">Delete Category</h5>
             </div>
             <div class="modal-footer justify-content-between d-block ">

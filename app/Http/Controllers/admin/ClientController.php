@@ -51,20 +51,14 @@ class ClientController extends Controller
         // dd($request->file('image'));
         $request->validate([
             'name' => 'required|max:255',
-            'phone1' => 'required|unique:clients',
+            'image' => 'required',
         ]);
 
         $image_name = uploadImageThumb($request);
+
         $client = new Client;
         $client->name = $request->name;
-        $client->ref_name  = $request->ref_name ;
-        $client->phone1  = $request->phone1;
-        $client->phone2  = $request->phone2;
-        $client->ref_phone  = $request->ref_phone;
-        $client->email  = $request->email;
-        $client->ref_email  = $request->ref_email;
-        $client->address  = $request->address;
-        $client->image = $image_name;        
+        $client->logo = $image_name;
         $client->note = $request->note;
         $client->admin_id = session('LoggedUser')->id;
                

@@ -30,14 +30,12 @@ function getTaskComments(){
 function getTaskAssign(){
     $taskAssign = DB::table('task_assign')
         ->join('tasks', 'tasks.id', '=', 'task_assign.task_id')
-        ->join('clients', 'clients.id', '=', 'tasks.client_id')
         ->join('admins', 'admins.id', '=', 'task_assign.admin_id')
         ->join('categories', 'categories.id', '=', 'tasks.category_id')
 
         ->select('task_assign.id as task_assign_id', 'task_assign.description as task_description',
                 'admins.name as admin_name', 'admins.id as admin_id', 'admins.image as admin_image',
-                'task_assign.created_at as task_created_at','tasks.name as task_name',
-                'clients.image as client_image','clients.name as client_name'
+                'task_assign.created_at as task_created_at','tasks.name as task_name'
 
             )
         ->where('task_assign.admin_id', session('LoggedUser')->id)

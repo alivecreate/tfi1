@@ -10,7 +10,7 @@ class TrashedController extends Controller
 {
     
     public function __construct(){
-        $this->clients = Client::onlyTrashed()->get();;
+        $this->clients = Client::all();;
     }
     
 
