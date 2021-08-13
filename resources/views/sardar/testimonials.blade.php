@@ -39,44 +39,22 @@
 			<div class="col-12">
 
 				<div class="notinflatables_slider mb-4">
+					@foreach($testimonials as $testimonial)
+						<div class="inflatables">
+							<h3 class="InfaTitles">{{$testimonial->client_name}}</h3>
+							<div class="img_thumbnail m-auto">
+								<img src="{{url('web')}}/media/lg/{{$testimonial->image}}">
+							</div>
+							<div class="mediaWordFooter">
+								<p>{{$testimonial->short_description}}</p>
+							</div>	
+							<div class="col-12 mb-4 text-right">	
+								<a href="#;" class="red_btn">READ NOW</a>
+							</div>	
+						</div>
 
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
+					@endforeach
 
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
 				</div>	
 
 				<div class="notinflatables_slider mb-4">

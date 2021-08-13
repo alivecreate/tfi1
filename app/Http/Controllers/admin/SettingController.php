@@ -20,7 +20,7 @@ class SettingController extends Controller
 
 
     
-    public function store(Request $request)
+    public function socialMediaStore(Request $request)
     {
         
         $this->validate($request,[
@@ -51,7 +51,7 @@ class SettingController extends Controller
         $post->phone = $request->phone;
         $post->whatsapp = $request->whatsapp;
         $post->whatsapp_group = $request->whatsapp_group;
-        
+
         $post->facebook_embed = $request->facebook_embed;
         $post->youtube_embed = $request->youtube_embed;
         $post->map_embed = $request->map_embed;
@@ -63,6 +63,4 @@ class SettingController extends Controller
             return back()->with('fail', 'Something went wrong, try again later...');
         }
     }
-}
-
 }

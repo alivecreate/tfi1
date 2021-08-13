@@ -50,7 +50,7 @@ $(".topInflatable a").addClass( "active-menu");
     <div class="card-body">
                 	<div class="row">
                     <div class="col-md-10">
-                    <form role="form" action="{{ route('social-media.store') }}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{ route('setting.social-media.store') }}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                     <h5 class="text-danger text-center">Social Button</h5>
                       <table class="table">
@@ -68,7 +68,7 @@ $(".topInflatable a").addClass( "active-menu");
                         </tr>
                         <tr>
                           <td><label for="title">Youtube</label></td>
-                          <td><input type="text" class="form-control" id="twitter"  name="youtube" value="@if(old('youtube')){{old('youtube')}}@else{{$socialMedia->youtube}}@endif" placeholder="Youtube Channel"></td>
+                          <td><input type="text" class="form-control" id="youtube"  name="youtube" value="@if(old('youtube')){{old('youtube')}}@else{{$socialMedia->youtube}}@endif" placeholder="Youtube Channel"></td>
                         </tr>
                         <tr>
                           <td><label for="title">LinkedIn</label></td>
@@ -104,7 +104,7 @@ $(".topInflatable a").addClass( "active-menu");
                         <tr>
                           <td><label for="title">Google Map Embed</label></td>
                           <td><textarea type="text" class="form-control" id="map_embed"  name="map_embed" 
-                            placeholder="Signal Group Link">@if(old('map_embed')){{old('map_embed')}}@else{{$socialMedia->signal_group}}@endif</textarea></td>
+                            placeholder="Google Map Embed">@if(old('map_embed')){{old('map_embed')}}@else{{$socialMedia->map_embed}}@endif</textarea></td>
                         </tr>
                         
                         <tr>

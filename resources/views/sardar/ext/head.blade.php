@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{url('sardar')}}/css/all.min.css">
   	<link rel="stylesheet" type="text/css" href="{{url('sardar')}}/css/slick.css"/>
   	<link rel="stylesheet" type="text/css" href="{{url('sardar')}}/css/slick-theme.css"/>
+  	<link rel="stylesheet" type="text/css" href="{{url('sardar')}}/css/custom.css"/>
 
 	<title>Home | GIANT</title>
 	<meta charset="utf-8">

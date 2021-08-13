@@ -18,15 +18,15 @@ class CreateSocialMediasTable extends Migration
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
-            $table->string('Youtube')->nullable();
-            $table->string('Youtube_embed')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('youtube_embed')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('whatsapp')->nullable();
-            $table->string('whatsapp_group')->nullable();
-            $table->string('map_embed')->nullable();
-            $table->string('facebook_embed')->nullable();
+            $table->text('whatsapp_group')->nullable();
+            $table->text('map_embed')->nullable();
+            $table->text('facebook_embed')->nullable();
             $table->timestamps();
         });
     }

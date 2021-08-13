@@ -205,14 +205,19 @@ $(".editProductImage").on('click', function() {
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <label for="full_description">Full Desctiption</label>
-                        <textarea id="summernote" name="full_description" placeholder="Product Descriptions">
-                          @if(old('full_description')){{old('full_description')}}@else{{$product->full_description}}@endif 
-                        </textarea>
+                        <textarea id="summernote" name="full_description" placeholder="Product Descriptions">@if(old('full_description')){{old('full_description')}}@else{{$product->full_description}}@endif</textarea>
                                   
                     <span class="text-danger">@error('full_description') {{$message}} @enderror</span>
                     </div>
                     </div>
                     
+                    <div class="form-group row">
+                      <label  for="slug">Slug Url</label>
+                      <input type="text" class="form-control" name="slug" 
+                        placeholder="Seo Friendly Url" value="@if(old('slug')){{old('slug')}}@else{{$product->slug}}@endif">
+                      <span class="text-danger">@error('slug') {{$message}} @enderror</span>
+                    </div>
+
                     <div class="form-group row">
                         <div class="col-sm-3">
                         <label for="image_alt">Featured Image</label><br>
@@ -260,8 +265,7 @@ $(".editProductImage").on('click', function() {
                     <div class="col-sm-12">
                       <label  class="text-danger" for="meta_description">Description</label>
                       <textarea type="text" class="form-control" name="meta_description" 
-                        placeholder="Seo Friendly Title">@if(old('meta_description')){{old('meta_description')}}@else{{$product->meta_description}}@endif
-                      </textarea>
+                        placeholder="Seo Friendly Title">@if(old('meta_description')){{old('meta_description')}}@else{{$product->meta_description}}@endif</textarea>
                       <span class="text-danger">@error('meta_description') {{$message}} @enderror</span>
                     </div>
                   </div>

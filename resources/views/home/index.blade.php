@@ -14,6 +14,7 @@
 	border-radius:8px;
 }
 </style>
+
 		<section id="content">
 			<div class="content-wrap">
 

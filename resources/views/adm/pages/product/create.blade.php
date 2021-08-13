@@ -169,6 +169,13 @@ $(".product a").addClass( "active-menu");
                     </div>
                     
                     <div class="form-group row">
+                      <label  for="slug">Slug Url</label>
+                      <input type="text" class="form-control" name="slug" 
+                        placeholder="Seo Friendly Url" value="{{old('slug')}}">
+                      <span class="text-danger">@error('slug') {{$message}} @enderror</span>
+                    </div>
+                    
+                    <div class="form-group row">
                         <div class="col-sm-3">
                         <label for="image_alt">Featured Image</label><br>
                         <input type="file" name="image" class="image " id="image" require>
@@ -191,6 +198,7 @@ $(".product a").addClass( "active-menu");
                         <span class="text-danger">@error('image_title') {{$message}} @enderror</span>
                       </div>
                     </div>
+                    
                     
                   <div class="form-group row">
                     <h5 class="bg-dark pl-4 pr-4">SEO CONTENTS</h5>

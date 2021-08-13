@@ -1,6 +1,7 @@
 <?php
 use App\Models\admin\TaskComment;
 use App\Models\admin\Category;
+use App\Models\admin\SocialMedia;
 
 function getTaskComments(){
     // TaskComment::where('admin_id', session('LoggedUser')->id);session('LoggedUser')->id
@@ -57,6 +58,11 @@ function getSubCategories($id){
     $data = DB::table('categories')
     ->where('parent_id',$id)
     ->get();
+    return $data;
+}
+
+function getSocialMedia(){
+    $data = SocialMedia::first();
     return $data;
 }
 

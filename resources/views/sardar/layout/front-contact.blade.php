@@ -13,7 +13,7 @@
 	@yield('content')
 
 
-    @include('sardar.ext.footer')
+    @include('sardar.ext.footer2')
 
 
     @include('sardar.ext.script')

@@ -192,24 +192,57 @@
 
           <li class="nav-item video">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-video-camera"></i>
+              <i class="nav-icon fa fa-pencil-square-o"></i>
               <p>
-                Videos
+                Video
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
+                <a href="{{route('video.index')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
-                  <p>Videos</p>
+                  <p>View All</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('video.create')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>Add New</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+
+          <li class="nav-item testimonial">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-address-card-o"></i>
+              <p>
+              Testimonials
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('testimonials.index')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>List Testimonials</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('testimonials.create')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>New Case Testimonials</p>
                 </a>
               </li>
 
             </ul>
           </li>
-
-          <li class="nav-item case-study">
+       
+          <!-- <li class="nav-item case-study">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-file-code-o"></i>
               <p>
@@ -233,7 +266,7 @@
               </li>
 
             </ul>
-          </li>
+          </li> -->
 
           <li class="nav-item infitable">
             <a href="#" class="nav-link">
@@ -250,6 +283,7 @@
                   <p>Client</p>
                 </a>
               </li>
+              
 
               <li class="nav-item">
                 <a href="{{route('admin.category')}}" class="nav-link">
@@ -322,46 +356,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
+                <a href="{{route('blog.index')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
                   <p>View All</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
+                <a href="{{route('blog.create')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
                   <p>Add New</p>
                 </a>
               </li>
             </ul>
           </li>
-          
-          <li class="nav-item testimonial">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-address-card-o"></i>
-              <p>
-                Testimonial
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
-                  <i class="fa fa-th-list nav-icon"></i>
-                  <p>View All</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
-                  <i class="fa fa-th-list nav-icon"></i>
-                  <p>Add New</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          
           
           
           <li class="nav-item seo">

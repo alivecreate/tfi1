@@ -38,112 +38,25 @@
 		<div class="container-fluid">
 			<div class="col-12">
 
-				<div class="notinflatables_slider mb-4">
 
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
+				<div class="row">
+				@foreach($videos as $video)
+					<div class="col-md-4 p-2">
+						<div class="inflatables  m-0">
+						<h3 class="InfaTitles">{{$video->title}}</h3>
 						<div class="video_thumbnail m-auto">
-							<iframe src="{{url('sardar')}}/img/Dummy-Video-For-YouTube-API-Test.mp4"></iframe>
-						</div>
+					
+						{!! html_entity_decode($video->youtube_embed) !!}		
+					</div>
 						<div class="col-12 mb-0 d-flex justify-content-between">	
-							<div class="video_clicks">DATE : 23/09/21</div>
+							<div class="video_clicks">DATE : {{$video->video_date}}</div>
 							<div class="video_clicks"><a href="#;">Share Video</a></div>
 						</div>	
-					</div>
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="video_thumbnail m-auto">
-							<iframe src="{{url('sardar')}}/img/Dummy-Video-For-YouTube-API-Test.mp4"></iframe>
 						</div>
-						<div class="col-12 mb-0 d-flex justify-content-between">	
-							<div class="video_clicks">DATE : 23/09/21</div>
-							<div class="video_clicks"><a href="#;">Share Video</a></div>
-						</div>	
 					</div>
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="video_thumbnail m-auto">
-							<iframe src="{{url('sardar')}}/img/Dummy-Video-For-YouTube-API-Test.mp4"></iframe>
-						</div>
-						<div class="col-12 mb-0 d-flex justify-content-between">	
-							<div class="video_clicks">DATE : 23/09/21</div>
-							<div class="video_clicks"><a href="#;">Share Video</a></div>
-						</div>	
+					@endforeach	
 					</div>
-				</div>	
-
-				<div class="notinflatables_slider mb-4">
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="video_thumbnail m-auto">
-							<iframe src="{{url('sardar')}}/img/Dummy-Video-For-YouTube-API-Test.mp4"></iframe>
-						</div>
-						<div class="col-12 mb-0 d-flex justify-content-between">	
-							<div class="video_clicks">DATE : 23/09/21</div>
-							<div class="video_clicks"><a href="#;">Share Video</a></div>
-						</div>	
-					</div>
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="video_thumbnail m-auto">
-							<iframe src="{{url('sardar')}}/img/Dummy-Video-For-YouTube-API-Test.mp4"></iframe>
-						</div>
-						<div class="col-12 mb-0 d-flex justify-content-between">	
-							<div class="video_clicks">DATE : 23/09/21</div>
-							<div class="video_clicks"><a href="#;">Share Video</a></div>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="video_thumbnail m-auto">
-							<iframe src="{{url('sardar')}}/img/Dummy-Video-For-YouTube-API-Test.mp4"></iframe>
-						</div>
-						<div class="col-12 mb-0 d-flex justify-content-between">	
-							<div class="video_clicks">DATE : 23/09/21</div>
-							<div class="video_clicks"><a href="#;">Share Video</a></div>
-						</div>	
-					</div>
-				</div>	
-
-				<div class="notinflatables_slider mb-0">
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="video_thumbnail m-auto">
-							<iframe src="{{url('sardar')}}/img/Dummy-Video-For-YouTube-API-Test.mp4"></iframe>
-						</div>
-						<div class="col-12 mb-0 d-flex justify-content-between">	
-							<div class="video_clicks">DATE : 23/09/21</div>
-							<div class="video_clicks"><a href="#;">Share Video</a></div>
-						</div>	
-					</div>
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="video_thumbnail m-auto">
-							<iframe src="{{url('sardar')}}/img/Dummy-Video-For-YouTube-API-Test.mp4"></iframe>
-						</div>
-						<div class="col-12 mb-0 d-flex justify-content-between">	
-							<div class="video_clicks">DATE : 23/09/21</div>
-							<div class="video_clicks"><a href="#;">Share Video</a></div>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<h3 class="InfaTitles">Client name here or title...</h3>
-						<div class="video_thumbnail m-auto">
-							<iframe src="{{url('sardar')}}/img/Dummy-Video-For-YouTube-API-Test.mp4"></iframe>
-						</div>
-						<div class="col-12 mb-0 d-flex justify-content-between">	
-							<div class="video_clicks">DATE : 23/09/21</div>
-							<div class="video_clicks"><a href="#;">Share Video</a></div>
-						</div>	
-					</div>
-				</div>	
-
-
+					
 			</div>	
 		</div>	
 	</section>

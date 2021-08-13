@@ -14,8 +14,8 @@
 		  <div class="dreamandbuild">
 		  	<h3>YOU <span>DREAM</span> IT... WE'LL <span>BUILD</span> IT</h3>
 		  	<ul> 
-		  		<li><a href="#;"> <i class="fa fa-mobile-alt"></i> 1300 463 528 </a> </li>
-		  		<li><a href="#;"> <i class="far fa-envelope"></i> sales@giantinfatables.com.au </a> </li>
+		  		<li><a href="#;"> <i class="fa fa-mobile-alt"></i> {{getSocialMedia()->phone}} </a> </li>
+		  		<li><a href="#;"> <i class="far fa-envelope"></i>{{getSocialMedia()->email}}</a> </li>
 		  	</ul>
 		  </div>	
 		</div>  

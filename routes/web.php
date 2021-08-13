@@ -17,6 +17,9 @@ use App\Http\Controllers\admin\HomeEditorController;
 use App\Http\Controllers\admin\UrlListController;
 use App\Http\Controllers\admin\UrlGroupController;
 use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\TestimonialController;
+use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\VideoController;
 
 
 
@@ -47,7 +50,6 @@ Route::get('about', [HomeController::class, 'about']);
 Route::get('products', [HomeController::class, 'product']);
 Route::get('products/{slug}', [HomeController::class, 'product_internal']);
 Route::get('product-detail/{slug}', [HomeController::class, 'product_details']);
-
 
 Route::get('testimonials', [HomeController::class, 'testimonials']);
 Route::get('videos', [HomeController::class, 'videos']);
@@ -86,7 +88,8 @@ Route::post('/admin/url-list1/store', [HomeEditorController::class, 'urlListStor
 Route::delete('/admin/url-list1/delete/{id}', [HomeEditorController::class, 'urlListDelete1'])->name('url-list1.delete');
 
 Route::get('/admin/url-group', [UrlGroupController::class, 'UrlGroupIndex'])->name('url.group');
-Route::get('/admin/settings/social-medai', [SettingController::class, 'socialMediaIndex'])->name('setting.social-media');
+Route::get('/admin/settings/social-media', [SettingController::class, 'socialMediaIndex'])->name('setting.social-media');
+Route::post('/admin/settings/social-media', [SettingController::class, 'socialMediaStore'])->name('setting.social-media.store');
 
 
 // Route::resource('/admin/employee',EmployeeController::class);
@@ -112,7 +115,10 @@ Route::resources([
     '/admin/task' => TaskController::class,
     '/admin/task-assign' => TaskAssignController::class,
     '/admin/product' => ProductController::class,
-
+    '/admin/testimonials' => TestimonialController::class,
+    '/admin/blog' => BlogController::class,
+    '/admin/video' => VideoController::class,
+    
     '/' => HomeController::class,
     
 ]);

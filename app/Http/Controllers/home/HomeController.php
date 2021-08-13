@@ -8,7 +8,10 @@ use App\Models\admin\Slider;
 use App\Models\admin\TopInflatables;
 use App\Models\admin\UrlList;
 use App\Models\admin\Pages;
-
+use App\Models\admin\Video;
+use App\Models\admin\Blog;
+use App\Models\admin\Testimonials;
+    
 
 class HomeController extends Controller
 {
@@ -48,21 +51,34 @@ class HomeController extends Controller
     }
     public function testimonials()
     {
-        return view('sardar.testimonials');
+        $data = [
+            'testimonials' =>  Testimonials::where('status', 1)->get(),
+        ];
+        return view('sardar.testimonials', $data);
     }
     public function videos()
     {
-        return view('sardar.videos');
+        $data = [
+            'videos' =>  Video::where('status', 1)->get(),
+        ];
+        return view('sardar.videos', $data);
     }
 
     public function blog()
     {
-        return view('sardar.blog');
+        $data = [
+            'blogs' =>  Blog::where('status', 1)->get(),
+        ];
+        return view('sardar.blog', $data);
     }
 
     public function contact()
     {
-        return view('sardar.contact-us');
+        $data = [
+            'current_page' =>  'contact',
+        ];
+
+        return view('sardar.contact-us', $data);
     }
 
 

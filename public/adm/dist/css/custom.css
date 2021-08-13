@@ -2,6 +2,13 @@
     border:none;
 }
 
+.youtube_embed1 ifram{
+    max-width: 200px;
+    width: 178px !important;
+    height: auto !important;
+}
+
+
 .table-border-none tr td:hover, .table-border-none tr:hover{
 color: #212529;
 background-color: transparent !important;

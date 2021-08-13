@@ -7,6 +7,9 @@
 @section('content')
 
 
+
+
+
 <section class="leading_area">
 		<div class="banner-part">
 			<img src="{{url('web')}}/media/lg/{{$sliders->image}}" class="img-fluid absolute_img">

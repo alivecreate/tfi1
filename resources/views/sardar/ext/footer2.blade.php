@@ -1,29 +1,85 @@
 
-	<section class="experts bg_lightdark">
+	<section class="about_giant pb-5 bg-white wiThmap">
 		<div class="container-fluid">
 			<div class="col-12">
-				<div class="header-t py-4">
-					<h1>Speak with one of our experts</h1>
+
+				<div class="header-t mb-3">
+					<h1>Connect With Us</h1>
 				</div>	
+
+				<div class="many_partition">
+					<div class="facebooks_posts">
+						{!! html_entity_decode(getSocialMedia()->facebook_embed) !!}
+					</div>
+					
+					<div class="map_part google_map_block" style="max-width:100%">
+							{!! html_entity_decode(getSocialMedia()->map_embed) !!}
+					</div>
+
+					<div class="enquiry_form bg-white m-md-0 mb-md-0">
+						<div class="form_header">
+							<img src="{{url('sardar')}}/images/email_icon.png" class="img-fluid">
+							<h2>SEND US YOUR ENQUIRY</h2>
+						</div>	
+						<form class="m-0">
+							<div class="form-group">
+								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/name_icon.png" class="img-fluid"></div> 
+								<input type="text" placeholder="Name" name=""> 
+							</div>
+							<div class="form-group">
+								<div class="frm_dv"><img width="15" src="{{url('sardar')}}/images/mobile_icon.png" class="img-fluid"></div> 
+								<input type="number" placeholder="Phone Number" name=""> 
+							</div>
+							<div class="form-group">
+								<div class="frm_dv"><img width="25" src="{{url('sardar')}}/images/email_icon_b.png" class="img-fluid"></div> 
+								<input type="text" placeholder="Email" name=""> 
+							</div>
+							<div class="form-group">
+								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/gbl.png" class="img-fluid"></div> 
+								<select>
+									<option selected="">Select Country</option>
+									<option>India</option>
+									<option>India</option>
+									<option>India</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/share_icon.png" class="img-fluid"></div> 
+								<textarea name="textarea-326" placeholder="Share Your Inflatables Requirement"></textarea>
+							</div>
+							<div class="text-center"> 
+								<a href="#;" class="term_Link d-block mb-4"> Your information is sage with us. We do not sell or rent emails. </a> 
+								<a href="#;" class="red_btn">Submit</a>
+							</div>
+
+						</form>
+					</div>		
+
+					<div class=" bg-white connect_with">
+						<div class="ab_logo text-center">	
+							<a href="#;">
+								<img src="{{url('sardar')}}/images/logo.png" class="img-fluid">
+							</a>	
+						</div>
+						<div class="social_footer text-center d-block">	
+							<ul>
+								<li><a href="{{getSocialMedia()->youtube}}"><img src="{{url('sardar')}}/images/youtube_icon.png"></a></li>
+								<li><a href="{{getSocialMedia()->twitter}}"><img src="{{url('sardar')}}/images/twitter_icon.png"></a></li>
+								<li><a href="{{getSocialMedia()->facebook}}"><img src="{{url('sardar')}}/images/fb_icon.png"></a></li>
+
+								
+							</ul>
+
+							<address>504, Lalita Tower, Nr.Railway Station, VADODARA</address>
+						</div>	
+					</div>	
+					
+				</div>	
+
 			</div>	
 		</div>	
 	</section>
 
-	<section class="experts bg-white py-4">
-		<div class="container-fluid">
-			<div class="col-12">
-				<ul>
-					<li><a href="mailto:sales@giantiflatables.com"> <div class="bXs"><img src="{{url('sardar')}}/images/email_red_icon.png"></div>
-						<span>sales@giantiflatables.com</span></a></li>
-					<li><a href="mailto:sales@giantiflatables.com"> <div class="bXs"><img src="{{url('sardar')}}/images/chat_red_icon.png"> </div>
-						<span>Chat </span> </a></li>
-					<li><a href="mailto:sales@giantiflatables.com"> <div class="bXs"><img src="{{url('sardar')}}/images/phone_red_icon.png"></div>
-					 <span>(866) 705-1595 </span> </a></li>
-				</ul>
-			</div>	
-		</div>	
-	</section>
-	
 
 	<section class="media_world bg-white">
 		<div class="container-fluid">
@@ -191,88 +247,19 @@
 		</div>	
 	</section>
 
-	<section class="about_giant pb-5 bg-white wiThmap">
+
+
+	<section class="experts bg_lightdark">
 		<div class="container-fluid">
 			<div class="col-12">
-
-				<div class="header-t mb-3">
-					<h1>Connect With Us</h1>
+				<div class="header-t py-4">
+					<h1>Speak with one of our experts</h1>
 				</div>	
-
-				<div class="many_partition">
-					<div class="facebooks_posts">
-						{!! html_entity_decode(getSocialMedia()->facebook_embed) !!}
-					</div>
-					
-					<div class="map_part google_map_block" style="max-width:100%">
-						<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.198518805097!2d73.17775031490606!3d22.308330685319373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8ad0f8aef55%3A0x4788d9c0fa43addc!2sLalita%20Tower!5e0!3m2!1sen!2sin!4v1625899768295!5m2!1sen!2sin" width="300" height="425" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
-					
-							{!! html_entity_decode(getSocialMedia()->map_embed) !!}
-					</div>
-
-					<div class="enquiry_form bg-white m-md-0 mb-md-0">
-						<div class="form_header">
-							<img src="{{url('sardar')}}/images/email_icon.png" class="img-fluid">
-							<h2>SEND US YOUR ENQUIRY</h2>
-						</div>	
-						<form class="m-0">
-							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/name_icon.png" class="img-fluid"></div> 
-								<input type="text" placeholder="Name" name=""> 
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="15" src="{{url('sardar')}}/images/mobile_icon.png" class="img-fluid"></div> 
-								<input type="number" placeholder="Phone Number" name=""> 
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="25" src="{{url('sardar')}}/images/email_icon_b.png" class="img-fluid"></div> 
-								<input type="text" placeholder="Email" name=""> 
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/gbl.png" class="img-fluid"></div> 
-								<select>
-									<option selected="">Select Country</option>
-									<option>India</option>
-									<option>India</option>
-									<option>India</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/share_icon.png" class="img-fluid"></div> 
-								<textarea name="textarea-326" placeholder="Share Your Inflatables Requirement"></textarea>
-							</div>
-							<div class="text-center"> 
-								<a href="#;" class="term_Link d-block mb-4"> Your information is sage with us. We do not sell or rent emails. </a> 
-								<a href="#;" class="red_btn">Submit</a>
-							</div>
-
-						</form>
-					</div>		
-
-					<div class=" bg-white connect_with">
-						<div class="ab_logo text-center">	
-							<a href="#;">
-								<img src="{{url('sardar')}}/images/logo.png" class="img-fluid">
-							</a>	
-						</div>
-						<div class="social_footer text-center d-block">	
-							<ul>
-								<li><a href="{{getSocialMedia()->youtube}}"><img src="{{url('sardar')}}/images/youtube_icon.png"></a></li>
-								<li><a href="{{getSocialMedia()->twitter}}"><img src="{{url('sardar')}}/images/twitter_icon.png"></a></li>
-								<li><a href="{{getSocialMedia()->facebook}}"><img src="{{url('sardar')}}/images/fb_icon.png"></a></li>
-
-								
-							</ul>
-
-							<address>504, Lalita Tower, Nr.Railway Station, VADODARA</address>
-						</div>	
-					</div>	
-					
-				</div>	
-
 			</div>	
 		</div>	
 	</section>
+
+    
 
 	<section class="about_giant py-4">
 		<div class="container-fluid">

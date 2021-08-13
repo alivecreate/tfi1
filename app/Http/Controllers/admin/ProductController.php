@@ -67,6 +67,7 @@ class ProductController extends Controller
             'name' => 'required',
             'short_description' => 'required',
             'full_description' => 'required',
+            'slug' => 'required',
             'meta_title' => 'required',
             'meta_keyword' => 'required',
             'meta_description' => 'required',
@@ -81,6 +82,7 @@ class ProductController extends Controller
         $product->full_description = $request->full_description;      
         $product->image  = $image_name ; 
         $product->image_alt = $request->image_alt;      
+        $product->slug  = $request->slug;
         $product->meta_title  = $request->meta_title;
         $product->meta_keyword  = $request->meta_keyword;
         $product->meta_description  = $request->meta_description;
@@ -140,6 +142,7 @@ class ProductController extends Controller
             'name' => 'required',
             'short_description' => 'required',
             'full_description' => 'required',
+            'slug' => 'required',
             'meta_title' => 'required',
             'meta_keyword' => 'required',
             'meta_description' => 'required',
@@ -160,6 +163,7 @@ class ProductController extends Controller
         $product->image  = $image_name ; 
         $product->image_alt = $request->image_alt;       
         $product->image_title  = $request->image_title;
+        $product->slug  = $request->slug;
         $product->meta_keyword  = $request->meta_keyword;
         $product->meta_description  = $request->meta_description;
         $product->category_id  = $request->category_id;
