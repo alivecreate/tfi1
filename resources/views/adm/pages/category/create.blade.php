@@ -81,7 +81,7 @@ $(".category a").addClass( "active-menu");
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <textarea class="form-control" name="category_description"
-                         placeholder="Note">{{old('category_description')}}</textarea>
+                         placeholder="slug">{{old('category_description')}}</textarea>
                     <span class="text-danger">@error('category_description') {{$message}} @enderror</span>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ $(".category a").addClass( "active-menu");
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <textarea class="form-control" name="subcategory_description"
-                         placeholder="Note">{{@old(subcategory_description)}}</textarea>
+                         placeholder="Slug">{{@old(subcategory_description)}}</textarea>
                          <span class="text-danger">@error('subcategory_description') {{$message}} @enderror</span>
                     
                     </div>
@@ -190,7 +190,7 @@ $(".category a").addClass( "active-menu");
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <textarea class="form-control" name="subcategory2_description"
-                         placeholder="Note">{{@old('subcategory2_description')}}</textarea>
+                         placeholder="Slug">{{@old('subcategory2_description')}}</textarea>
 
                          <span class="text-danger">@error('subcategory2_description') {{$message}} @enderror</span>
 

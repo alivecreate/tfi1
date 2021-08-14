@@ -22,7 +22,7 @@ class CreateSlidersTable extends Migration
             $table->text('description')->nullable();
             $table->text('url')->nullable();
             $table->text('youtube_embed')->nullable();
-            $table->text('status')->default(0);
+            $table->integer('status')->default(0);
             $table->timestamps();
 
         });

@@ -58,7 +58,7 @@ class BlogController extends Controller
             $list_no = 1;
         }
         if($request->status == null){
-            $status = 0;
+            $status = 1;
         }else{
             $status = 1;
         }
@@ -130,7 +130,7 @@ class BlogController extends Controller
             $list_no = 1;
         }
         if($request->status == null){
-            $status = 0;
+            $status = 1;
         }else{
             $status = 1;
         }
@@ -151,7 +151,7 @@ class BlogController extends Controller
         $blog->meta_title  = $request->meta_title;
         $blog->meta_keyword  = $request->meta_keyword;
         $blog->meta_description  = $request->meta_description;
-        
+
         $blog->status = $status;
         $save = $blog->save();
 

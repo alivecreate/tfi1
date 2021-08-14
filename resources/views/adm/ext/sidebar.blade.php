@@ -7,9 +7,7 @@
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        
           <li class="nav-item menu-open">
-
             <ul class="nav nav-treeview">
           <li class="nav-item dashboard">
             <a href="{{url('admin')}}" class="nav-link">
@@ -29,12 +27,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="{{route('admin.category')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
                   <p>Profile</p>
                 </a>
-              </li>
+              </li> -->
 
               <li class="nav-item">
                 <a href="{{route('setting.social-media')}}" class="nav-link">
@@ -43,19 +41,19 @@
                 </a>
               </li>
 
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="{{route('admin.category.create')}}" class="nav-link">
                   <i class="fa fa-plus-square nav-icon"></i>
                   <p>Mail Server</p>
                 </a>
-              </li>
-
+              </li> -->
+<!-- 
               <li class="nav-item">
                 <a href="{{route('admin.category.create')}}" class="nav-link">
                   <i class="fa fa-sitemap nav-icon"></i>
                   <p>Sitemap</p>
                 </a>
-              </li>
+              </li> -->
 
               
             </ul>
@@ -81,7 +79,7 @@
           </li>
 
           
-          <li class="nav-item search">
+          <!-- <li class="nav-item search">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-search"></i>
               <p>
@@ -98,7 +96,7 @@
               </li>
 
             </ul>
-          </li>
+          </li> -->
 
           <li class="nav-item page">
             <a href="#" class="nav-link">
@@ -112,14 +110,55 @@
               <li class="nav-item">
                 <a href="{{route('home.editor')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
-                  <p>Home</p>
+                  <p>Home Page</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('product-page.editor')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>Product Page</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{route('about-page.editor')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>About Page</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{route('testimonial-page.editor')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>Testimonial Page</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{route('video-page.editor')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>Video Page</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{route('blog-page.editor')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>Blog Page</p>
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="{{route('contact-page.editor')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>Contact Page</p>
+                </a>
+              </li>
+              
             </ul>
           </li>
           
-          <li class="nav-item page">
+          <!-- <li class="nav-item page">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -136,7 +175,7 @@
               </li>
 
             </ul>
-          </li>
+          </li> -->
 
           <li class="nav-item category">
             <a href="#" class="nav-link">
@@ -228,14 +267,14 @@
               <li class="nav-item">
                 <a href="{{route('testimonials.index')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
-                  <p>List Testimonials</p>
+                  <p>View All</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="{{route('testimonials.create')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
-                  <p>New Case Testimonials</p>
+                  <p>New New</p>
                 </a>
               </li>
 
@@ -277,6 +316,14 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+            
+              <li class="nav-item">
+                <a href="{{route('client.index')}}" class="nav-link">
+                  <i class="fa fa-th-list nav-icon"></i>
+                  <p>Client</p>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a href="{{route('client.index')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
@@ -285,17 +332,10 @@
               </li>
               
 
-              <li class="nav-item">
-                <a href="{{route('admin.category')}}" class="nav-link">
-                  <i class="fa fa-th-list nav-icon"></i>
-                  <p>Row 2</p>
-                </a>
-              </li>
-
             </ul>
           </li>
 
-          <li class="nav-item partner">
+          <!-- <li class="nav-item partner">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
               <p>
@@ -319,9 +359,9 @@
               </li>
 
             </ul>
-          </li>
+          </li> -->
           
-          <li class="nav-item newsletter">
+          <!-- <li class="nav-item newsletter">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-newspaper-o"></i>
               <p>
@@ -344,7 +384,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           
           <li class="nav-item blog">
             <a href="#" class="nav-link">
@@ -372,7 +412,7 @@
           </li>
           
           
-          <li class="nav-item seo">
+          <!-- <li class="nav-item seo">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-google"></i>
               <p>
@@ -395,7 +435,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           
           
             <li class="nav-item">            

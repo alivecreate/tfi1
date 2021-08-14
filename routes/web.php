@@ -20,6 +20,7 @@ use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\VideoController;
+use App\Http\Controllers\admin\PageController;
 
 
 
@@ -40,12 +41,13 @@ use App\Http\Controllers\admin\VideoController;
 //     return view('welcome');
 // });
 
-Route::resources([
-    '/' => HomeController::class,    
-]);
+// Route::resources([
+//     '/' => HomeController::class,    
+// ]);
 
 
 
+Route::get('', [HomeController::class, 'index']);
 Route::get('about', [HomeController::class, 'about']);
 Route::get('products', [HomeController::class, 'product']);
 Route::get('products/{slug}', [HomeController::class, 'product_internal']);
@@ -80,6 +82,16 @@ Route::get('/admin/top-inflatable', [HomeEditorController::class, 'topInflatable
 Route::post('/admin/top-inflatable/store', [HomeEditorController::class, 'topInflatableStore'])->name('top.inflatable.store');
 Route::delete('/admin/top-inflatable/delete/{id}', [HomeEditorController::class, 'topInflatableDelete'])->name('top.inflatable.delete');
 
+Route::get('/admin/page-editor/about', [PageController::class, 'aboutPageEditor'])->name('about-page.editor');
+Route::get('/admin/page-editor/product', [PageController::class, 'productPageEditor'])->name('product-page.editor');
+Route::get('/admin/page-editor/testimonial', [PageController::class, 'testimonialPageEditor'])->name('testimonial-page.editor');
+Route::get('/admin/page-editor/video', [PageController::class, 'videoPageEditor'])->name('video-page.editor');
+Route::get('/admin/page-editor/blog', [PageController::class, 'blogPageEditor'])->name('blog-page.editor');
+Route::get('/admin/page-editor/contact', [PageController::class, 'contactPageEditor'])->name('contact-page.editor');
+
+Route::post('/admin/page-editor/store', [PageController::class, 'pageEditorStore'])->name('page-editor.store');
+
+
 Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('home.editor');
 
 Route::post('/admin/about-store', [HomeEditorController::class, 'homeEditorAboutStore'])->name('about.store');
@@ -103,6 +115,8 @@ Route::get('/admin/auth/logout', [AdminAuthController::class, 'logout'])->name('
 Route::post('/admin/category/subCategoryStore', [CategoryController::class, 'subCategoryStore'])->name('admin.category.subCategoryStore');
 Route::post('/admin/category/subCategory2Store', [CategoryController::class, 'subCategory2Store'])->name('admin.category.subCategory2Store');
 
+Route::get('/admin/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('admin.category.delete');
+
 
 Route::group(['middleware'=> ['AuthCheck']], function(){
     
@@ -118,12 +132,11 @@ Route::resources([
     '/admin/testimonials' => TestimonialController::class,
     '/admin/blog' => BlogController::class,
     '/admin/video' => VideoController::class,
-    
-    '/' => HomeController::class,
-    
+        
 ]);
 
 
+// '/' => HomeController::class,
 
     Route::get('/admin',[DashboardController::class, 'index']);
     

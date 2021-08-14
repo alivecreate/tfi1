@@ -20,7 +20,7 @@ class CreateVideosTable extends Migration
             $table->text('slug')->nullable();
             $table->text('youtube_embed')->nullable();
             $table->string('video_date')->nullable();
-            $table->text('status')->default(0);
+            $table->integer('status')->default(0);
 
             $table->timestamps();
         });

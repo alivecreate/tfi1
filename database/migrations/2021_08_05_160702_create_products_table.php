@@ -30,13 +30,13 @@ class CreateProductsTable extends Migration
             $table->text('meta_keyword')->nullable();
             $table->text('meta_description')->nullable();
             
-            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable()->constrained()->onDelete('set null');
             $table->foreign('category_id')->references('id')->on('categories');
 
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
 
-            $table->text('status')->default(0);
+            $table->integer('status')->default(0);
             $table->timestamps();
             
         });

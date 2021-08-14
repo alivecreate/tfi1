@@ -19,7 +19,7 @@ class CreateUrlListTable extends Migration
             $table->text('title')->nullable();
             $table->text('target')->nullable();
             $table->text('url')->nullable();
-            $table->text('status')->default(0)->nullable();
+            $table->integer('status')->default(0)->nullable();
             $table->timestamps();
         });
     }

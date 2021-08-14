@@ -14,8 +14,7 @@
 				</div>	
 
 				<div class="w-100 py-4 px-3 TopContent">
-					<p class="mb-2">Our award winning sports orem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sitconsectetur adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-					<p class="m-0">Our award winning sports orem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+					<p class="mb-2">{{$pageData->description}}</p>
 				</div>	
 			</div>		
 		</div>	

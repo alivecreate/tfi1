@@ -16,8 +16,7 @@
 				</div>	
 
 				<div class="w-100 py-4 px-3 TopContent">
-					<p class="mb-2">Our award winning sports orem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sitconsectetur adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-					<p class="m-0">Our award winning sports orem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+					<p class="mb-2">{{$pageData->description}}</p>
 				</div>	
 			</div>		
 		</div>	
@@ -40,128 +39,23 @@
 		<div class="container-fluid">
 			<div class="col-12">
 
-				<div class="notinflatables_slider mb-4">
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Inflatables for the 2017 AFL season: Inflatables for the 2017 AFL season:</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Inflatables for the 2017 AFL season: Inflatables for the 2017 AFL season:</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<h3 class="InfaTitles">Inflatables for the 2017 AFL season: Inflatables for the 2017 AFL season:</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
-				</div>	
-
-				<div class="notinflatables_slider mb-4">
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Inflatables for the 2017 AFL season: Inflatables for the 2017 AFL season:</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Inflatables for the 2017 AFL season: Inflatables for the 2017 AFL season:</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<h3 class="InfaTitles">Inflatables for the 2017 AFL season: Inflatables for the 2017 AFL season:</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
-				</div>	
-
 
 				<div class="notinflatables_slider mb-0">
+					@foreach($blogs as $blog)
+						<div class="inflatables">
+							<h3 class="InfaTitles">{{$blog->title}}</h3>
+							<div class="img_thumbnail m-auto">
+								<img class="img-fluid" src="{{url('web')}}/media/sm/{{$blog->image}}">
+							</div>
+							<div class="mediaWordFooter">
+								<p>{{$blog->short_description}}</p>
+							</div>	
+							<div class="col-12 mb-4 text-right">	
+								<a href="#;" class="red_btn">READ NOW</a>
+							</div>	
+						</div>
+					@endforeach
 
-					<div class="inflatables">
-						<h3 class="InfaTitles">Inflatables for the 2017 AFL season: Inflatables for the 2017 AFL season:</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
-
-					<div class="inflatables">
-						<h3 class="InfaTitles">Inflatables for the 2017 AFL season: Inflatables for the 2017 AFL season:</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<h3 class="InfaTitles">Inflatables for the 2017 AFL season: Inflatables for the 2017 AFL season:</h3>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
-						</div>
-						<div class="mediaWordFooter">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>	
-						<div class="col-12 mb-4 text-right">	
-							<a href="#;" class="red_btn">READ NOW</a>
-						</div>	
-					</div>
 				</div>	
 			</div>	
 		</div>	

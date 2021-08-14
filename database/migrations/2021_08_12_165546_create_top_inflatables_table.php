@@ -20,7 +20,7 @@ class CreateTopInflatablesTable extends Migration
             $table->text('title')->nullable();
             $table->text('type')->nullable();
             $table->text('url')->nullable();
-            $table->text('status')->default(0);
+            $table->integer('status')->default(0);
             
             $table->timestamps();
 

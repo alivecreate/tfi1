@@ -59,7 +59,7 @@ class SliderController extends Controller
         $slider->url = $request->url;
         $slider->youtube_embed = $request->youtube_embed;
         
-        $slider->status = $request->status;
+        $slider->status = 1;
         // $slider->admin_id = session('LoggedUser')->id;
                
         $save = $slider->save();

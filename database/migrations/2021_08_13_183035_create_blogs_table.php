@@ -25,7 +25,7 @@ class CreateBlogsTable extends Migration
             $table->text('meta_title')->nullable();
             $table->text('meta_keyword')->nullable();
             $table->text('meta_description')->nullable();
-            $table->text('status')->default(0);
+            $table->integer('status')->default(0);
 
             $table->timestamps();
         });

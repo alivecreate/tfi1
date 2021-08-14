@@ -87,6 +87,7 @@ class ProductController extends Controller
         $product->meta_keyword  = $request->meta_keyword;
         $product->meta_description  = $request->meta_description;
         $product->category_id  = $request->category_id;
+        $product->status  = 1;
         $save = $product->save();
 
         // dd($task->id);
@@ -164,9 +165,12 @@ class ProductController extends Controller
         $product->image_alt = $request->image_alt;       
         $product->image_title  = $request->image_title;
         $product->slug  = $request->slug;
+        $product->meta_title  = $request->meta_title;
         $product->meta_keyword  = $request->meta_keyword;
         $product->meta_description  = $request->meta_description;
         $product->category_id  = $request->category_id;
+        $product->status  = 1;
+
         $save = $product->save();
 
         if($save){

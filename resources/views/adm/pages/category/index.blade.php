@@ -11,6 +11,19 @@
 
 
 <script>
+
+$( document ).ready(function() {
+  $(".del-modal").click(function(){
+    var delete_id = $(this).attr('data-id');
+    var data_title = $(this).attr('data-title');
+    
+    // $('.delete-form').attr('action','/admin/category/'+ delete_id);
+    $('.del-link').attr('href',delete_id);
+    
+    $('.delete-title').html(data_title);
+  });  
+});
+
 $(".category").addClass( "menu-is-opening menu-open");
 $(".category a").addClass( "active-menu");
 
@@ -47,7 +60,7 @@ $(".category a").addClass( "active-menu");
                     <tr>
                       <th class="bg-gray">ID</th>
                       <th class="bg-info">Title</th>
-                      <th class="bg-danger">Description</th>
+                      <th class="bg-danger">Sub Category</th>
                       <th class="bg-warning">Sub Category 2</th>
                     </tr>
                   </thead>
@@ -55,7 +68,15 @@ $(".category a").addClass( "active-menu");
                   @foreach($parent_categories as $i => $parent_category)                  
                     <tr>
                       <td>{{++$i}}</td>
-                      <td><a  class="text-info"  href="{{route('admin.category.edit',$parent_category->id)}}?type=category">{{$parent_category->name}}</a></td>
+                      <td>
+                      <a  class="badge badge-info"  href="{{route('admin.category.edit',$parent_category->id)}}?type=category">{{$parent_category->name}}</a>
+                      
+                      &nbsp;&nbsp;&nbsp;
+                              <button class="btn btn-xs btn-danger del-modal"  title="Delete product"  data-id="{{url('admin')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              </button>
+                      
+                      </td>
+                      
                       <td>
                       
                         @if($parent_category->subCategories1($parent_category->id)->count() > 0)
@@ -64,8 +85,12 @@ $(".category a").addClass( "active-menu");
                           <tr>
                             <td>
                             
-                            <a  class="text-danger"  href="{{route('admin.category.edit',$subCategory1->id)}}?type=subcategory">{{$subCategory1->name}}</a>
-                              
+                            <a  class="badge badge-danger"  href="{{route('admin.category.edit',$subCategory1->id)}}?type=subcategory">{{$subCategory1->name}}</a>
+
+                            &nbsp;&nbsp;&nbsp;
+                              <button class="btn btn-xs btn-danger del-modal"  title="Delete product"  data-id="{{url('admin')}}/category/delete/{{ $subCategory1->id}}" data-title="{{ $subCategory1->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              </button>
+                      
                                  @if($parent_category->subCategories2($subCategory1->id)->count() > 0)
                                   @foreach($parent_category->subCategories2($subCategory1->id) as $subCategory2)
                                   
@@ -89,7 +114,11 @@ $(".category a").addClass( "active-menu");
                               
                               <tr>
                                 <td>
-                                  <a class="text-warning" href="{{route('admin.category.edit',$subCategory2->id)}}?type=subcategory2">{{$subCategory2->name}}</a>
+                                  <a class="badge badge-warning" href="{{route('admin.category.edit',$subCategory2->id)}}?type=subcategory2">{{$subCategory2->name}}</a>
+                              
+                      &nbsp;&nbsp;&nbsp;
+                              <button class="btn btn-xs btn-danger del-modal"  title="Delete product"  data-id="{{url('admin')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              </button>
                               </td>
  
                               </tr>        
@@ -117,4 +146,31 @@ $(".category a").addClass( "active-menu");
     </section>
   </div>
 
+  <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Delete product</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <label>Product Name</label>
+            <h5 class="modal-title delete-title">Delete Category</h5>
+            </div>
+            <div class="modal-footer justify-content-between d-block ">
+              
+            <form class="delete-form float-right" action="" method="POST">
+                    @method('DELETE')
+                    @csrf
+              <button type="button" class="btn btn-default mr-4" data-dismiss="modal">Close</button>
+              <a  href="" class="btn btn-danger float-right del-link" title="Delete Record"><i class="fas fa-trash-alt"></i> Delete</a>
+              
+
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
   @endsection

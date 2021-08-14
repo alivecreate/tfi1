@@ -65,7 +65,7 @@ class VideoController extends Controller
         $video->video_date = $request->video_date;
         $video->youtube_embed = $request->youtube_embed;
 
-        $video->status = $status;
+        $video->status = 1;
         $save = $video->save();
 
         if($save){
@@ -134,7 +134,7 @@ class VideoController extends Controller
         $video->video_date = $request->video_date;
         $video->youtube_embed = $request->youtube_embed;
 
-        $video->status = $status;
+        $video->status = 1;
         $save = $video->save();
 
         if($save){

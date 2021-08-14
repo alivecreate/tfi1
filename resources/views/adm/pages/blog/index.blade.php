@@ -127,13 +127,13 @@ $(".blog a").addClass( "active-menu");
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Delete product</h4>
+              <h4 class="modal-title">Delete Blog</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-            <label>Blog Client</label>
+            <label>Blog Title</label>
             <h5 class="modal-title delete-title">Delete Blog</h5>
             </div>
             <div class="modal-footer justify-content-between d-block ">

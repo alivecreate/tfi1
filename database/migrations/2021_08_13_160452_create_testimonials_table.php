@@ -23,7 +23,7 @@ class CreateTestimonialsTable extends Migration
             $table->text('full_description')->nullable();
             $table->text('slug')->nullable();
             $table->text('youtube_embed')->nullable();
-            $table->text('status')->default(0);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

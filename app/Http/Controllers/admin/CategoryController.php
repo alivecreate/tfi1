@@ -182,120 +182,18 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        dd($request->input());
-
-        if($request->type == 'category'){
-            $request->validate([
-                'category_name' => 'required|max:255',
-                'category_description' => 'required|max:255',
-            ]);
-            if($request->category_parent_id1 == null){
-                $category_parent_id1 = 0;
-            }else{
-                $category_parent_id1 = $request->category_parent_id1;
-            }
-
-            $category = Category::find($id);
-            $category->name = $request->category_name;
-            $category->description  = $request->category_description ;
-            $category->parent_id  = 0;
-            $save = $category->save();
+        // dd($request->input());
+  
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->description = $request->slug;
+        $save = $category->save();
 
             if($save){
                 return back()->with('success', 'Category Updated...');
             }else{
                 return back()->with('fail', 'Something went wrong, try again later...');
             }
-        }
-
-        if($request->type == 'subcategory'){
-            $request->validate([
-                'subcategory_name' => 'required|max:255',
-                'subcategory_description' => 'required|max:255',
-                
-            ]);
-            
-            // if($request->category_parent_id1 == null){
-            //     $category_parent_id1 = 0;
-            // }else{
-            //     $category_parent_id1 = $request->category_parent_id1;
-            // }
-            
-            if($subcategory_parent_id = $request->subcategory_parent_id == null){
-                $subcategory_parent_id = $request->category_parent_id;
-                if($parent_category_id = $subcategory_parent_id == null ? 0 :$subcategory_parent_id){
-                    $parent_category_id = 0;
-                    $category_type = 'category';
-                }else{
-                    $parent_category_id = $subcategory_parent_id;
-                    $category_type = 'subcategory';
-                }
-            }else{
-                $subcategory_parent_id = $request->subcategory_parent_id;
-            }
-
-            $category = Category::find($id);
-            $category->name = $request->subcategory_name;
-            $category->description  = $request->subcategory_description ;
-            $category->parent_id  = $category_parent_id1;
-            $save = $category->save();
-
-            if($save){
-                return back()->with('success', 'New Sub Category Added...');
-            }else{
-                return back()->with('fail', 'Something went wrong, try again later...');
-            }
-        }
-
-
-        if($request->type == 'subcategory2'){
-
-
-            // dd($request->input());
-
-            // die();
-            $request->validate([
-                'subcategory2_name' => 'required|max:255',
-                'subcategory2_description' => 'required|max:255',
-            ]);
-            
-            // $subcategory_parent_id = $request->subcategory_parent_id == null ? $request->category_parent_id : $request->subcategory_parent_id;
-            // $parent_category_id = $subcategory_parent_id == null ? 0 :$subcategory_parent_id;
-            
-            if($subcategory_parent_id = $request->subcategory_parent_id == null){
-                $subcategory_parent_id = $request->category_parent_id;
-                if($parent_category_id = $subcategory_parent_id == null ? 0 :$subcategory_parent_id){
-                    $parent_category_id = 0;
-                    $category_type = 'category';
-                }else{
-                    $parent_category_id = $subcategory_parent_id;
-                    $category_type = 'subcategory';
-                }
-            }else{
-                $subcategory_parent_id = $request->subcategory_parent_id;
-            }
-
-            $category = Category::find($id);
-            $category->name = $request->subcategory2_name;
-            $category->description  = $request->subcategory2_description ;
-            $category->parent_id  = $parent_category_id;
-            $save = $category->save();
-
-            if($save){
-                if($request->subcategory_parent_id == null)
-                   {
-                    // customRedirect('admin.category.edit', $subcategory_parent_id, 'subcategory2');
-
-                    return redirect(route('admin.category.edit', $id))->with('success', 'Category Updated...');
-
-                   }else{
-                    return back()->with('success', 'New Sub Category2 Added...');
-                   }
-                    
-            }else{
-                return back()->with('fail', 'Something went wrong, try again later...');
-            }
-        }
 
     }
 
@@ -305,8 +203,26 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category->delete();
+        $category = $category->delete();
+        if($category){
+            return back()->with('success', 'category Deleted...');
+        }else{
+            return back()->with('fail', 'Something went wrong, try again later...');
+        }
     }
+    public function categoryDelete($id)
+    {
+        $category = Category::find($id);
+        $delete = $category->delete();
+
+        if($delete){
+            return back()->with('success', 'Category Deleted...');
+        }else{
+            return back()->with('fail', 'Something went wrong, try again later...');
+        }
+    }
+
+    
 }

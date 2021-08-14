@@ -56,6 +56,7 @@ class MediaApiController extends Controller
     
     public function mediaStore(Request $request){
         
+        header("Access-Control-Allow-Origin: *");
         $image = $request->file('image');
             
         $input['imagename'] = time().'_'.rand(1111,9999).'.'.$image->extension();
@@ -110,6 +111,7 @@ class MediaApiController extends Controller
         
     }
     public function mediaDelete(Request $request){
+        header("Access-Control-Allow-Origin: *");
         $media = Media::find($request->id);
         if($media){
             if(File::exists(public_path('web').'/media/lg/'.$media->image)){

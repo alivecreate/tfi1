@@ -18,7 +18,7 @@ class CreateUrlGroupTable extends Migration
             $table->text('name')->nullable();
             $table->text('type')->nullable();
             $table->text('slug')->nullable();
-            $table->text('status')->default(0)->nullable();
+            $table->integer('status')->default(0)->nullable();
             $table->timestamps();
         });
     }

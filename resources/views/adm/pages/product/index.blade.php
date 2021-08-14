@@ -137,7 +137,7 @@ $(".product a").addClass( "active-menu");
             </div>
             <div class="modal-body">
             <label>Product Name</label>
-            <h5 class="modal-title delete-title">Delete Category</h5>
+            <h5 class="modal-title delete-title">Delete Product</h5>
             </div>
             <div class="modal-footer justify-content-between d-block ">
               

@@ -103,12 +103,11 @@
 
 					<div class="our_clients bg-white">	
 						<h2>our clients</h2>
-							<div class="w-100 d-block">							
-								<img src="{{url('sardar')}}/images/client_logo_1.png" class="img-fluid mb-4">
-							</div>	
-							<div class="w-100 d-block">									
-								<img src="{{url('sardar')}}/images/client_logo_2.jpg" class="img-fluid">
-							</div>	
+							@foreach($clients as $client)
+								<div class="w-100 d-block">							
+									<img src="{{url('web')}}/media/sm/{{$client->logo}}" class="img-fluid mb-4">
+								</div>	
+							@endforeach
 					</div>	
 
 					<div class="enquiry_form bg-white">

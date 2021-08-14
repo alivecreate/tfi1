@@ -30,11 +30,12 @@
 				</div>	
 
 				<div class="inflatables_slider mb-3">
+				@foreach($products1 as $product1)
 					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
+						<div class="top-buttons infa_bg"> {{$product1->name}} </div>
 						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
-						</div>
+							<img class="img-fluid" src="{{url('web')}}/media/lg/{{$product1->image}}">
+													</div>
 						<div class="bottom_links d-flex justify-content-between">
 							<div class="bottom_links1">
 								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
@@ -44,56 +45,16 @@
 							</div>
 						</div>	
 					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_3.jpg">
-						</div>
-						<div class="bottom_links d-flex justify-content-between">
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-							</div>
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-							</div>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
-						</div>
-						<div class="bottom_links d-flex justify-content-between">
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-							</div>
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-							</div>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
-						</div>
-						<div class="bottom_links d-flex justify-content-between">
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-							</div>
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-							</div>
-						</div>	
-					</div>
+				@endforeach
 				</div>	
 				
 				<div class="inflatables_slider mb-3">
+				@foreach($products2 as $product2)
 					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
+						<div class="top-buttons infa_bg"> {{$product2->name}} </div>
 						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
-						</div>
+							<img class="img-fluid" src="{{url('web')}}/media/lg/{{$product2->image}}">
+													</div>
 						<div class="bottom_links d-flex justify-content-between">
 							<div class="bottom_links1">
 								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
@@ -103,56 +64,16 @@
 							</div>
 						</div>	
 					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_3.jpg">
-						</div>
-						<div class="bottom_links d-flex justify-content-between">
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-							</div>
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-							</div>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
-						</div>
-						<div class="bottom_links d-flex justify-content-between">
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-							</div>
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-							</div>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
-						</div>
-						<div class="bottom_links d-flex justify-content-between">
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-							</div>
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-							</div>
-						</div>	
-					</div>
+				@endforeach
 				</div>	
-	
-				<div class="inflatables_slider">
+				
+				<div class="inflatables_slider mb-3">
+				@foreach($products3 as $product3)
 					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
+						<div class="top-buttons infa_bg"> {{$product3->name}} </div>
 						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
-						</div>
+							<img class="img-fluid" src="{{url('web')}}/media/lg/{{$product3->image}}">
+													</div>
 						<div class="bottom_links d-flex justify-content-between">
 							<div class="bottom_links1">
 								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
@@ -162,50 +83,9 @@
 							</div>
 						</div>	
 					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_3.jpg">
-						</div>
-						<div class="bottom_links d-flex justify-content-between">
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-							</div>
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-							</div>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
-						</div>
-						<div class="bottom_links d-flex justify-content-between">
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-							</div>
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-							</div>
-						</div>	
-					</div>
-					<div class="inflatables">
-						<div class="top-buttons infa_bg"> Custom Infatable Game </div>
-						<div class="img_thumbnail m-auto">
-							<img class="img-fluid" src="{{url('sardar')}}/images/product_img_2.jpg">
-						</div>
-						<div class="bottom_links d-flex justify-content-between">
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
-							</div>
-							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
-							</div>
-						</div>	
-					</div>
+				@endforeach
 				</div>	
-
+				
 
 			</div>	
 		</div>	

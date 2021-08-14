@@ -71,24 +71,23 @@ $(".category a").addClass( "active-menu");
              
               <form method="post" class="form-horizontal" action="{{route('admin.category.update', $data->id)}}">
                 @csrf
-                @method('PUT')
                 <div class="card-body p-2 pt-4">
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <input type="hidden" name="type" value="category">
-                      <input type="text" class="form-control" name="category_name" 
+                      <input type="text" class="form-control" name="name" 
                          placeholder="Category Name" 
                          
-                         value="@if(old('category_name')){{old('category_name')}}@else{{$data->name}}@endif">
+                         value="@if(old('name')){{old('name')}}@else{{$data->name}}@endif">
                          
-                    <span class="text-danger">@error('category_name') {{$message}} @enderror</span>
+                    <span class="text-danger">@error('name') {{$message}} @enderror</span>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <textarea class="form-control" name="category_description"
-                         placeholder="નોંધ">@if(old('category_description')){{old('category_description')}}@else{{$data->description}}@endif</textarea>
-                    <span class="text-danger">@error('category_description') {{$message}} @enderror</span>
+                      <textarea class="form-control" name="slug"
+                         placeholder="slug">@if(old('slug')){{old('slug')}}@else{{$data->description}}@endif</textarea>
+                    <span class="text-danger">@error('slug') {{$message}} @enderror</span>
                     </div>
                   </div>
 
@@ -103,6 +102,7 @@ $(".category a").addClass( "active-menu");
 
                   </div>
                 </div>
+                <input type="hidden" name='parent_id' value="{{$data->parent_id}}">
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-info">Save Data</button>
@@ -128,18 +128,18 @@ $(".category a").addClass( "active-menu");
                   <div class="form-group row">
                     <div class="col-sm-12">
                       
-                      <input type="text" class="form-control" name="subcategory_name"
+                      <input type="text" class="form-control" name="name"
                          placeholder="Sub Category Name" 
-                         value="@if(old('subcategory_name')){{old('subcategory_name')}}@else{{$data->name}}@endif">
+                         value="@if(old('name')){{old('name')}}@else{{$data->name}}@endif">
                          <span class="text-danger">@error('subcategory_name') {{$message}} @enderror</span>
                     
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <textarea class="form-control" name="subcategory_description"
-                         placeholder="નોંધ">@if(old('subcategory_description')){{old('subcategory_description')}}@else{{$data->description}}@endif</textarea>
-                         <span class="text-danger">@error('subcategory_description') {{$message}} @enderror</span>
+                      <textarea class="form-control" name="slug"
+                         placeholder="slug">@if(old('slug')){{old('slug')}}@else{{$data->description}}@endif</textarea>
+                         <span class="text-danger">@error('slug') {{$message}} @enderror</span>
                     
                     </div>
                   </div>
@@ -147,7 +147,7 @@ $(".category a").addClass( "active-menu");
                   <div class="form-group row">
                     <div class="col-sm-12">
                       
-                      <select name="category_parent_id1" class="form-control">
+                      <select name="category_parent_id1" class="form-control" disabled>
                         <option value="">Select Category</option>
                           @foreach($categories as $category)
                               <option value="{{$category->id}}" 
@@ -189,25 +189,25 @@ $(".category a").addClass( "active-menu");
                   <div class="form-group row">
                     <div class="col-sm-12">
                       
-                      <input type="text" class="form-control" name="subcategory2_name"
-                         placeholder="ડિપાર્ટમેન્ટનું નામ" value="@if(old('subcategory2_name')){{old('subcategory2_name')}}@else{{$data->name}}@endif">
-                         <span class="text-danger">@error('subcategory2_name') {{$message}} @enderror</span>
+                      <input type="text" class="form-control" name="name"
+                         placeholder="Sub Category Name" value="@if(old('name')){{old('name')}}@else{{$data->name}}@endif">
+                         <span class="text-danger">@error('name') {{$message}} @enderror</span>
                     
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <textarea class="form-control" name="subcategory2_description"
-                         placeholder="નોંધ">@if(old('subcategory2_description')){{old('subcategory2_description')}}@else{{$data->description}}@endif</textarea>
+                      <textarea class="form-control" name="slug"
+                         placeholder="slug">@if(old('slug')){{old('slug')}}@else{{$data->description}}@endif</textarea>
 
-                         <span class="text-danger">@error('subcategory2_description') {{$message}} @enderror</span>
+                         <span class="text-danger">@error('slug') {{$message}} @enderror</span>
 
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <select name="category_parent_id" class="form-control category_parent_id">
+                      <select name="category_parent_id" class="form-control category_parent_id" disabled>
                         <option value="">Select Category</option>
                           
 
@@ -232,7 +232,7 @@ $(".category a").addClass( "active-menu");
                   
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <select name="subcategory_parent_id"  class="form-control subcategory_parent_id">
+                      <select name="subcategory_parent_id"  class="form-control subcategory_parent_id" disabled>
 
                       @foreach(getSubCategories($category->parentCategories2($data->parent_id)[0]->id) as $subCategory)
                         
@@ -253,9 +253,9 @@ $(".category a").addClass( "active-menu");
 
                   </div>
                 </div>
-
+                <input type="hidden" name='parent_id' value="{{$data->parent_id}}">
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-warning">ડિપાર્ટમેન્ટ સેવ કરો</button>
+                  <button type="submit" class="btn btn-warning">Save Data</button>
                 </div>
               </form>
             </div>
@@ -269,16 +269,16 @@ $(".category a").addClass( "active-menu");
                   <thead>
                     <tr>
                       <th class="bg-gray">ID</th>
-                      <th class="bg-info">કચેરી</th>
-                      <th class="bg-danger">પેટાકચેરી</th>
-                      <th class="bg-warning">ડિપાર્ટમેન્ટ</th>
+                      <th class="bg-info">Category</th>
+                      <th class="bg-danger">Sub Category</th>
+                      <th class="bg-warning">Sub Category2</th>
                     </tr>
                   </thead>
                   <tbody>
                   @foreach($categories as $i => $parent_category)                 
                     <tr>
                       <td>{{++$i}}</td>
-                      <td><a  class="text-info"  href="{{route('admin.category.edit',$parent_category->id)}}?type=category">{{$parent_category->name}}</a></td>
+                      <td><a  class="badge badge-info"  href="{{route('admin.category.edit',$parent_category->id)}}?type=category">{{$parent_category->name}}</a></td>
                       <td>
                       
                         @if($parent_category->subCategories1($parent_category->id)->count() > 0)
@@ -287,7 +287,7 @@ $(".category a").addClass( "active-menu");
                           <tr>
                             <td>
                             
-                            <a  class="text-danger"  href="{{route('admin.category.edit',$subCategory1->id)}}?type=subcategory">{{$subCategory1->name}}</a>
+                            <a  class="badge badge-danger"  href="{{route('admin.category.edit',$subCategory1->id)}}?type=subcategory">{{$subCategory1->name}}</a>
                               
                                  @if($parent_category->subCategories2($subCategory1->id)->count() > 0)
                                   @foreach($parent_category->subCategories2($subCategory1->id) as $subCategory2)
@@ -312,7 +312,7 @@ $(".category a").addClass( "active-menu");
                               
                               <tr>
                                 <td>
-                                  <a class="text-warning" href="{{route('admin.category.edit',$subCategory2->id)}}?type=subcategory2">{{$subCategory2->name}}</a>
+                                  <a class="badge badge-warning" href="{{route('admin.category.edit',$subCategory2->id)}}?type=subcategory2">{{$subCategory2->name}}</a>
                               </td>
  
                               </tr>        

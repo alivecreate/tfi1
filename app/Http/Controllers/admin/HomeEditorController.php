@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\admin\TopInflatables;
 use App\Models\admin\Pages;
 use App\Models\admin\UrlList;
-
+use App\Models\admin\Client;
 use DB;
 
 class HomeEditorController extends Controller
@@ -21,10 +21,8 @@ class HomeEditorController extends Controller
         return view('adm.pages.home-editor.top-inflatable', $data);
     }
 
-    public function topInflatableStore(Request $request)
+public function topInflatableStore(Request $request)
     {
-
-
         $request->validate([
             'title' => 'required|max:255',
             'url' => 'url|max:255',
@@ -71,7 +69,8 @@ class HomeEditorController extends Controller
         $data = [
             'topInflatables' =>  TopInflatables::orderBy('id', 'DESC')->where('status',1)->get(),
             'homeAbout' =>  Pages::where('type', 'home_about')->first(),
-            'homeUrls1' =>  UrlList::where('type', 'home_url1')->get()
+            'homeUrls1' =>  UrlList::where('type', 'home_url1')->get(),
+            'clients' =>  Client::where('status', 1)->get()
         ];
         return view('adm.pages.home-editor.index', $data);
     }

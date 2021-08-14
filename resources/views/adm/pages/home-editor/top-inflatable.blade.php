@@ -20,8 +20,8 @@ $( document ).ready(function() {
 });
 
 
-$(".topInflatable").addClass( "menu-is-opening menu-open");
-$(".topInflatable a").addClass( "active-menu");
+$(".page").addClass( "menu-is-opening menu-open");
+$(".page a").addClass( "active-menu");
 
 </script>
 @endsection

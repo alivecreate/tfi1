@@ -11,8 +11,9 @@ use App\Models\admin\Pages;
 use App\Models\admin\Video;
 use App\Models\admin\Blog;
 use App\Models\admin\Testimonials;
+use App\Models\admin\Client;
+use App\Models\admin\Product;
     
-
 class HomeController extends Controller
 {
     /**
@@ -27,32 +28,52 @@ class HomeController extends Controller
             'topInflatables' =>  TopInflatables::where('status',1)->orderBy('created_at', 'desc')->get(),
             'homeUrls1' =>  UrlList::where('type', 'home_url1')->where('status',1)->get(),
             'homeAbout' =>  Pages::where('type', 'home_about')->first(),
+            'clients' =>  Client::where('status', 1)->get(),
+            'pageData' =>  Pages::where('type', 'home_page')->first(),
         ];
         return view('sardar.index', $data);
     }
     public function product()
     {
-        return view('sardar.product');
+        $data = [
+            'pageData' =>  Pages::where('type', 'product_page')->first(),
+            'products1' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(0)->take(5)->get(),
+            'products2' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(5)->take(10)->get(),
+            'products3' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(10)->take(15)->get()
+            // $art->products->skip(0)->take(10)->get();
+        ];
+
+        return view('sardar.product', $data);
     }
     
     public function product_internal()
     {
-        return view('sardar.product-internal');
+        $data = [
+            'pageData' =>  Pages::where('type', 'product_page')->first(),
+        ];
+        return view('sardar.product-internal', $data);
     }
 
     public function product_details()
     {
-        return view('sardar.product-detail');
+        $data = [
+            'pageData' =>  Pages::where('type', 'product_page')->first(),
+        ];
+        return view('sardar.product-detail', $data);
     }
     
     public function about()
     {
-        return view('sardar.about');
+        $data = [
+            'pageData' =>  Pages::where('type', 'about_page')->first(),
+        ];
+        return view('sardar.about', $data);
     }
     public function testimonials()
     {
         $data = [
-            'testimonials' =>  Testimonials::where('status', 1)->get(),
+            'testimonials' =>  Testimonials::where('status', 1)->limit(2)->get(),
+            'pageData' =>  Pages::where('type', 'testimonial_page')->first(),
         ];
         return view('sardar.testimonials', $data);
     }
@@ -60,6 +81,7 @@ class HomeController extends Controller
     {
         $data = [
             'videos' =>  Video::where('status', 1)->get(),
+            'pageData' =>  Pages::where('type', 'video_page')->first(),
         ];
         return view('sardar.videos', $data);
     }
@@ -68,6 +90,7 @@ class HomeController extends Controller
     {
         $data = [
             'blogs' =>  Blog::where('status', 1)->get(),
+            'pageData' =>  Pages::where('type', 'blog_page')->first(),
         ];
         return view('sardar.blog', $data);
     }
@@ -76,42 +99,12 @@ class HomeController extends Controller
     {
         $data = [
             'current_page' =>  'contact',
+            'pageData' =>  Pages::where('type', 'contact_page')->first(),
         ];
 
         return view('sardar.contact-us', $data);
     }
 
-
-    // CCPL
-    public function manufacturing()
-    {
-        return view('sardar.manufacturing');
-    }
-
-
-    public function infrastructure ()
-    {
-        return view('sardar.infrastructure ');
-    }
-
-
-    public function corporate_video()
-    {
-        return view('sardar.corporate_video');
-    }
-
-    public function brochure()
-    {
-        return view('sardar.brochure');
-    }
-    public function team()
-    {
-        return view('sardar.team');
-    }
-    public function research_development()
-    {
-        return view('sardar.research_development');
-    }
 
     /**
      * Show the form for creating a new resource.
