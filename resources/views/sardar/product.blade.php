@@ -29,19 +29,24 @@
 					<h1>Giant Inflatable Products</h1>
 				</div>	
 
+				<div class="w-100 py-4 px-3 TopContent">
+					<p class="mb-2">{!! html_entity_decode($pageData->description) !!}</p>					
+				</div>	
+				
 				<div class="inflatables_slider mb-3">
 				@foreach($products1 as $product1)
 					<div class="inflatables">
-						<div class="top-buttons infa_bg"> {{$product1->name}} </div>
+						<div class="top-buttons infa_bg"><a href="{{url('product-detail')}}/{{$product1->slug}}">{{$product1->name}}</a>  </div>
 						<div class="img_thumbnail m-auto">
 							<img class="img-fluid" src="{{url('web')}}/media/lg/{{$product1->image}}">
-													</div>
+						</div>
+
 						<div class="bottom_links d-flex justify-content-between">
 							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
+								<a href="#"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
 							</div>
 							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
+								<a href="{{url('contact-us')}}"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
 							</div>
 						</div>	
 					</div>
@@ -51,13 +56,13 @@
 				<div class="inflatables_slider mb-3">
 				@foreach($products2 as $product2)
 					<div class="inflatables">
-						<div class="top-buttons infa_bg"> {{$product2->name}} </div>
+						<div class="top-buttons infa_bg"><a href="{{url('product-detail')}}/{{$product2->slug}}">{{$product2->name}}</a> </div>
 						<div class="img_thumbnail m-auto">
 							<img class="img-fluid" src="{{url('web')}}/media/lg/{{$product2->image}}">
 													</div>
 						<div class="bottom_links d-flex justify-content-between">
 							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
+								<a href="#"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
 							</div>
 							<div class="bottom_links1">
 								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
@@ -70,13 +75,13 @@
 				<div class="inflatables_slider mb-3">
 				@foreach($products3 as $product3)
 					<div class="inflatables">
-						<div class="top-buttons infa_bg"> {{$product3->name}} </div>
+						<div class="top-buttons infa_bg"><a href="{{url('product-detail')}}/{{$product3->slug}}">{{$product3->name}}</a></div>
 						<div class="img_thumbnail m-auto">
 							<img class="img-fluid" src="{{url('web')}}/media/lg/{{$product3->image}}">
 													</div>
 						<div class="bottom_links d-flex justify-content-between">
 							<div class="bottom_links1">
-								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
+								<a href="#"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
 							</div>
 							<div class="bottom_links1">
 								<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>

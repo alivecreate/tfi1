@@ -51,12 +51,13 @@ Route::get('', [HomeController::class, 'index']);
 Route::get('about', [HomeController::class, 'about']);
 Route::get('products', [HomeController::class, 'product']);
 Route::get('products/{slug}', [HomeController::class, 'product_internal']);
+
 Route::get('product-detail/{slug}', [HomeController::class, 'product_details']);
 
 Route::get('testimonials', [HomeController::class, 'testimonials']);
 Route::get('videos', [HomeController::class, 'videos']);
 Route::get('blog', [HomeController::class, 'blog']);
-Route::get('contact-us', [HomeController::class, 'contact']);
+Route::get('contact-us', [HomeController::class, 'contact'])->name('contact');
 
 Route::get('about2', [HomeController::class, 'about2']);
 Route::get('contact', [HomeController::class, 'contact']);

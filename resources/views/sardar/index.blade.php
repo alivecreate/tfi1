@@ -30,9 +30,10 @@
 				</div>	
 				
 				<div class="inflatables_slider">
+
 					@foreach($topInflatables as $topInflatable)
 						<div class="inflatables">
-							<div class="top-buttons infa_bg">{{$topInflatable->title}} </div>
+							<div class="top-buttons infa_bg">{{$topInflatable->name}} </div>
 							<div class="img_thumbnail m-auto">
 								<img class="img-fluid" src="{{url('web')}}/media/md/{{$topInflatable->image}}">
 							</div>
@@ -46,6 +47,7 @@
 							</div>	
 						</div>
 					@endforeach
+
 
 				</div>
 			</div>	
@@ -61,7 +63,21 @@
 				</div>	
 
 				<div class="ParentclickExplore">
-					@foreach($homeUrls1 as $key  => $homeUrl1 )
+
+
+				@foreach($topCategories as $key => $topCategory)
+					<div class="c_explores">
+					
+							@if($key == 0)
+								<a href="{{$topCategory->url}}" class="btn clickExplore active">
+							@else 							
+								<a href="{{$topCategory->url}}" class="btn clickExplore">
+							@endif
+					
+					<img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr">2s1d61 asd 61 6s1c 1sa {{$topCategory->name}} </a></div>
+				@endforeach
+
+					<!-- @foreach($homeUrls1 as $key  => $homeUrl1 )
 
 							<div class="c_explores col-md-2">
 							@if($key == 0)
@@ -72,7 +88,8 @@
 
 							<img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr"> {{$homeUrl1->title}} </a></div>
 					@endforeach
-				</div>
+				</div> -->
+
 
 			</div>	
 		</div>	

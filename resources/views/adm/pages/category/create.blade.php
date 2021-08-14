@@ -125,15 +125,14 @@ $(".category a").addClass( "active-menu");
                       <input type="text" class="form-control" name="subcategory_name"
                          placeholder="Sub Category Name" value="{{@old(subcategory_name)}}">
                          <span class="text-danger">@error('subcategory_name') {{$message}} @enderror</span>
-                    
                     </div>
                   </div>
+                  
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <textarea class="form-control" name="subcategory_description"
                          placeholder="Slug">{{@old(subcategory_description)}}</textarea>
                          <span class="text-danger">@error('subcategory_description') {{$message}} @enderror</span>
-                    
                     </div>
                   </div>
                   

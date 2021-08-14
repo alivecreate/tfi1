@@ -16,21 +16,13 @@
 				<div class="header-t mb-3">
 					<h1>TOP INFLATABALES</h1>
 				</div>	
+				
+				<div class="row">
+				@foreach($topCategories as $key => $topCategory)
+					<div class="c_explores col-md-2"><a href="#;" class="btn clickExplore active"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr"> {{$topCategory->name}} </a></div>
+				@endforeach
+				</div>	
 
-				<div class="ParentclickExplore">
-					<div class="c_explores"><a href="#;" class="btn clickExplore active"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr"> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> High Visibility &amp; Events </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-				</div>
-				<div class="ParentclickExplore">
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr"> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-				</div>		
 			</div>	
 		</div>	
 	</section>
@@ -41,9 +33,24 @@
 				<nav aria-label="breadcrumb" class="pl-2">
 				  <ol class="breadcrumb m-0 bg-white">
 				    <li class="breadcrumb-item"><a href="#">Home</a></li>
-				    <li class="breadcrumb-item"><a href="#">Giant Inflatable Products</a></li>
-				    <li class="breadcrumb-item active" aria-current="page">custom inflatable games</li>
+
+						@if(getParentCategory($productDetail->category_id)['category'])
+						<li class="breadcrumb-item"><a href="#">{{getParentCategory($productDetail->category_id)['category']->name}}</a></li>
+                        @endif
+
+
+						@if(getParentCategory($productDetail->category_id)['subcategory'])
+						<li class="breadcrumb-item"><a href="#">{{getParentCategory($productDetail->category_id)['subcategory']->name}}</a></li>
+                        @endif
+
+						@if(getParentCategory($productDetail->category_id)['subcategory2'])
+						<li class="breadcrumb-item"><a href="#">{{getParentCategory($productDetail->category_id)['subcategory2']->name}}</a></li>
+                        @endif
+
+<!-- 
+				    <li class="breadcrumb-item active" aria-current="page">custom inflatable games</li> -->
 				  </ol>
+
 				</nav>
 			</div>	
 		</div>		
@@ -55,8 +62,7 @@
 			<div class="col-12 p-0 px-md-3">
 
 				<div class="header-t mb-3">
-					<h1>CUSTOM INFLATABLE GAMES</h1>
-					<!-- <div class="BrdR"></div> -->
+					<h1>{{$productDetail->name}}</h1>
 				</div>	
 
 				<div class="col-12">
@@ -65,17 +71,11 @@
 							<div class="sub_categories">
 								<h2>SUB CATEGORIES</h2>
 								<ul class="d-block p-0 my-3">
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
+									@foreach($subCategories as $subCategory)
+										<li><a href="{{$subCategory->slug}}"><i class="fa fa-chevron-right"></i>{{$subCategory->name}}</a></li>
+									@endforeach
 								</ul>
-								<h3 class="backTo"><a href=""><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i> &nbsp; Back to Main Categories</a></h3>	
+								<h3 class="backTo"><a href="{{url('products')}}"><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i> &nbsp; Back to Main Categories</a></h3>	
 							</div>
 							<div class="sidebar_enquiry_form">
 								<div class="enquiry_form bg-white ml-0">
@@ -122,120 +122,37 @@
 							<div class="">
 
 								<div class="BigInnerinflatableSub_slider mb-3">
+
+									@foreach($productImages as $productImage)
 									<div class="Biginflatables">
 										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
+												<img class="img-fluid" src="{{url('web')}}/media/lg/{{$productImage->image}}">
 										</div>
 									</div>
-									<div class="Biginflatables">
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-										</div>
-									</div>
-									<div class="Biginflatables">
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
-										</div>
-									</div>
-									<div class="Biginflatables">
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-										</div>
-									</div>
-									<div class="Biginflatables">
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
-										</div>
-									</div>
-									<div class="Biginflatables">
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-										</div>
-									</div>
-									<div class="Biginflatables">
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
-										</div>
-									</div>
-									<div class="Biginflatables">
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-										</div>
-									</div>
-									<div class="Biginflatables">
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_b.png">
-										</div>
-									</div>
-									<div class="Biginflatables">
-										<div class="img_thumbnail m-auto">
-											<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-										</div>
-									</div>
+									
+									@endforeach
 								</div>	
 
 								<div class="col-md-12 mb-4">	
 									<div class="BigInnerinflatableSub_Nav mb-3">
 
+									@foreach($productImages as $productImage)
 										<div class="thumb_big_slider">
 											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
+												<img class="img-fluid" src="{{url('web')}}/media/lg/{{$productImage->image}}">
 											</div>
 										</div>
-										<div class="thumb_big_slider">
-											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-											</div>
-										</div>
-										<div class="thumb_big_slider">
-											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
-											</div>
-										</div>
-										<div class="thumb_big_slider">
-											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-											</div>
-										</div>
-										<div class="thumb_big_slider">
-											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
-											</div>
-										</div>
-										<div class="thumb_big_slider">
-											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-											</div>
-										</div>
-										<div class="thumb_big_slider">
-											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
-											</div>
-										</div>
-										<div class="thumb_big_slider">
-											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-											</div>
-										</div>
-										<div class="thumb_big_slider">
-											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/product_img_1.jpg">
-											</div>
-										</div>
-										<div class="thumb_big_slider">
-											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('sardar')}}/images/big_c.jpg">
-											</div>
-										</div>
+									@endforeach
+
 									</div>
 								</div>	
 
 
 								<div class="FieldsTexts bg-white w-100 p-2 ml-1">
 									<div class="text-left">	
-										<p><span class="GreaT"> Fields, Arenas, and Courts </span></p>	
-										<p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-										<p> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+										<p><span class="GreaT"> {{$productDetail->short_description}} </span></p>	
+										{!! html_entity_decode($productDetail->full_description) !!}
 									</div>
 								</div>	
 							</div>

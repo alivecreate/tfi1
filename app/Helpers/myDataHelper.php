@@ -11,7 +11,6 @@ function getTaskComments(){
         ->join('admins', 'admins.id', '=', 'task_comments.admin_id')
         ->join('task_status', 'task_status.task_assign_id', '=', 'task_comments.task_assign_id')
         ->join('status', 'status.id', '=', 'task_status.status_id')
-
         ->select('task_assign.id as task_assign_id', 'task_assign.description as task_assign_description',
                 'admins.name as admin_name', 'task_assign.description as task_assign_description',
                 'task_comments.comment as comment', 'task_comments.seen as comment_seen',

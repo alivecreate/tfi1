@@ -48,10 +48,10 @@
 		      </li>
 			  <div class="two_controls">    
 			      <li class="nav-item eneveloper_menu">
-			        <a class="nav-link" href="#"><img src="{{url('sardar')}}/img/envlp.png" class="img-fluid"> </a>
+			        <a class="nav-link" href="{{url('contact-us')}}"><img src="{{url('sardar')}}/img/envlp.png" class="img-fluid"> </a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#"> send us your enquiry </a>
+			        <a class="nav-link" href="{{url('contact-us')}}"> send us your enquiry </a>
 			      </li>
 			  </div>    
 		    </ul>

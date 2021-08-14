@@ -27,6 +27,10 @@
 					<h1>Giant Inflatable Products</h1>
 				</div>	
 
+				<div class="w-100 py-4 px-3 TopContent">
+					<p class="mb-2">{!! html_entity_decode($pageData->description) !!}</p>					
+				</div>	
+				
 				<div class="inflatables_slider mb-3">
 					<div class="inflatables">
 						<div class="top-buttons infa_bg"> Custom Infatable Game </div>

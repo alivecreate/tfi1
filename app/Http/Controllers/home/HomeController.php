@@ -13,7 +13,9 @@ use App\Models\admin\Blog;
 use App\Models\admin\Testimonials;
 use App\Models\admin\Client;
 use App\Models\admin\Product;
-    
+use App\Models\admin\Media;
+use App\Models\admin\Category;
+
 class HomeController extends Controller
 {
     /**
@@ -25,21 +27,37 @@ class HomeController extends Controller
     {
         $data = [
             'sliders' =>  Slider::orderBy('created_at', 'desc')->first(),
-            'topInflatables' =>  TopInflatables::where('status',1)->orderBy('created_at', 'desc')->get(),
+            // 'topInflatables' =>  TopInflatables::where('status',1)->orderBy('created_at', 'desc')->get(),
             'homeUrls1' =>  UrlList::where('type', 'home_url1')->where('status',1)->get(),
             'homeAbout' =>  Pages::where('type', 'home_about')->first(),
             'clients' =>  Client::where('status', 1)->get(),
             'pageData' =>  Pages::where('type', 'home_page')->first(),
+            'topCategories' => Category::where('status', 1)->limit(12)->get(),
+
+            'topInflatables' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(0)->take(5)->get(),
         ];
         return view('sardar.index', $data);
     }
     public function product()
     {
         $data = [
+
             'pageData' =>  Pages::where('type', 'product_page')->first(),
+
+            // 'mainCat1' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(0)->take(5)->get(),
+
+            // $taskComments = DB::table('products')
+            // ->join('category', 'category.id', '=', 'products.category_id')
+            // ->select('category.id as category_id')
+
+            // ->orderBy('products.id', 'DESC')
+            // ->get(),
+
             'products1' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(0)->take(5)->get(),
             'products2' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(5)->take(10)->get(),
             'products3' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(10)->take(15)->get()
+
+
             // $art->products->skip(0)->take(10)->get();
         ];
 
@@ -54,12 +72,22 @@ class HomeController extends Controller
         return view('sardar.product-internal', $data);
     }
 
-    public function product_details()
+    public function product_details($slug)
     {
+        $product = Product::where('slug', $slug)->first();
+        
+        $category_id = getParentCategory($product->category_id)['category']->id;
+    
         $data = [
             'pageData' =>  Pages::where('type', 'product_page')->first(),
+            'productDetail' =>  Product::where('slug', $slug)->first(),
+            'productImages' =>  Media::where('image_type', 'product')->where('media_id', $product->id)->get(),
+            'topCategories' => Category::where('status', 1)->limit(10)->get(),
+            'subCategories' => Category::where('parent_id', $category_id)->limit(10)->get(),
         ];
+
         return view('sardar.product-detail', $data);
+
     }
     
     public function about()

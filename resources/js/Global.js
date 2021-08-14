@@ -1,7 +1,12 @@
 module.exports = {
-    BASE_URL: 'https://thestudio5.com.au/projects/gi/public/',
-    API: 'https://thestudio5.com.au/projects/gi/public/api/',
+    BASE_URL: 'http://localhost/gi/public/',
+    API: 'http://localhost/gi/public/api/',
+
   };
+
+
+  // BASE_URL: 'https://thestudio5.com.au/projects/gi/public/',
+  // API: 'https://thestudio5.com.au/projects/gi/public/api/',
 
   // http://gi.alivecreate.com/
 

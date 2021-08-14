@@ -14,8 +14,9 @@
 				</div>	
 
 				<div class="w-100 py-4 px-3 TopContent">
-					<p class="mb-2">{{$pageData->description}}</p>
+					<p class="mb-2">{!! html_entity_decode($pageData->description) !!}</p>					
 				</div>	
+				
 			</div>		
 		</div>	
 	</section>

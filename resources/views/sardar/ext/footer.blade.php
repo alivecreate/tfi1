@@ -13,12 +13,12 @@
 		<div class="container-fluid">
 			<div class="col-12">
 				<ul>
-					<li><a href="mailto:sales@giantiflatables.com"> <div class="bXs"><img src="{{url('sardar')}}/images/email_red_icon.png"></div>
-						<span>sales@giantiflatables.com</span></a></li>
-					<li><a href="mailto:sales@giantiflatables.com"> <div class="bXs"><img src="{{url('sardar')}}/images/chat_red_icon.png"> </div>
+					<li><a href="mailto:{{getSocialMedia()->email}}"> <div class="bXs"><img src="{{url('sardar')}}/images/email_red_icon.png"></div>
+						<span>{{getSocialMedia()->email}}</span></a></li>
+					<li><a href="{{route('contact')}}"> <div class="bXs"><img src="{{url('sardar')}}/images/chat_red_icon.png"> </div>
 						<span>Chat </span> </a></li>
-					<li><a href="mailto:sales@giantiflatables.com"> <div class="bXs"><img src="{{url('sardar')}}/images/phone_red_icon.png"></div>
-					 <span>(866) 705-1595 </span> </a></li>
+					<li><a href="tel:{{getSocialMedia()->phone}}"> <div class="bXs"><img src="{{url('sardar')}}/images/phone_red_icon.png"></div>
+					 <span>{{getSocialMedia()->phone}} </span> </a></li>
 				</ul>
 			</div>	
 		</div>	
