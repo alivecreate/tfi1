@@ -16,7 +16,7 @@
 				<div class="header-t mb-3">
 					<h1>TOP INFLATABALES</h1>
 				</div>	
-				
+
 				<div class="row">
 				@foreach($topCategories as $key => $topCategory)
 					<div class="c_explores col-md-2"><a href="#;" class="btn clickExplore active"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr"> {{$topCategory->name}} </a></div>
@@ -122,6 +122,11 @@
 							<div class="">
 
 								<div class="BigInnerinflatableSub_slider mb-3">
+									<div class="Biginflatables">
+										<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('web')}}/media/lg/{{$productDetail->image}}">
+										</div>
+									</div>
 
 									@foreach($productImages as $productImage)
 									<div class="Biginflatables">
@@ -136,10 +141,16 @@
 								<div class="col-md-12 mb-4">	
 									<div class="BigInnerinflatableSub_Nav mb-3">
 
+									<div class="thumb_big_slider">
+											<div class="img_thumbnail m-auto">
+												<img class="img-fluid" src="{{url('web')}}/media/sm/{{$productDetail->image}}">
+											</div>
+										</div>
+
 									@foreach($productImages as $productImage)
 										<div class="thumb_big_slider">
 											<div class="img_thumbnail m-auto">
-												<img class="img-fluid" src="{{url('web')}}/media/lg/{{$productImage->image}}">
+												<img class="img-fluid" src="{{url('web')}}/media/sm/{{$productImage->image}}">
 											</div>
 										</div>
 									@endforeach

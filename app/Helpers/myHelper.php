@@ -175,10 +175,16 @@ function getParentCategory($id){
 
     if(isset($id)){
         if($category->parent_id == 0){
+
             return (['category'=>$category, 'subcategory' => null, 'subcategory2' => null]);
+
+            // dd($category->parent_id);
         }
         else{
             $subcategory = Category::find($category->parent_id);
+
+            // dd($subcategory);
+
             if($subcategory->parent_id == 0){
                 
                 return (['category'=>$subcategory, 'subcategory' => $category, 'subcategory2' => null]);

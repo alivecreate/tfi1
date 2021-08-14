@@ -17,8 +17,21 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->text('name');
             $table->text('description')->nullable();
-            $table->integer('status')->default(0);
             $table->integer('parent_id')->default(0);
+
+            $table->text('image')->nullable();
+            $table->text('image_alt')->nullable();
+            $table->text('image_title')->nullable();
+            $table->float('price')->nullable();
+            
+            $table->text('slug')->nullable();
+
+            $table->text('meta_title')->nullable();
+            $table->text('meta_keyword')->nullable();
+            $table->text('meta_description')->nullable();
+            
+            $table->integer('status')->default(0);
+
             $table->timestamps();
         });
     }

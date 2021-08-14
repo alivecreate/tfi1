@@ -106,11 +106,12 @@ $(".product a").addClass( "active-menu");
                 @csrf
                   <div class="form-group row">
                     <div class="col-sm-4">
-                    <label for="client_id">Category</label>
+                    <label for="client_id"><span class="text-danger">*</span>Category</label>
                       <select name="category_parent_id" class="form-control category_parent_id">
                         <option value="">Select Category</option>
                           @foreach($parent_categories as $parent_category)
-                              <option value="{{$parent_category->id}}">{{$parent_category->name}}</option>
+                              <option value="{{$parent_category->id}}"
+                              >{{$parent_category->name}}</option>
                           @endforeach
                       </select>
                       <span class="text-danger">@error('category_id') {{$message}} @enderror</span>
@@ -140,7 +141,7 @@ $(".product a").addClass( "active-menu");
                   
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <label for="name">Name</label>
+                      <label for="name"><span class="text-danger">*</span>Name</label>
                       <input type="text" class="form-control" name="name" 
                          placeholder="Product Name" value="{{old('name')}}">
                          
@@ -150,7 +151,7 @@ $(".product a").addClass( "active-menu");
                   
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <label for="short_description">Short Desctiption</label>
+                      <label for="short_description"><span class="text-danger">*</span>Short Desctiption</label>
                       <input type="text" class="form-control" name="short_description" 
                          placeholder="Product Short Desctiption" value="{{old('short_description')}}">
                          
@@ -160,16 +161,15 @@ $(".product a").addClass( "active-menu");
                   
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <label for="full_description">Full Desctiption</label>
-                        <textarea id="summernote" name="full_description" placeholder="Product Descriptions">
-                        </textarea>
+                      <label for="full_description"><span class="text-danger">*</span>Full Desctiption</label>
+                        <textarea id="summernote" name="full_description" placeholder="Product Descriptions">{{old('full_description')}}</textarea>
                                   
                     <span class="text-danger">@error('full_description') {{$message}} @enderror</span>
                     </div>
                     </div>
                     
                     <div class="form-group row">
-                      <label  for="slug">Slug Url</label>
+                      <label  for="slug"><span class="text-danger">*</span>Slug Url</label>
                       <input type="text" class="form-control" name="slug" 
                         placeholder="Seo Friendly Url" value="{{old('slug')}}">
                       <span class="text-danger">@error('slug') {{$message}} @enderror</span>
@@ -177,7 +177,7 @@ $(".product a").addClass( "active-menu");
                     
                     <div class="form-group row">
                         <div class="col-sm-3">
-                        <label for="image_alt">Featured Image</label><br>
+                        <label for="image_alt"><span class="text-danger">*</span>Featured Image</label><br>
                         <input type="file" name="image" class="image " id="image" require>
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                       </div>

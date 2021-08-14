@@ -68,10 +68,8 @@ class ProductController extends Controller
             'short_description' => 'required',
             'full_description' => 'required',
             'slug' => 'required',
-            'meta_title' => 'required',
-            'meta_keyword' => 'required',
-            'meta_description' => 'required',
             'image' => 'required',
+            'category_id' => 'required',
 
         ]);
 
@@ -144,9 +142,7 @@ class ProductController extends Controller
             'short_description' => 'required',
             'full_description' => 'required',
             'slug' => 'required',
-            'meta_title' => 'required',
-            'meta_keyword' => 'required',
-            'meta_description' => 'required',
+            'category_id' => 'required',
             
 
         ]);

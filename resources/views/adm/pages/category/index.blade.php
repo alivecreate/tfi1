@@ -59,7 +59,7 @@ $(".category a").addClass( "active-menu");
                   <thead>
                     <tr>
                       <th class="bg-gray">ID</th>
-                      <th class="bg-info">Title</th>
+                      <th class="bg-info">Category</th>
                       <th class="bg-danger">Sub Category</th>
                       <th class="bg-warning">Sub Category 2</th>
                     </tr>
@@ -69,7 +69,8 @@ $(".category a").addClass( "active-menu");
                     <tr>
                       <td>{{++$i}}</td>
                       <td>
-                      <a  class="badge badge-info"  href="{{route('admin.category.edit',$parent_category->id)}}?type=category">{{$parent_category->name}}</a>
+                      {{$parent_category->name}}
+                      <a  class="badge badge-info" href="{{route('admin.category.edit',$parent_category->id)}}"><i class="far fa-edit"></i></a>
                       
                       &nbsp;&nbsp;&nbsp;
                               <button class="btn btn-xs btn-danger del-modal"  title="Delete product"  data-id="{{url('admin')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
@@ -84,8 +85,8 @@ $(".category a").addClass( "active-menu");
                           @foreach($parent_category->subCategories1($parent_category->id) as $subCategory1)
                           <tr>
                             <td>
-                            
-                            <a  class="badge badge-danger"  href="{{route('admin.category.edit',$subCategory1->id)}}?type=subcategory">{{$subCategory1->name}}</a>
+                            {{$subCategory1->name}}
+                            <a  class="badge badge-info"  href="{{route('admin.category.edit',$subCategory1->id)}}"><i class="far fa-edit"></i></a>
 
                             &nbsp;&nbsp;&nbsp;
                               <button class="btn btn-xs btn-danger del-modal"  title="Delete product"  data-id="{{url('admin')}}/category/delete/{{ $subCategory1->id}}" data-title="{{ $subCategory1->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
@@ -114,7 +115,8 @@ $(".category a").addClass( "active-menu");
                               
                               <tr>
                                 <td>
-                                  <a class="badge badge-warning" href="{{route('admin.category.edit',$subCategory2->id)}}?type=subcategory2">{{$subCategory2->name}}</a>
+                                {{$subCategory2->name}}
+                                  <a class="badge badge-info" href="{{route('admin.category.edit',$subCategory2->id)}}"><i class="far fa-edit"></i></a>
                               
                       &nbsp;&nbsp;&nbsp;
                               <button class="btn btn-xs btn-danger del-modal"  title="Delete product"  data-id="{{url('admin')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>

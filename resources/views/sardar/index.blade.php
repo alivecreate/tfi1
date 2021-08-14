@@ -33,7 +33,7 @@
 
 					@foreach($topInflatables as $topInflatable)
 						<div class="inflatables">
-							<div class="top-buttons infa_bg">{{$topInflatable->name}} </div>
+							<div class="top-buttons infa_bg"><a href="{{url('product-detail')}}/{{$topInflatable->slug}}">{{$topInflatable->name}}</a></div>
 							<div class="img_thumbnail m-auto">
 								<img class="img-fluid" src="{{url('web')}}/media/md/{{$topInflatable->image}}">
 							</div>
@@ -42,7 +42,7 @@
 									<a href="{{$topInflatable->url}}"> <img class="eye-icon" src="{{url('sardar')}}/images/view_icon.png" class="img-fluid"> View All </a>
 								</div>
 								<div class="bottom_links1">
-									<a href="#;"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
+									<a href="{{url('contact-us')}}"> <img class="eye-icon" src="{{url('sardar')}}/images/email_icon.png" class="img-fluid"> Enquire Now </a>
 								</div>
 							</div>	
 						</div>
@@ -74,7 +74,7 @@
 								<a href="{{$topCategory->url}}" class="btn clickExplore">
 							@endif
 					
-					<img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr">2s1d61 asd 61 6s1c 1sa {{$topCategory->name}} </a></div>
+					<img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr">{{$topCategory->name}} </a></div>
 				@endforeach
 
 					<!-- @foreach($homeUrls1 as $key  => $homeUrl1 )

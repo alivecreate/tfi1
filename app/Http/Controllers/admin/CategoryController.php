@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\admin\Category;
-
+use DB;
 class CategoryController extends Controller
 {
     /**
@@ -51,15 +51,30 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
+        // dd($request->all());
         $request->validate([
-            'category' => 'required|max:255',
+            'name' => 'required|max:255',
         ]);
 
+        // if($request->parent_id == null){
+        //     $parent_id = 0;
+        // }else{
+        //     $parent_id = 0;
+        // }
+
+        $image_name = uploadImageThumb($request);
         $status = ($request->status == null ? 0 : 1);
         $category = new Category;
-        $category->name = $request->category;
-        $category->description  = $request->category_description ;
+        $category->name = $request->name;
+        $category->description  = $request->description ;
+        
+        $category->image  = $image_name ; 
+        $category->image_alt = $request->image_alt;      
+        $category->image_title = $request->image_title;      
+        $category->slug  = $request->slug;
+        $category->meta_title  = $request->meta_title;
+        $category->meta_keyword  = $request->meta_keyword;
+        $category->meta_description  = $request->meta_description;
 
         $category->status  = $status;
 
@@ -97,6 +112,15 @@ class CategoryController extends Controller
         $status = ($request->status == null ? 0 : 1);
         $category->status  = $status;
         
+        $category->image  = $image_name ; 
+        $category->image_alt = $request->image_alt;      
+        $category->slug  = $request->slug;
+        $category->meta_title  = $request->meta_title;
+        $category->meta_keyword  = $request->meta_keyword;
+        $category->meta_description  = $request->meta_description;
+        $category->status  = 1;
+
+
         $save = $category->save();
 
         if($save){
@@ -124,7 +148,9 @@ class CategoryController extends Controller
         $category->description  = $request->subcategory2_description ;
         $category->parent_id  = $request->subcategory_parent_id;
         $status = ($request->status == null ? 0 : 1);
+
         $category->status  = $status;
+
         $save = $category->save();
 
         if($save){
@@ -167,6 +193,7 @@ class CategoryController extends Controller
                                 ->orderBy('id','DESC')->get(),
                 
                  'data'=> Category::where('id', $id)->first()];
+                //  dd($data);
 
         // dd(Category::where('id', $id)->first());
         return view('adm.pages.category.edit',$data);
@@ -183,10 +210,31 @@ class CategoryController extends Controller
     {
         //
         // dd($request->input());
+        $request->validate([
+            'name' => 'required|max:255',
+            
+        ]);
   
+        if($request->file('image')){
+            $image_name = uploadImageThumb($request);
+        }else{
+            $image_name = $request->old_image;
+        }
+
         $category = Category::find($id);
         $category->name = $request->name;
-        $category->description = $request->slug;
+        $category->description  = $request->description ;
+        
+        $category->image  = $image_name ; 
+        $category->image_alt = $request->image_alt;      
+        $category->image_title = $request->image_title;      
+        $category->slug  = $request->slug;
+        $category->meta_title  = $request->meta_title;
+        $category->meta_keyword  = $request->meta_keyword;
+        $category->meta_description  = $request->meta_description;
+
+        $category->parent_id  = $request->parent_id;
+        $category->status  = 1;
         $save = $category->save();
 
             if($save){
@@ -207,7 +255,7 @@ class CategoryController extends Controller
     {
         $category = $category->delete();
         if($category){
-            return back()->with('success', 'category Deleted...');
+            return back()->with('success', 'category Deleted... 000 ');
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }
@@ -216,12 +264,16 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $delete = $category->delete();
-
+        
         if($delete){
-            return back()->with('success', 'Category Deleted...');
+            DB::table('categories')
+            ->where('parent_id',$id)
+            ->update(['parent_id'=>0]);
+            return back()->with('success', 'Category Deleted... 111');
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }
+
     }
 
     

@@ -33,8 +33,7 @@ class HomeController extends Controller
             'clients' =>  Client::where('status', 1)->get(),
             'pageData' =>  Pages::where('type', 'home_page')->first(),
             'topCategories' => Category::where('status', 1)->limit(12)->get(),
-
-            'topInflatables' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(0)->take(5)->get(),
+            'topInflatables' => Product::where('status', 1)->where('category_id', '!=', null)->orderBy('id', 'DESC')->skip(0)->take(5)->get(),
         ];
         return view('sardar.index', $data);
     }
@@ -75,15 +74,22 @@ class HomeController extends Controller
     public function product_details($slug)
     {
         $product = Product::where('slug', $slug)->first();
-        
-        $category_id = getParentCategory($product->category_id)['category']->id;
+
+        if(isset($product->category_id)){
+            $category_id = getParentCategory($product->category_id)['category']->id;
+            // dd($category_id);
+            $subCategories = Category::where('parent_id', $category_id)->limit(10)->get();
+        }else{
+            $noCategory = Category::first();
+            $subCategories = Category::limit(10)->orderBy('id', 'DESC')->where('parent_id', $noCategory)->get();        
+        }
     
         $data = [
             'pageData' =>  Pages::where('type', 'product_page')->first(),
             'productDetail' =>  Product::where('slug', $slug)->first(),
             'productImages' =>  Media::where('image_type', 'product')->where('media_id', $product->id)->get(),
             'topCategories' => Category::where('status', 1)->limit(10)->get(),
-            'subCategories' => Category::where('parent_id', $category_id)->limit(10)->get(),
+            'subCategories' => $subCategories,
         ];
 
         return view('sardar.product-detail', $data);

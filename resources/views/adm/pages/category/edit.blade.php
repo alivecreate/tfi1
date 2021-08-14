@@ -7,18 +7,16 @@
 
 @section('custom-js')
 
-
-
 <script>
 $('.category_parent_id').on('change', function() {
         var parent = $(this).find(':selected').val();
+        
+        $('.parent_id').val(parent);
 
         $.get( `{{url('api')}}/get/getPetaKacheri/`+parent, { category_parent_id: parent })
         .done(function( data ) {
-          // alert(JSON.stringify(data));
-
         if(JSON.stringify(data.length) == 0){
-            $('.subcategory_parent_id').html('<option value="">Select Sub Category</option>');
+            $('.subcategory_parent_id').html('<option>Select Sub Category</option>');
         }
         else{
                 $('.subcategory_parent_id').empty();     
@@ -28,8 +26,22 @@ $('.category_parent_id').on('change', function() {
             }
         }
     });
-        
+  });
+
+  $('.subcategory_parent_id').on('change', function() {
+        var parent = $(this).find(':selected').val();
+        if(parent == ''){
+          var mainCat = $('.category_parent_id').find(':selected').val();
+          
+          $('.parent_id').val(mainCat);
+
+        }else{
+          $('.parent_id').val(parent);
+        }
+
     });
+
+    
 $(".category").addClass( "menu-is-opening menu-open");
 $(".category a").addClass( "active-menu");
 
@@ -43,12 +55,12 @@ $(".category a").addClass( "active-menu");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-8">
-            <h3>Edit : Category / Sub Category / Sub Category2  </h3>
+            <h1>ADD New : Caegory / Sub Category / Sub Category 2  </h1>
           </div>
           <div class="col-sm-4">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active"> Category / Sub Category / Sub Category2</li>
+              <li class="breadcrumb-item active">Category</li>
             </ol>
           </div>
         </div>
@@ -62,281 +74,165 @@ $(".category a").addClass( "active-menu");
           <div class="card-body">
             <div class="form-horizontal row">
             
-            @if($type == 'category')
-            <div class="col-md-4 card card-info">
+            <div class="col-md-12 card card-info">
+                 
               <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Edit Category</h3>
+                <h3 class="card-title">Category</h3>
               </div>
              
-              <form method="post" class="form-horizontal" action="{{route('admin.category.update', $data->id)}}">
+              <form method="post" enctype="multipart/form-data" class="form-horizontal" 
+              action="{{route('admin.category.update', $data->id)}}">
                 @csrf
                 <div class="card-body p-2 pt-4">
                   <div class="form-group row">
                     <div class="col-sm-12">
-                      <input type="hidden" name="type" value="category">
+                      <input type="hidden" name="type" value="name">
                       <input type="text" class="form-control" name="name" 
                          placeholder="Category Name" 
+                          value="@if(old('name')){{old('name')}}@else{{$data->name}}@endif">
                          
-                         value="@if(old('name')){{old('name')}}@else{{$data->name}}@endif">
-                         
-                    <span class="text-danger">@error('name') {{$message}} @enderror</span>
+                    <span class="text-danger">@error('category') {{$message}} @enderror</span>
                     </div>
                   </div>
+
                   <div class="form-group row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
+                      <textarea class="form-control" name="description"
+                         placeholder="Description">@if(old('description')){{old('description')}}@else{{$data->description}}@endif</textarea>
+                    <span class="text-danger">@error('description') {{$message}} @enderror</span>
+                    </div>
+
+                    <div class="col-sm-6">
                       <textarea class="form-control" name="slug"
-                         placeholder="slug">@if(old('slug')){{old('slug')}}@else{{$data->description}}@endif</textarea>
+                         placeholder="slug">@if(old('slug')){{old('slug')}}@else{{$data->slug}}@endif</textarea>
                     <span class="text-danger">@error('slug') {{$message}} @enderror</span>
                     </div>
                   </div>
-
-                  <div class="form-group row">
-                    <div class="col-sm-12">                      
-                      <span class="text-danger">@error('category_parent_id1') {{$message}} @enderror</span>
-                    
-                    </div>
-                  </div>
-                  
-                  
-
-                  </div>
-                </div>
-                <input type="hidden" name='parent_id' value="{{$data->parent_id}}">
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Save Data</button>
-                </div>
-              </form>
-
-            </div>
-            @endif
-
-
-            @if($type == 'subcategory')
-            <div class="col-md-4 card card-info">
-              <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Edit Sub Category</h3>
-              </div>
-             
-              <form method="post" class="form-horizontal"  action="{{route('admin.category.update',$data->id)}}">
-              
-              @csrf
-              <input type="hidden" name="type" value="subcategory">
-                <div class="card-body p-2 pt-4">
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      
-                      <input type="text" class="form-control" name="name"
-                         placeholder="Sub Category Name" 
-                         value="@if(old('name')){{old('name')}}@else{{$data->name}}@endif">
-                         <span class="text-danger">@error('subcategory_name') {{$message}} @enderror</span>
-                    
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      <textarea class="form-control" name="slug"
-                         placeholder="slug">@if(old('slug')){{old('slug')}}@else{{$data->description}}@endif</textarea>
-                         <span class="text-danger">@error('slug') {{$message}} @enderror</span>
-                    
-                    </div>
-                  </div>
                   
                   <div class="form-group row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
+                      <select name="category_parent_id" class="form-control category_parent_id">
                       
-                      <select name="category_parent_id1" class="form-control" disabled>
-                        <option value="">Select Category</option>
-                          @foreach($categories as $category)
-                              <option value="{{$category->id}}" 
-                                
-                             @if($category->id == $data->parent_id )
-                             selected
-                              @endif    
 
-                              >{{$category->name}}</option>
-                          @endforeach
-                      </select>
+                        <option value="0">Select Category</option>
 
-                      <span class="text-danger">@error('category_parent_id1') {{$message}} @enderror</span>
-                    
-                    </div>
-                  </div>
-
-                  </div>
-                </div>
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-danger">Save Data</button>
-                </div>
-              </form>
-            </div>
-            @endif
-
-            @if($type == 'subcategory2')
-            <div class="col-md-4 card card-info">
-             <div class="card card-warning">
-              <div class="card-header">
-                <h3 class="card-title">Edit Sub Category2</h3>
-              </div>
-             
-              <form method="post" class="form-horizontal" action="{{route('admin.category.update',$data->id)}}">
-              <input type="hidden" name="type" value="subcategory2">
-              @csrf
-                <div class="card-body p-2 pt-4">
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      
-                      <input type="text" class="form-control" name="name"
-                         placeholder="Sub Category Name" value="@if(old('name')){{old('name')}}@else{{$data->name}}@endif">
-                         <span class="text-danger">@error('name') {{$message}} @enderror</span>
-                    
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      <textarea class="form-control" name="slug"
-                         placeholder="slug">@if(old('slug')){{old('slug')}}@else{{$data->description}}@endif</textarea>
-
-                         <span class="text-danger">@error('slug') {{$message}} @enderror</span>
-
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      <select name="category_parent_id" class="form-control category_parent_id" disabled>
-                        <option value="">Select Category</option>
-                          
-
-                        
-                          @foreach($categories as $category)
-
-                              <option value="{{$category->id}}"
-
-                              @if($category->id == $category->parentCategories2($data->parent_id)[0]->id )
-                             selected
-                              @endif    
+                          @foreach($categories as $parent_category)
+                              <option value="{{$parent_category->id}}"
+                           
                               
-                          
-                              >{{$category->name}}</option>
+                        @if(getParentCategory($data->category_id)['category'])
+                          @if(getParentCategory($data->parent_id)['category']->id == $parent_category->id ))
+                            selected
+                          @endif
+                        @endif
 
+                              >{{$parent_category->name}}</option>
                           @endforeach
                       </select>
-                      
                       <span class="text-danger">@error('category_parent_id') {{$message}} @enderror</span>
                     </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      <select name="subcategory_parent_id"  class="form-control subcategory_parent_id" disabled>
 
-                      @foreach(getSubCategories($category->parentCategories2($data->parent_id)[0]->id) as $subCategory)
-                        
-                        <option value="{{$data->parent_id}}"
-                        
-                          @if($subCategory->id == $category->parentCategories2($data->parent_id)[0]->id )
-                              selected
-                          @endif    
-                        >{{$subCategory->name}}</option>
-                        
-                        @endforeach
+                    <div class="col-sm-6">
+                      <select name="subcategory_parent_id"  class="form-control subcategory_parent_id">
+                        <option value="0">Select Sub Category</option>
 
+                        
                       </select>
-
                       <span class="text-danger">@error('subcategory_parent_id') {{$message}} @enderror</span>
                     </div>
                   </div>
 
+                  
+                  <input type="hidden" name="parent_id" class="parent_id" value="0">
+                  
+
+                  <div class="form-group row">
+                        <div class="col-sm-12">
+                        <label for="image">Image</label><br>
+                        <input type="file" name="image" class="image " id="image" require><br>
+                        <span class="text-danger">@error('image') {{$message}} @enderror</span>
+                      </div>
+
+                      <img class="mt-2" width="100" src="{{asset('web')}}/media/xs/{{$data->image}}">
+                    </div>
+
+                    
+                    <div class="form-group row">
+                      <div class="col-sm-12">
+                        <label for="image_alt">Image Alt</label>
+                        <input type="text" class="form-control" name="image_alt" 
+                          placeholder="Image Alter Text (SEO)" 
+                          value="@if(old('image_alt')){{old('image_alt')}}@else{{$data->image_alt}}@endif">
+                          
+                        <span class="text-danger">@error('image_alt') {{$message}} @enderror</span>
+                      </div>
+                      
+                      <div class="col-sm-12">
+                        <label for="image_title">Image Title</label>
+                        <input type="text" class="form-control" name="image_title" 
+                          placeholder="Product Image Title (SEO)" 
+                          value="@if(old('image_title')){{old('image_title')}}@else{{$data->image_title}}@endif">
+                          
+                        <span class="text-danger">@error('image_title') {{$message}} @enderror</span>
+                      </div>
+                    </div>
+                    
+                    
+                  <div class="form-group row">
+                    <h5 class="bg-dark pl-4 pr-4">SEO CONTENTS</h5>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" class="text-danger" for="meta_title">SEO Title</label>
+                      <input type="text" class="form-control" name="meta_title" 
+                        placeholder="Seo Friendly Title" 
+                          value="@if(old('meta_title')){{old('meta_title')}}@else{{$data->meta_title}}@endif">
+                      <span class="text-danger">@error('meta_title') {{$message}} @enderror</span>
+                    </div>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" for="meta_keyword">Keyword</label>
+                      <input type="text" class="form-control" name="meta_keyword" 
+                        placeholder="Seo Keywords with ," 
+                          value="@if(old('meta_keyword')){{old('meta_keyword')}}@else{{$data->meta_keyword}}@endif">
+
+                      <span class="text-danger">@error('meta_keyword') {{$message}} @enderror</span>
+                    </div>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" for="meta_description">Description</label>
+                      <textarea type="text" class="form-control" name="meta_description" 
+                        placeholder="Seo Friendly Title">@if(old('meta_description')){{old('meta_description')}}@else{{$data->meta_description}}@endif</textarea>
+                      <span class="text-danger">@error('meta_description') {{$message}} @enderror</span>
+                    </div>
+                  </div>
+
+
+
+                <div class="form-group">
+                  <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input status-switch" 
+                      name="status" value="0" id="customSwitch1">
+                    <label class="custom-control-label float-right" for="customSwitch1">Status</label>
                   </div>
                 </div>
-                <input type="hidden" name='parent_id' value="{{$data->parent_id}}">
+
+                  
+                  </div>
+                </div>
+
+
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-warning">Save Data</button>
+                  <button type="submit" class="float-right btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    Save Data</button>
                 </div>
               </form>
             </div>
 
-
-            @endif
-
-            <div class="col-md-8">
-            
-            <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th class="bg-gray">ID</th>
-                      <th class="bg-info">Category</th>
-                      <th class="bg-danger">Sub Category</th>
-                      <th class="bg-warning">Sub Category2</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  @foreach($categories as $i => $parent_category)                 
-                    <tr>
-                      <td>{{++$i}}</td>
-                      <td><a  class="badge badge-info"  href="{{route('admin.category.edit',$parent_category->id)}}?type=category">{{$parent_category->name}}</a></td>
-                      <td>
-                      
-                        @if($parent_category->subCategories1($parent_category->id)->count() > 0)
-                        <table class="table-border-none">
-                          @foreach($parent_category->subCategories1($parent_category->id) as $subCategory1)
-                          <tr>
-                            <td>
-                            
-                            <a  class="badge badge-danger"  href="{{route('admin.category.edit',$subCategory1->id)}}?type=subcategory">{{$subCategory1->name}}</a>
-                              
-                                 @if($parent_category->subCategories2($subCategory1->id)->count() > 0)
-                                  @foreach($parent_category->subCategories2($subCategory1->id) as $subCategory2)
-                                  
-                                  <tr>
-                                      <td></td>
-                                  </tr>        
-                                  @endforeach
-                              @endif        
-                            </td>
-                          </tr>
-                          @endforeach
-                          </table>
-                        @endif
-                        </td>
-                      <td>
-                        @if($parent_category->subCategories1($parent_category->id)->count() > 0)
-                              <table>
-                          @foreach($parent_category->subCategories1($parent_category->id) as $subCategory1)
-                            @if($parent_category->subCategories2($subCategory1->id)->count() > 0)
-                              @foreach($parent_category->subCategories2($subCategory1->id) as $subCategory2)
-                              
-                              <tr>
-                                <td>
-                                  <a class="badge badge-warning" href="{{route('admin.category.edit',$subCategory2->id)}}?type=subcategory2">{{$subCategory2->name}}</a>
-                              </td>
- 
-                              </tr>        
-                              @endforeach
-                              @endif                   
-                            @endforeach
-                              </table>
-                        @endif
-
-                      </td>
-                        
-                      
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-                
-                </div>
-
-                </div>
+          </div>
         </div>
+
 
       </div>
     </section>
+    <!-- /.content -->
   </div>
 
   @endsection

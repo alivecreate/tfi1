@@ -18,7 +18,7 @@ class VideoController extends Controller
         $data = [
             'videos' =>  Video::orderBy('id', 'DESC')->get()
         ];
-        return view('adm.pages.Video.index', $data);
+        return view('adm.pages.video.index', $data);
     }
 
     /**
@@ -29,7 +29,7 @@ class VideoController extends Controller
     public function create()
     {
         $data = ['videos' =>  Video::all()];
-        return view('adm.pages.Video.create',$data);
+        return view('adm.pages.video.create',$data);
     }
 
     /**
@@ -97,7 +97,7 @@ class VideoController extends Controller
         $data = [
             'video' =>  Video::find($id)
         ];
-        return view('adm.pages.Video.edit', $data);
+        return view('adm.pages.video.edit', $data);
     }
 
     /**
