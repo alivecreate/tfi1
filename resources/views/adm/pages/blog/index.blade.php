@@ -24,7 +24,7 @@ $( document ).ready(function() {
     var delete_id = $(this).attr('data-id');
     var data_title = $(this).attr('data-title');
     
-    $('.delete-form').attr('action','/admin/blog/'+ delete_id);
+    $('.delete-form').attr('action',delete_id);
     $('.delete-title').html(data_title);
   });  
 });
@@ -102,7 +102,7 @@ $(".blog a").addClass( "active-menu");
                         <td>
                         
                           <a href="{{route('blog.edit',$blog->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit Blogs"><i class="far fa-edit"></i></a>
-                           <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete Blog"  data-id="{{ $blog->id}}" data-title="{{ $blog->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                           <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete Blog"  data-id="{{url('admin')}}/blog/{{$blog->id}}" data-title="{{ $blog->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                           </button>
                       
                       

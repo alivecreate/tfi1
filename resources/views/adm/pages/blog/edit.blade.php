@@ -111,6 +111,7 @@ $(".blog a").addClass( "active-menu");
                         <input type="file" name="image" class="image " id="image"><br>
                         <input type="hidden" name="old_image" value="{{$blog->image}}"><br>
 
+
                         <img class="mt-2" width="100" src="{{asset('web')}}/media/xs/{{$blog->image}}">
 
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>

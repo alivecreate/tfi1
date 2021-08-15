@@ -20,7 +20,7 @@ class CreatePagesTable extends Migration
             $table->text('banner')->nullable();
             $table->text('title')->nullable();
             $table->text('subtitle')->nullable();
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->text('slug')->nullable();
             $table->text('url')->nullable();
 

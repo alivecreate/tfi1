@@ -23,17 +23,29 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->footerTestimonial = testimonials::orderBy('id','DESC')->first();
+        $this->footerVideo = Video::orderBy('id','DESC')->first();
+        $this->footerBlog = Blog::orderBy('id','DESC')->first();
+        $this->parent_categories = category::where(['parent_id'=>0])->orderBy('id','DESC')->get();
+
+    }
+
     public function index()
     {
         $data = [
             'sliders' =>  Slider::orderBy('created_at', 'desc')->first(),
             // 'topInflatables' =>  TopInflatables::where('status',1)->orderBy('created_at', 'desc')->get(),
             'homeUrls1' =>  UrlList::where('type', 'home_url1')->where('status',1)->get(),
-            'homeAbout' =>  Pages::where('type', 'home_about')->first(),
+            'homeAbout' =>  Pages::where('type', 'home_page')->first(),
             'clients' =>  Client::where('status', 1)->get(),
             'pageData' =>  Pages::where('type', 'home_page')->first(),
             'topCategories' => Category::where('status', 1)->limit(12)->get(),
             'topInflatables' => Product::where('status', 1)->where('category_id', '!=', null)->orderBy('id', 'DESC')->skip(0)->take(5)->get(),
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
         ];
         return view('sardar.index', $data);
     }
@@ -54,7 +66,10 @@ class HomeController extends Controller
 
             'products1' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(0)->take(5)->get(),
             'products2' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(5)->take(10)->get(),
-            'products3' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(10)->take(15)->get()
+            'products3' => Product::where('status', 1)->orderBy('id', 'DESC')->skip(10)->take(15)->get(),
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
 
 
             // $art->products->skip(0)->take(10)->get();
@@ -67,6 +82,9 @@ class HomeController extends Controller
     {
         $data = [
             'pageData' =>  Pages::where('type', 'product_page')->first(),
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
         ];
         return view('sardar.product-internal', $data);
     }
@@ -90,16 +108,42 @@ class HomeController extends Controller
             'productImages' =>  Media::where('image_type', 'product')->where('media_id', $product->id)->get(),
             'topCategories' => Category::where('status', 1)->limit(10)->get(),
             'subCategories' => $subCategories,
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
         ];
 
         return view('sardar.product-detail', $data);
 
     }
+
+    public function blog_details($slug)
+    {
+        $blog = Blog::where('slug', $slug)->first();
+
+
+        $data = [
+            'pageData' =>  Blog::where('slug', $slug)->first(),
+            'blogDetail' =>  Blog::where('slug', $slug)->first(),
+            'latestBlogs' =>  Blog::where('status',1)->limit(6)->get(),
+
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
+        ];
+
+        return view('sardar.blog-detail', $data);
+
+    }
     
+
     public function about()
     {
         $data = [
             'pageData' =>  Pages::where('type', 'about_page')->first(),
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
         ];
         return view('sardar.about', $data);
     }
@@ -108,6 +152,9 @@ class HomeController extends Controller
         $data = [
             'testimonials' =>  Testimonials::where('status', 1)->limit(2)->get(),
             'pageData' =>  Pages::where('type', 'testimonial_page')->first(),
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
         ];
         return view('sardar.testimonials', $data);
     }
@@ -116,6 +163,9 @@ class HomeController extends Controller
         $data = [
             'videos' =>  Video::where('status', 1)->get(),
             'pageData' =>  Pages::where('type', 'video_page')->first(),
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
         ];
         return view('sardar.videos', $data);
     }
@@ -125,6 +175,9 @@ class HomeController extends Controller
         $data = [
             'blogs' =>  Blog::where('status', 1)->get(),
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
         ];
         return view('sardar.blog', $data);
     }
@@ -134,6 +187,9 @@ class HomeController extends Controller
         $data = [
             'current_page' =>  'contact',
             'pageData' =>  Pages::where('type', 'contact_page')->first(),
+            'footerTestimonial' =>  $this->footerTestimonial,
+            'footerVideo' =>   $this->footerVideo,
+            'footerBlog' =>   $this->footerBlog,
         ];
 
         return view('sardar.contact-us', $data);

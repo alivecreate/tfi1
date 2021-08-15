@@ -177,7 +177,7 @@ $(".product a").addClass( "active-menu");
                     
                     <div class="form-group row">
                         <div class="col-sm-3">
-                        <label for="image_alt"><span class="text-danger">*</span>Featured Image</label><br>
+                        <label for="image"><span class="text-danger">*</span>Featured Image</label><br>
                         <input type="file" name="image" class="image " id="image" require>
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                       </div>

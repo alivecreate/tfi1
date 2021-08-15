@@ -13,7 +13,7 @@ $( document ).ready(function() {
     var data_title = $(this).attr('data-title');
     var data_image = $(this).attr('data-image');
     
-    $('.delete-form').attr('action','/admin/slider/'+ delete_id);
+    $('.delete-form').attr('action', delete_id);
     $('.delete-title').html(data_title);
     $('.delete-data-image').attr('src',data_image);
   });  
@@ -162,7 +162,7 @@ $(".slider a").addClass( "active-menu");
                         
                           <!-- <a href="{{route('slider.edit',$slider->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit slider"><i class="far fa-edit"></i></a> -->
                           {{-- <a href="{{route('slider-image.edit',$slider->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Upload slider Images"><i class="far fa-edit"></i></a> --}}
-                          <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete slider"  data-id="{{ $slider->id}}" 
+                          <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete slider"  data-id="{{url('admin')}}/slider/{{$slider->id}}" 
                             data-image="{{url('web')}}/media/sm/{{ $slider->image}}" data-title="{{ $slider->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                           </button>
                       

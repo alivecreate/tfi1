@@ -1,6 +1,7 @@
 <?php
 use App\Models\admin\Category;
 
+
 function uploadImageThumb($request){
     // return $image;
     // dd($request);

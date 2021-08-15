@@ -27,8 +27,8 @@ class CreateProductsTable extends Migration
             $table->text('slug')->nullable();
 
             $table->text('meta_title')->nullable();
-            $table->text('meta_keyword')->nullable();
-            $table->text('meta_description')->nullable();
+            $table->longText('meta_keyword')->nullable();
+            $table->longText('meta_description')->nullable();
             
 
             $table->unsignedBigInteger('category_id')->nullable();

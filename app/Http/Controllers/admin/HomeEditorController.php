@@ -68,9 +68,11 @@ public function topInflatableStore(Request $request)
     {   
         $data = [
             'topInflatables' =>  TopInflatables::orderBy('id', 'DESC')->where('status',1)->get(),
-            'homeAbout' =>  Pages::where('type', 'home_about')->first(),
+            'homeAbout' =>  Pages::where('type', 'home_page')->first(),
             'homeUrls1' =>  UrlList::where('type', 'home_url1')->get(),
-            'clients' =>  Client::where('status', 1)->get()
+            'clients' =>  Client::where('status', 1)->get(),
+
+            'pageData' =>  Pages::where('type', 'home_page')->first(),
         ];
         return view('adm.pages.home-editor.index', $data);
     }
@@ -78,16 +80,22 @@ public function topInflatableStore(Request $request)
     public function homeEditorAboutStore(Request $request)
     {   
         $ifExist = Pages::where('type', $request->type)->first();
+
+        // dd($request->input());
         if($ifExist){
 
             $homeAbout = Pages::find($ifExist->id);
             $homeAbout->type = $request->type;
             $homeAbout->description = $request->description;
             $homeAbout->url = $request->url;
+            $homeAbout->meta_title  = $request->meta_title;
+            $homeAbout->meta_keyword  = $request->meta_keyword;
+            $homeAbout->meta_description  = $request->meta_description;
+
             $homeAbout->status = 1;
             $save = $homeAbout->save();
             if($save){
-                return back()->with('success', 'Home About Details Updated...');
+                return back()->with('success', '1 1Home About Details Updated...');
             }else{
                 return back()->with('fail', 'Something went wrong, try again later...');
             }
@@ -97,6 +105,10 @@ public function topInflatableStore(Request $request)
             $homeAbout->type = $request->type;
             $homeAbout->description = $request->description;
             $homeAbout->url = $request->url;
+            $homeAbout->meta_title  = $request->meta_title;
+            $homeAbout->meta_keyword  = $request->meta_keyword;
+            $homeAbout->meta_description  = $request->meta_description;
+
             $homeAbout->status = 1;
             $save = $homeAbout->save();
             if($save){

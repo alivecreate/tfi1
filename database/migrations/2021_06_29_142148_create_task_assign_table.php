@@ -18,7 +18,7 @@ class CreateTaskAssignTable extends Migration
             $table->id();
             $table->text('note_no');
             $table->text('type');
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->text('date_inward')->nullable();
             $table->text('date_check')->nullable();
             $table->text('file_live_status')->nullable();

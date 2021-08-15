@@ -15,6 +15,7 @@
 
 	<link rel="stylesheet" href="{{url('home')}}/css/custom.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <style>
         .button.button-border.button-fill {
 	overflow: hidden;

@@ -85,7 +85,9 @@ $(".page a").addClass( "active-menu");
                         <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
                       </div>
                     </div> 
-                    <input type="hidden" name="type" value="home_about">               
+
+                    @include('adm.widget.seo-content')
+                    <input type="hidden" name="type" value="home_page">             
                     </div>
                   </div>
 
@@ -94,68 +96,69 @@ $(".page a").addClass( "active-menu");
                   </div>
                 </form>
             </div>
-                <div class="col-md-6 card card-info">
-                    <div class="card card-info">
+            
+            <!-- <div class="col-md-6 card card-info">
+                <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">Click & Explore</h3>
                     </div>
                 
-                <form method="post" class="form-horizontal" action="{{route('url-list1.store')}}">
-                    @csrf
-                    <div class="card-body p-2 pt-4">
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                        <input type="hidden" name="type" value="home_url1">
-                        
-                        <input type="text" class="form-control" name="title"
-                            placeholder="Url Title">
-                            
-                        <span class="text-danger">@error('title') {{$message}} @enderror</span>
-                        </div>
-                    </div> 
-                    
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                        <select name="target" class="form-control" id="">
-                            <option value="_self">Open in Same Page (Default)</option>
-                            <option value="_blank">Open in New Tab</option>
-                        </select>
-                        <span class="text-danger">@error('target') {{$message}} @enderror</span>
-                        </div>
-                    </div>
-                    
-                        <div class="form-group row">
-                            <div class="col-sm-12">
-                            <input type="url" class="form-control" name="url"
-                                placeholder="Url link">
-                            <span class="text-danger">@error('url') {{$message}} @enderror</span>
-                            </div>
-                        </div>
-
-
-                    <div class="form-group">
-                      <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                        <input type="checkbox" class="custom-control-input status-switch" 
-                          name="status" value="0" id="customSwitch1">
-                        <label class="custom-control-label float-right" for="customSwitch1">Status</label>
+                  <form method="post" class="form-horizontal" action="{{route('url-list1.store')}}">
+                      @csrf
+                      <div class="card-body p-2 pt-4">
+                      <div class="form-group row">
+                          <div class="col-sm-12">
+                          <input type="hidden" name="type" value="home_url1">
+                          
+                          <input type="text" class="form-control" name="title"
+                              placeholder="Url Title">
+                              
+                          <span class="text-danger">@error('title') {{$message}} @enderror</span>
+                          </div>
+                      </div> 
+                      
+                      <div class="form-group row">
+                          <div class="col-sm-12">
+                          <select name="target" class="form-control" id="">
+                              <option value="_self">Open in Same Page (Default)</option>
+                              <option value="_blank">Open in New Tab</option>
+                          </select>
+                          <span class="text-danger">@error('target') {{$message}} @enderror</span>
+                          </div>
                       </div>
-                    </div>
+                      
+                          <div class="form-group row">
+                              <div class="col-sm-12">
+                              <input type="url" class="form-control" name="url"
+                                  placeholder="Url link">
+                              <span class="text-danger">@error('url') {{$message}} @enderror</span>
+                              </div>
+                          </div>
 
-                    </div>
-                    </div>
 
-                    <div class="card-footer">
-                    <button type="submit" class="btn btn-info">Save Slider</button>
-                    </div>
-                </form>
+                      <div class="form-group">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                          <input type="checkbox" class="custom-control-input status-switch" 
+                            name="status" value="0" id="customSwitch1">
+                          <label class="custom-control-label float-right" for="customSwitch1">Status</label>
+                        </div>
+                      </div>
+
+                      </div>
+                      </div>
+
+                      <div class="card-footer">
+                      <button type="submit" class="btn btn-info">Save Slider</button>
+                      </div>
+                  </form>
                 </div>
 
                 
                 <div class="col-md-6 card card-info">
-                <div class="card card-dark">
-                <div class="card-header">
-                    <h3 class="card-title">Top Inflatables List</h3>
-                </div>
+                  <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Top Inflatables List</h3>
+                    </div>
                 
                     <div class="card">
                     <div class="card-body">
@@ -202,10 +205,10 @@ $(".page a").addClass( "active-menu");
                     </div>
 
 
-            </div>
-          </div>
+                </div>
+              </div>
 
-        </div>
+             </div> -->
 
 
       </div>

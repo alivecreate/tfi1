@@ -18,13 +18,13 @@ class CreateBlogsTable extends Migration
             $table->text('image')->nullable();
             $table->text('title')->nullable();
             $table->text('short_description')->nullable();
-            $table->text('full_description')->nullable();
+            $table->longText('full_description')->nullable();
             $table->text('slug')->nullable();
             $table->text('youtube_embed')->nullable();
 
             $table->text('meta_title')->nullable();
             $table->text('meta_keyword')->nullable();
-            $table->text('meta_description')->nullable();
+            $table->longText('meta_description')->nullable();
             $table->integer('status')->default(0);
 
             $table->timestamps();

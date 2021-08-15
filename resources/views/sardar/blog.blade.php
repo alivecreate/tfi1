@@ -51,7 +51,7 @@
 								<p>{{$blog->short_description}}</p>
 							</div>	
 							<div class="col-12 mb-4 text-right">	
-								<a href="#;" class="red_btn">READ NOW</a>
+								<a href="{{url('blog')}}/{{$blog->slug}}" class="red_btn">READ NOW</a>
 							</div>	
 						</div>
 					@endforeach

@@ -35,14 +35,14 @@
 
 				<div class="notinflatables_slider">
 					<div class="inflatables">
-						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/speak-icon.png" class="d-inline-block mr-3"> Custom Infatable Game </div>
+						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/speak-icon.png" class="d-inline-block mr-3"> Client's Speak </div>
 						<div class="body_media mb-4">
 							<div class="img_thumbnail m-auto">
-								<img class="img-fluid" src="{{url('sardar')}}/images/media_img_1.jpg">
+								<img class="img-fluid" src="{{url('web')}}/media/sm/{{$footerTestimonial->image}}">
 							</div>
 							<div class="mediaWordFooter">
 								<div class="descr">	
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
+								{!! html_entity_decode($footerTestimonial->title) !!}	
 								</div>
 								<div class="col-12 text-center">	
 									<a href="#;" class="d-inline-block red_btn">SEE ALL</a>
@@ -51,17 +51,16 @@
 						</div>	
 					</div>
 					<div class="inflatables">
-						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/video_icon.png" class="d-inline-block mr-3"> Custom Infatable Game </div>
+						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/video_icon.png" class="d-inline-block mr-3"> Giant Infatable in Action </div>
 						<div class="body_media mb-4">
-							<div class="img_thumbnail m-auto">
-								<img class="img-fluid" src="{{url('sardar')}}/images/media_img_2.jpg">
-								<div class="Play_Vbtn">
-									<img class="img-fluid IconVideo" src="{{url('sardar')}}/images/video_play_button.png">
-								</div>
+							<div class="img_thumbnail m-auto video_thumbnail">
+
+								{!! html_entity_decode($footerVideo->youtube_embed) !!}	
+
 							</div>
 							<div class="mediaWordFooter">
 								<div class="descr">	
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
+									<p>{{$footerVideo->title}} </p>
 								</div>		
 								<div class="col-12 text-center">	
 									<a href="#;" class="d-inline-block red_btn">VIEW ALL</a>
@@ -70,15 +69,14 @@
 						</div>	
 					</div>
 					<div class="inflatables">
-						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/new_icon.png" class="d-inline-block mr-3"> Custom Infatable Game </div>
+						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/new_icon.png" class="d-inline-block mr-3"> In News</div>
 						<div class="body_media mb-4">	
 							<div class="img_thumbnail m-auto">
-								<img class="img-fluid" src="{{url('sardar')}}/images/media_img_3.jpg">
+								<img class="img-fluid" src="{{url('web')}}/media/sm/{{$footerBlog->image}}">
 							</div>
 							<div class="mediaWordFooter">
 								<div class="descr">	
-									<p><b>Inflatables for the 2017 AFL season:</b></p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit </p>
+									<p>{{$footerBlog->title}} </p>
 								</div>
 								<div class="col-12 text-center">	
 									<a href="#;" class="d-inline-block red_btn">CHECK ALL</a>
@@ -210,44 +208,8 @@
 							{!! html_entity_decode(getSocialMedia()->map_embed) !!}
 					</div>
 
-					<div class="enquiry_form bg-white m-md-0 mb-md-0">
-						<div class="form_header">
-							<img src="{{url('sardar')}}/images/email_icon.png" class="img-fluid">
-							<h2>SEND US YOUR ENQUIRY</h2>
-						</div>	
-						<form class="m-0">
-							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/name_icon.png" class="img-fluid"></div> 
-								<input type="text" placeholder="Name" name=""> 
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="15" src="{{url('sardar')}}/images/mobile_icon.png" class="img-fluid"></div> 
-								<input type="number" placeholder="Phone Number" name=""> 
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="25" src="{{url('sardar')}}/images/email_icon_b.png" class="img-fluid"></div> 
-								<input type="text" placeholder="Email" name=""> 
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/gbl.png" class="img-fluid"></div> 
-								<select>
-									<option selected="">Select Country</option>
-									<option>India</option>
-									<option>India</option>
-									<option>India</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/share_icon.png" class="img-fluid"></div> 
-								<textarea name="textarea-326" placeholder="Share Your Inflatables Requirement"></textarea>
-							</div>
-							<div class="text-center"> 
-								<a href="#;" class="term_Link d-block mb-4"> Your information is sage with us. We do not sell or rent emails. </a> 
-								<a href="#;" class="red_btn">Submit</a>
-							</div>
+					@include('sardar.widget.contact-form1')
 
-						</form>
-					</div>		
 
 					<div class=" bg-white connect_with">
 						<div class="ab_logo text-center">	

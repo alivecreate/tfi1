@@ -8,3 +8,15 @@
     max-width: 100%;
     width: 100%;
 }
+.blog_list {
+    clear: both;
+    margin: 26px 0px;
+    border-bottom: 2px solid silver;
+}
+a {
+    color: black;
+}
+a:hover {
+    color: #0056b3;
+    text-decoration: none;
+}

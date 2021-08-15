@@ -25,7 +25,7 @@ $( document ).ready(function() {
     var delete_id = $(this).attr('data-id');
     var data_title = $(this).attr('data-title');
     
-    $('.delete-form').attr('action','/admin/video/'+ delete_id);
+    $('.delete-form').attr('action', delete_id);
     $('.delete-title').html(data_title);
   });  
 });
@@ -95,7 +95,8 @@ $(".video a").addClass( "active-menu");
                         <td>
                         
                           <a href="{{route('video.edit',$video->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit Blogs"><i class="far fa-edit"></i></a>
-                           <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete product"  data-id="{{ $video->id}}" data-title="{{ $video->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                           <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete Video"  
+                           data-id="{{url('admin')}}/video/{{ $video->id}}" data-title="{{ $video->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                           </button>
                       
                       
@@ -120,7 +121,7 @@ $(".video a").addClass( "active-menu");
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Delete product</h4>
+              <h4 class="modal-title">Delete Video</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

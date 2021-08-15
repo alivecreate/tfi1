@@ -28,7 +28,8 @@
 
 
 <meta name="robots" content="index,follow">
-<link rel="shortcut icon" href="{{$pageData->meta_title}}" type="image/x-icon">
+
+<link rel="shortcut icon" href="{{url('sardar')}}/img/logo-icon.png" type="image/x-icon">
 
    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{url('sardar')}}/css/bootstrap.css">

@@ -20,7 +20,7 @@ class CreateTestimonialsTable extends Migration
             $table->string('client_name')->nullable();
             $table->text('title')->nullable();
             $table->text('short_description')->nullable();
-            $table->text('full_description')->nullable();
+            $table->longText('full_description')->nullable();
             $table->text('slug')->nullable();
             $table->text('youtube_embed')->nullable();
             $table->integer('status')->default(0);

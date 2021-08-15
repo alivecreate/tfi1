@@ -127,44 +127,11 @@
 							@endforeach
 					</div>	
 
-					<div class="enquiry_form bg-white">
-						<div class="form_header">
-							<img src="{{url('sardar')}}/images/email_icon.png" class="img-fluid">
-							<h2>SEND US YOUR ENQUIRY</h2>
-						</div>	
-						<form class="m-0">
-							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/name_icon.png" class="img-fluid"></div> 
-								<input type="text" placeholder="Name" name=""> 
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="15" src="{{url('sardar')}}/images/mobile_icon.png" class="img-fluid"></div> 
-								<input type="number" placeholder="Phone Number" name=""> 
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="25" src="{{url('sardar')}}/images/email_icon_b.png" class="img-fluid"></div> 
-								<input type="text" placeholder="Email" name=""> 
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/gbl.png" class="img-fluid"></div> 
-								<select>
-									<option selected="">Select Country</option>
-									<option>India</option>
-									<option>India</option>
-									<option>India</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/share_icon.png" class="img-fluid"></div> 
-								<textarea name="textarea-326" placeholder="Share Your Inflatables Requirement"></textarea>
-							</div>
-							<div class="text-center"> 
-								<a href="#;" class="term_Link d-block mb-4"> Your information is sage with us. We do not sell or rent emails. </a> 
-								<a href="#;" class="red_btn">Submit</a>
-							</div>
 
-						</form>
-					</div>		
+
+					@include('sardar.widget.contact-form1')
+
+					
 				</div>	
 
 			</div>	

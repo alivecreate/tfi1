@@ -54,6 +54,8 @@ Route::get('products/{slug}', [HomeController::class, 'product_internal']);
 
 Route::get('product-detail/{slug}', [HomeController::class, 'product_details']);
 
+Route::get('blog/{slug}', [HomeController::class, 'blog_details']);
+
 Route::get('testimonials', [HomeController::class, 'testimonials']);
 Route::get('videos', [HomeController::class, 'videos']);
 Route::get('blog', [HomeController::class, 'blog']);

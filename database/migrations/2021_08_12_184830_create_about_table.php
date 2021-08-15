@@ -24,8 +24,8 @@ class CreateAboutTable extends Migration
             $table->text('url')->nullable();
 
             $table->text('meta_title')->nullable();
-            $table->text('meta_keyword')->nullable();
-            $table->text('meta_description')->nullable();
+            $table->longText('meta_keyword')->nullable();
+            $table->longText('meta_description')->nullable();
             
             $table->integer('status')->default(0);
 
