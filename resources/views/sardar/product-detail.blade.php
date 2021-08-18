@@ -6,9 +6,6 @@
 @endsection
 @section('content')
 
-@include('sardar.ext.slider')
-
-
 <section class="clickANDexplore bg-white pb-0">
 		<div class="container-fluid">
 			<div class="col-12 p-0 px-lg-3">
@@ -68,6 +65,7 @@
 				<div class="col-12">
 					<div class="row">
 						<div class="col-md-5 col-lg-3 pl-md-0 set_max_20">	
+						
 							<div class="sub_categories">
 								<h2>SUB CATEGORIES</h2>
 								<ul class="d-block p-0 my-3">
@@ -77,6 +75,7 @@
 								</ul>
 								<h3 class="backTo"><a href="{{url('products')}}"><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i> &nbsp; Back to Main Categories</a></h3>	
 							</div>
+
 							<div class="sidebar_enquiry_form">
 								<div class="enquiry_form bg-white ml-0">
 									<div class="form_header">

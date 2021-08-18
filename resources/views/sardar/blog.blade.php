@@ -40,9 +40,10 @@
 			<div class="col-12">
 
 
-				<div class="notinflatables_slider mb-0">
+				<div class="notinflatables_slider row mb-0 ">
 					@foreach($blogs as $blog)
-						<div class="inflatables">
+						<div class="col-md-4 p-2">
+						<div class="inflatables ">
 							<h3 class="InfaTitles">{{$blog->title}}</h3>
 							<div class="img_thumbnail m-auto">
 								<img class="img-fluid" src="{{url('web')}}/media/sm/{{$blog->image}}">
@@ -53,6 +54,7 @@
 							<div class="col-12 mb-4 text-right">	
 								<a href="{{url('blog')}}/{{$blog->slug}}" class="red_btn">READ NOW</a>
 							</div>	
+						</div>
 						</div>
 					@endforeach
 

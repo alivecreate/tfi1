@@ -34,6 +34,30 @@ $( document ).ready(function() {
 $(".video").addClass( "menu-is-opening menu-open");
 $(".video a").addClass( "active-menu");
 
+
+$( ".row_position" ).sortable({
+      stop: function() {
+			var selectedData = new Array();
+            $('.row_position>tr').each(function() {
+                selectedData.push($(this).attr("id"));
+            });
+            console.log(selectedData);
+            updateOrder(selectedData);
+        }
+  });
+
+  function updateOrder(data) {
+  $.ajax({
+      url:"{{url('api')}}/admin/item/update-item-priority",
+      type:'post',
+      data:{position:data, table: 'video'},
+      success:function(result){
+        console.log(result);
+      }
+  })
+}
+
+
 </script>
 @endsection
 
@@ -78,10 +102,10 @@ $(".video a").addClass( "active-menu");
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="row_position">
                     @foreach($videos as $i => $video)
-                      <tr> 
-                        <td>{{++$i}}</td>
+                      <tr id="{{$video->id}}"> 
+                        <td>{{$video->item_no}}</td>
                        
 
                         <td class="youtube_embed1">{!! html_entity_decode($video->youtube_embed) !!}</td>
@@ -127,7 +151,7 @@ $(".video a").addClass( "active-menu");
               </button>
             </div>
             <div class="modal-body">
-            <label>Blog Video</label>
+            <label>Delete Video</label>
             <h5 class="modal-title delete-title">Delete Video</h5>
             </div>
             <div class="modal-footer justify-content-between d-block ">

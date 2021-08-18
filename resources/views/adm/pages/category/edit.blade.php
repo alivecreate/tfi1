@@ -153,7 +153,8 @@ $(".category a").addClass( "active-menu");
                         <input type="file" name="image" class="image " id="image" require><br>
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                       </div>
-
+                      <input type="hidden" name="old_image" value="{{$data->image}}">
+                      
                       <img class="mt-2" width="100" src="{{asset('web')}}/media/xs/{{$data->image}}">
                     </div>
 

@@ -1854,7 +1854,9 @@ module.exports = {
 module.exports = {
   BASE_URL: 'http://localhost/gi/public/',
   API: 'http://localhost/gi/public/api/'
-}; // BASE_URL: 'https://thestudio5.com.au/projects/gi/public/',
+}; // BASE_URL: 'https://www.giantinflatables.in/',
+// API: 'https://www.giantinflatables.in/api/',
+// BASE_URL: 'https://thestudio5.com.au/projects/gi/public/',
 // API: 'https://thestudio5.com.au/projects/gi/public/api/',
 // http://gi.alivecreate.com/
 // BASE_URL: 'https://mailvadodara.com/',

@@ -5,6 +5,10 @@ module.exports = {
   };
 
 
+  // BASE_URL: 'https://www.giantinflatables.in/',
+  // API: 'https://www.giantinflatables.in/api/',
+
+
   // BASE_URL: 'https://thestudio5.com.au/projects/gi/public/',
   // API: 'https://thestudio5.com.au/projects/gi/public/api/',
 

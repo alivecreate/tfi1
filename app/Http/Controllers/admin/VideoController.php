@@ -46,13 +46,15 @@ class VideoController extends Controller
             'title' => 'required',
         ]);
 
-        $list_no = Video::orderBy('created_at', 'desc')->first();
+        
+        $item_no = Video::orderBy('item_no')->first();
 
-        if($list_no){
-            $list_no =  $list_no->id + 1;
+        if($item_no){
+            $item_no =  $item_no->item_no + 1;
         }else{
-            $list_no = 1;
+            $item_no = 1;
         }
+
         if($request->status == null){
             $status = 0;
         }else{
@@ -113,18 +115,21 @@ class VideoController extends Controller
 
         ]);
 
-        $list_no = Video::orderBy('created_at', 'desc')->first();
+        
+        $item_no = Video::orderBy('item_no')->first();
 
-        if($list_no){
-            $list_no =  $list_no->id + 1;
+        if($item_no){
+            $item_no =  $item_no->item_no + 1;
         }else{
-            $list_no = 1;
+            $item_no = 1;
         }
+
         if($request->status == null){
             $status = 0;
         }else{
             $status = 1;
         }
+
 
         
         $video =  Video::find($id);

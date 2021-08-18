@@ -6,6 +6,9 @@ use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\api\MediaApiController;
 
+use App\Http\Controllers\api\SliderController;
+use App\Http\Controllers\api\ItemPriorityController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,6 +42,12 @@ Route::resource('photos.comments', PhotoController::class);
 Route::get('get/getPetaKacheri/{id}',[CategoryController::class, 'getPetaKacheri']);
 Route::get('get/getDepartment/{id}',[CategoryController::class, 'getDepartment']);
 
+// Route::post('admin/slider/update-list',[MediaApiController::class, 'updateProductImage']);
+
+// Item No Update wia drag nd drop
+
+Route::post('/admin/slider/update-status',[SliderController::class, 'update_list_no'])->name('slider.update-status');
+Route::post('/admin/item/update-item-priority',[ItemPriorityController::class, 'updateItemNo'])->name('item.update-priority');
 
 
 // Route::post('/admin/category/departmentStore', [CategoryController::class, 'departmentStore'])->name('admin.category.departmentStore');

@@ -15,7 +15,7 @@ class CreateTestimonialsTable extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->text('list_no')->nullable();
+            $table->text('item_no')->nullable();
             $table->text('image')->nullable();
             $table->string('client_name')->nullable();
             $table->text('title')->nullable();

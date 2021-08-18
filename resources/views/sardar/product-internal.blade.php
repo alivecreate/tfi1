@@ -16,19 +16,19 @@
 					<h1>TOP INFLATABALES</h1>
 				</div>	
 
-				<div class="ParentclickExplore">
-					<div class="c_explores"><a href="#;" class="btn clickExplore active"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr"> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> High Visibility &amp; Events </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-				</div>
-				<div class="ParentclickExplore">
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr"> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
-					<div class="c_explores"><a href="#;" class="btn clickExplore"><img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png"><img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr "> Trade Shows </a></div>
+				<div class="ParentclickExplore row">
+				@foreach($topCategories as $key => $topCategory)
+					<div class="c_explores col-md-2"><a href="{{url('product')}}/{{$topCategory->slug}}" 
+					class="btn clickExplore active">
+					@if($key == 0)
+						<img class="noHvr" src="{{url('sardar')}}/images/link_hand_icon.png">
+					@else
+						<img src="{{url('sardar')}}/images/active_link_icon.png" class="InHvr">
+					@endif
+					
+					{{$topCategory->name}} </a></div>
+				@endforeach
+				
 				</div>		
 			</div>	
 		</div>	
@@ -63,15 +63,9 @@
 							<div class="sub_categories">
 								<h2>SUB CATEGORIES</h2>
 								<ul class="d-block p-0 my-3">
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
-									<li><a href="#;"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
+									@foreach($current_sub_categories as $current_sub_category)
+										<li><a href="{{url('product')}}/$slug/{{$current_sub_category->slug}}"><i class="fa fa-chevron-right"></i>Fields, Arenas, And Courts</a></li>
+									@endforeach
 								</ul>
 								<h3 class="backTo"><a href=""><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i> &nbsp; Back to Main Categories</a></h3>	
 							</div>

@@ -8,6 +8,9 @@
     height: auto !important;
 }
 
+.row_position td:hover{
+    cursor:move;
+}
 
 .table-border-none tr td:hover, .table-border-none tr:hover{
 color: #212529;

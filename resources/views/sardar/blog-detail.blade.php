@@ -9,6 +9,16 @@
 
 
 
+<section class="Top_Details bg-white">
+		<div class="container-fluid">
+			<div class="col-12">
+				<div class="header-t mb-3">
+					<h1>Blog </h1>
+				</div>	
+
+			</div>		
+		</div>	
+	</section>
 <!-- 
 				<div class="row">
 				@foreach($latestBlogs as $key => $latestBlog)
@@ -41,8 +51,10 @@
 							<div class="">
 
 								<div class="FieldsTexts bg-white w-100 p-2 ml-1">
+                                
+									    <h3>{{$blogDetail->title}}</h3>
 									<div class="text-left">	
-										<p><span class="GreaT"> {{$blogDetail->short_description}} </span></p>	
+									    {{$blogDetail->short_description}}
 										{!! html_entity_decode($blogDetail->full_description) !!}
 									</div>
 								</div>	

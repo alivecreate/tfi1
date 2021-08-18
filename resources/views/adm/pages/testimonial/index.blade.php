@@ -14,6 +14,7 @@
 </style>
 @section('custom-js')
 <script>
+
 $( document ).ready(function() {
   $(".del-modal").click(function(){
     var delete_id = $(this).attr('data-id');
@@ -27,6 +28,28 @@ $( document ).ready(function() {
 
 $(".testimonial").addClass( "menu-is-opening menu-open");
 $(".testimonial a").addClass( "active-menu");
+
+$( ".row_position" ).sortable({
+      stop: function() {
+			var selectedData = new Array();
+            $('.row_position>tr').each(function() {
+                selectedData.push($(this).attr("id"));
+            });
+            console.log(selectedData);
+            updateOrder(selectedData);
+        }
+  });
+
+  function updateOrder(data) {
+  $.ajax({
+      url:"{{url('api')}}/admin/item/update-item-priority",
+      type:'post',
+      data:{position:data, table: 'testimonial'},
+      success:function(result){
+        console.log(result);
+      }
+  })
+}
 
 </script>
 @endsection
@@ -74,10 +97,11 @@ $(".testimonial a").addClass( "active-menu");
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+
+                  <tbody class="row_position">
                     @foreach($testimonials as $i => $testimonial)
-                      <tr> 
-                        <td>{{++$i}}</td>
+                      <tr id="{{$testimonial->id}}"> 
+                        <td>{{$testimonial->item_no}}</td>
                         @if(isset($testimonial->image))
                         <td><img class="img-circle elevation-2 object-fit"  height="30" width="30"
                           src="{{asset('web')}}/media/xs/{{$testimonial->image}}"></td>

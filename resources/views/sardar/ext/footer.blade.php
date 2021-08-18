@@ -35,7 +35,8 @@
 
 				<div class="notinflatables_slider">
 					<div class="inflatables">
-						<div class="top-buttons infa_bg d-flex align-items-center"> <img src="{{url('sardar')}}/images/speak-icon.png" class="d-inline-block mr-3"> Client's Speak </div>
+						<div class="top-buttons infa_bg d-flex align-items-center"> 
+						<img src="{{url('sardar')}}/images/speak-icon.png" class="d-inline-block mr-3"> Client's Speak </div>
 						<div class="body_media mb-4">
 							<div class="img_thumbnail m-auto">
 								<img class="img-fluid" src="{{url('web')}}/media/sm/{{$footerTestimonial->image}}">
@@ -45,7 +46,7 @@
 								{!! html_entity_decode($footerTestimonial->title) !!}	
 								</div>
 								<div class="col-12 text-center">	
-									<a href="#;" class="d-inline-block red_btn">SEE ALL</a>
+									<a href="{{url('testimonials')}}" class="d-inline-block red_btn">SEE ALL</a>
 								</div>	
 							</div>	
 						</div>	
@@ -63,7 +64,7 @@
 									<p>{{$footerVideo->title}} </p>
 								</div>		
 								<div class="col-12 text-center">	
-									<a href="#;" class="d-inline-block red_btn">VIEW ALL</a>
+									<a href="{{url('videos')}}" class="d-inline-block red_btn">VIEW ALL</a>
 								</div>	
 							</div>	
 						</div>	
@@ -79,7 +80,7 @@
 									<p>{{$footerBlog->title}} </p>
 								</div>
 								<div class="col-12 text-center">	
-									<a href="#;" class="d-inline-block red_btn">CHECK ALL</a>
+									<a href="{{url('blog')}}" class="d-inline-block red_btn">CHECK ALL</a>
 								</div>	
 							</div>	
 						</div>
@@ -245,11 +246,13 @@
 						<div class="bootomex_inner">
 							<div class="bootomhead-slide">Information</div>
 							<ul class="d-block pl-3">
-								<li><a href="#;">Home</a></li>
-								<li><a href="#;">Our products</a></li>
-								<li><a href="#;">About</a></li>
-								<li><a href="#;">Blog</a></li>
-								<li><a href="#;">Contact</a></li>
+
+								<li><a href="{{url('')}}">Home</a></li>
+								<li><a href="{{url('products')}}">Our products</a></li>
+								<li><a href="{{url('about')}}">About</a></li>
+								<li><a href="{{url('blog')}}">Blog</a></li>
+								<li><a href="{{url('contact')}}">Contact</a></li>
+
 							</ul>
 						</div>						
 					</div>
@@ -257,39 +260,33 @@
 						<div class="bootomex_inner">
 							<div class="bootomhead-slide">Categories</div>
 							<ul class="d-block pl-3 p-xl-0">
-								<li><a href="#;">Custom inflatables Games</a> </li>
-								<li><a href="#;">Fields, Arenas</a> </li>
-								<li><a href="#;">Fields, Arenas, And</a> </li>
-								<li><a href="#;">Arenas Courts</a> </li>
-								<li><a href="#;">FArenas, And Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
+							@foreach($footerCategories as $footerCategory2)
+								<li><a href="{{url('product')}}/{{$footerCategory2->slug}}">{{$footerCategory2->name}}</a> </li>
+							@endforeach
 							</ul>
 						</div>						
 					</div>
+					
 					<div class="bootomexplore-slide">
 						<div class="bootomex_inner">
 							<div class="bootomhead-slide">Products</div>
 							<ul class="d-block pl-3 p-xl-0">
-								<li><a href="#;">Custom inflatables Games</a> </li>
-								<li><a href="#;">Fields, Arenas</a> </li>
-								<li><a href="#;">Fields, Arenas, And</a> </li>
-								<li><a href="#;">Arenas Courts</a> </li>
-								<li><a href="#;">FArenas, And Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
+								@foreach($footerProducts as $footerProduct2)
+									<li><a href="{{url('product-detail')}}/{{$footerProduct2->slug}}">{{$footerProduct2->name}}</a> </li>
+								@endforeach
+								
 							</ul>
 						</div>						
 					</div>
+
 					<div class="bootomexplore-slide">
 						<div class="bootomex_inner">
 							<div class="bootomhead-slide">Blog</div>
 							<div class="blog-text">
-								<a href="#;">Lorem ipsum dolor sit adipiscing elit, sed do eiusmod tempor.</a>
-								<a href="#;">sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
-								<a href="#;">consectetur adipiscing elit, sed magna aliqua.</a>
-								<a href="#;">Lorem ipsum dolor sit amet</a>
-								<a href="#;">consectetur adipiscing elit, sed magna aliqua.</a>
+							
+							@foreach($footerBlogs as $footerBlog2)
+								<a href="{{url('blog')}}/{{$footerBlog2->slug}}">{{$footerBlog2->title}}</a>
+							@endforeach
 							</div>	
 						</div>						
 					</div>
@@ -297,14 +294,10 @@
 						<div class="bootomex_inner">
 							<div class="bootomhead-slide">Testimonials</div>
 							<ul class="d-block pl-3 p-xl-0">
-								<li><a href="#;">Custom inflatables Games</a> </li>
-								<li><a href="#;">Fields, Arenas</a> </li>
-								<li><a href="#;">Fields, Arenas, And</a> </li>
-								<li><a href="#;">Arenas Courts</a> </li>
-								<li><a href="#;">FArenas, And Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
-								<li><a href="#;">Fields Courts</a> </li>
+							
+							@foreach($footerTestimonials as $footerTestimonial2)
+								<li><a href="{{url('testimonials')}}">{{$footerTestimonial2->title}}</a> </li>
+							@endforeach
 							</ul>
 						</div>						
 					</div>
@@ -322,8 +315,15 @@
 		<div class="container-fluid">	
 			<div class="site-footer">	
 				<ul>
-					<li><a href="#;">@ Giant Inflatables. All rights reserved. </a></li>		
-					<li><p class="text-dark">This website is Designed & Developed by</p> <a href="#;"><img src="{{url('sardar')}}/images/studio5_logo.jpg" class="img-fluid"></a></li>	<li><p>This Website is protected <img src="{{url('sardar')}}/images/dmca.png" width="100" class="img-fluid ml-3"></p></li>
+					<li><a href="#;">@ Giant Inflatables. All rights reserved. </a></li>
+					<li><a href="https://searchmediabroker.com/">
+					<p class="text-dark">SEO-SEM-SMM-PPC By:</p>
+						<img src="{{url('sardar')}}/images/smb-logo.png" width="200" class="img-fluid"></a>
+					</li>		
+					<li><p class="text-dark">This website is Designed & Developed by</p> 
+					<a href="https://thestudio5.com.au/"><img src="{{url('sardar')}}/images/studio5_logo.jpg"  class="img-fluid"></a></li>	
+					<li><p>This Website is protected <img src="{{url('sardar')}}/images/dmca.png" width="100" class="img-fluid ml-3"></p></li>
+				
 				</ul>
 			</div>	
 		</div>	

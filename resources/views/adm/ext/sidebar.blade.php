@@ -311,16 +311,16 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-suitcase"></i>
               <p>
-                Inflatables World
+                Block Control
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
             
               <li class="nav-item">
-                <a href="{{route('client.index')}}" class="nav-link">
+                <a href="{{route('topInflatable.create')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
-                  <p>Client</p>
+                  <p>Top Inflatables</p>
                 </a>
               </li>
 

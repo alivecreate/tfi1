@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\home\HomeController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\SliderController;
+
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\AdminAuthController;
 use App\Http\Controllers\admin\EmployeeController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\VideoController;
 use App\Http\Controllers\admin\PageController;
+use App\Http\Controllers\admin\BlockControlController;
 
 
 
@@ -48,11 +50,14 @@ use App\Http\Controllers\admin\PageController;
 
 
 Route::get('', [HomeController::class, 'index']);
+
 Route::get('about', [HomeController::class, 'about']);
 Route::get('products', [HomeController::class, 'product']);
 Route::get('products/{slug}', [HomeController::class, 'product_internal']);
 
 Route::get('product-detail/{slug}', [HomeController::class, 'product_details']);
+
+Route::get('product/{slug}', [HomeController::class, 'product_internal']);
 
 Route::get('blog/{slug}', [HomeController::class, 'blog_details']);
 
@@ -78,52 +83,66 @@ Route::get('research-development', [HomeController::class, 'research_development
 //     Route::resource('/admin',DashboardController::class);
 // });
 
-Route::resource('/admin/slider',SliderController::class);
-// Route::resource('/admin/top-inflatables',SliderController2::class);
-
-Route::get('/admin/top-inflatable', [HomeEditorController::class, 'topInflatableCreate'])->name('top.inflatable');
-Route::post('/admin/top-inflatable/store', [HomeEditorController::class, 'topInflatableStore'])->name('top.inflatable.store');
-Route::delete('/admin/top-inflatable/delete/{id}', [HomeEditorController::class, 'topInflatableDelete'])->name('top.inflatable.delete');
-
-Route::get('/admin/page-editor/about', [PageController::class, 'aboutPageEditor'])->name('about-page.editor');
-Route::get('/admin/page-editor/product', [PageController::class, 'productPageEditor'])->name('product-page.editor');
-Route::get('/admin/page-editor/testimonial', [PageController::class, 'testimonialPageEditor'])->name('testimonial-page.editor');
-Route::get('/admin/page-editor/video', [PageController::class, 'videoPageEditor'])->name('video-page.editor');
-Route::get('/admin/page-editor/blog', [PageController::class, 'blogPageEditor'])->name('blog-page.editor');
-Route::get('/admin/page-editor/contact', [PageController::class, 'contactPageEditor'])->name('contact-page.editor');
-
-Route::post('/admin/page-editor/store', [PageController::class, 'pageEditorStore'])->name('page-editor.store');
-
-
-Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('home.editor');
-
-Route::post('/admin/about-store', [HomeEditorController::class, 'homeEditorAboutStore'])->name('about.store');
-
-Route::post('/admin/url-list1/store', [HomeEditorController::class, 'urlListStore1'])->name('url-list1.store');
-Route::delete('/admin/url-list1/delete/{id}', [HomeEditorController::class, 'urlListDelete1'])->name('url-list1.delete');
-
-Route::get('/admin/url-group', [UrlGroupController::class, 'UrlGroupIndex'])->name('url.group');
-Route::get('/admin/settings/social-media', [SettingController::class, 'socialMediaIndex'])->name('setting.social-media');
-Route::post('/admin/settings/social-media', [SettingController::class, 'socialMediaStore'])->name('setting.social-media.store');
-
-
-// Route::resource('/admin/employee',EmployeeController::class);
-
 Route::post('/admin/register/save', [AdminAuthController::class, 'save'])->name('register.save');
 Route::post('/admin/auth/check', [AdminAuthController::class, 'check'])->name('auth.check');
 
 Route::get('/admin/auth/logout', [AdminAuthController::class, 'logout'])->name('auth.logout');
 
-// Route::get('/admin/category/petaKacheriStore',[CategoryController::class, 'petaKacheriStore'])->name('admin.petaKacheriStore');
-Route::post('/admin/category/subCategoryStore', [CategoryController::class, 'subCategoryStore'])->name('admin.category.subCategoryStore');
-Route::post('/admin/category/subCategory2Store', [CategoryController::class, 'subCategory2Store'])->name('admin.category.subCategory2Store');
+Route::get('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+Route::get('/admin/register', [AdminAuthController::class, 'register']);
 
-Route::get('/admin/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('admin.category.delete');
-
+Route::get('/admin', [DashboardController::class, 'index'])->name('admin.index');
 
 Route::group(['middleware'=> ['AuthCheck']], function(){
     
     
+
+    // Route::post('/admin/slider/update-status',[SliderController::class, 'update_list_no'])->name('slider.update-status');
+    
+    Route::resource('/admin/slider',SliderController::class);
+
+    
+    Route::get('/admin/block-control/top-inflatables',[BlockControlController::class, 'topInflatableCreate'])->name('topInflatable.create');
+    Route::post('/admin/block-control/top-inflatables',[BlockControlController::class, 'topInflatableStore'])->name('topInflatable.store');
+    
+
+    // Route::get('/admin/top-inflatable', [HomeEditorController::class, 'topInflatableCreate'])->name('top.inflatable');
+    // Route::post('/admin/top-inflatable/store', [HomeEditorController::class, 'topInflatableStore'])->name('top.inflatable.store');
+    
+    Route::delete('/admin/top-inflatable/delete/{id}', [HomeEditorController::class, 'topInflatableDelete'])->name('top.inflatable.delete');
+    
+    Route::get('/admin/page-editor/about', [PageController::class, 'aboutPageEditor'])->name('about-page.editor');
+    Route::get('/admin/page-editor/product', [PageController::class, 'productPageEditor'])->name('product-page.editor');
+    Route::get('/admin/page-editor/testimonial', [PageController::class, 'testimonialPageEditor'])->name('testimonial-page.editor');
+    Route::get('/admin/page-editor/video', [PageController::class, 'videoPageEditor'])->name('video-page.editor');
+    Route::get('/admin/page-editor/blog', [PageController::class, 'blogPageEditor'])->name('blog-page.editor');
+    Route::get('/admin/page-editor/contact', [PageController::class, 'contactPageEditor'])->name('contact-page.editor');
+    
+    Route::post('/admin/page-editor/store', [PageController::class, 'pageEditorStore'])->name('page-editor.store');
+    
+    
+    Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('home.editor');
+    
+    Route::post('/admin/about-store', [HomeEditorController::class, 'homeEditorAboutStore'])->name('about.store');
+    
+    Route::post('/admin/url-list1/store', [HomeEditorController::class, 'urlListStore1'])->name('url-list1.store');
+    Route::delete('/admin/url-list1/delete/{id}', [HomeEditorController::class, 'urlListDelete1'])->name('url-list1.delete');
+    
+    Route::get('/admin/url-group', [UrlGroupController::class, 'UrlGroupIndex'])->name('url.group');
+    Route::get('/admin/settings/social-media', [SettingController::class, 'socialMediaIndex'])->name('setting.social-media');
+    Route::post('/admin/settings/social-media', [SettingController::class, 'socialMediaStore'])->name('setting.social-media.store');
+    
+    
+    // Route::resource('/admin/employee',EmployeeController::class);
+    
+    
+    // Route::get('/admin/category/petaKacheriStore',[CategoryController::class, 'petaKacheriStore'])->name('admin.petaKacheriStore');
+    Route::post('/admin/category/subCategoryStore', [CategoryController::class, 'subCategoryStore'])->name('admin.category.subCategoryStore');
+    Route::post('/admin/category/subCategory2Store', [CategoryController::class, 'subCategory2Store'])->name('admin.category.subCategory2Store');
+    
+    Route::get('/admin/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('admin.category.delete');
+    
+
 
 
 Route::resources([
@@ -160,10 +179,8 @@ Route::resources([
     
     Route::get('/admin/dashboard2',[DashboardController::class, 'dashboard2'])->name('admin.dashboard2');
     Route::get('/admin/test',[DashboardController::class, 'test'])->name('admin.test');
-    Route::get('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
-    Route::get('/admin/register', [AdminAuthController::class, 'register']);
     
-    Route::get('/admin/dashboard', [AdminAuthController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin', [AdminAuthController::class, 'dashboard'])->name('admin.dashboard');
 });
 
 // Route::resources([

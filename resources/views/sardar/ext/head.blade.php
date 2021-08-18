@@ -38,6 +38,15 @@
   	<link rel="stylesheet" type="text/css" href="{{url('sardar')}}/css/slick.css"/>
   	<link rel="stylesheet" type="text/css" href="{{url('sardar')}}/css/slick-theme.css"/>
   	<link rel="stylesheet" type="text/css" href="{{url('sardar')}}/css/custom.css"/>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141287418-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-141287418-1');
+</script>
 
 	<title>Home | GIANT</title>
 	<meta charset="utf-8">

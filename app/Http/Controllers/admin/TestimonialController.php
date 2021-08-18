@@ -17,7 +17,7 @@ class TestimonialController extends Controller
     {
         
         $data = [
-            'testimonials' =>  Testimonials::orderBy('id', 'DESC')->get()
+            'testimonials' =>  Testimonials::orderBy('item_no')->get()
         ];
         return view('adm.pages.testimonial.index', $data);
     }
@@ -45,12 +45,13 @@ class TestimonialController extends Controller
         $request->validate([
         ]);
 
-        $list_no = Testimonials::orderBy('created_at', 'desc')->first();
+         
+        $item_no = Testimonials::orderBy('item_no', 'desc')->first();
 
-        if($list_no){
-            $list_no =  $list_no->id + 1;
+        if($item_no){
+            $item_no =  $item_no->item_no + 1;
         }else{
-            $list_no = 1;
+            $item_no = 1;
         }
         if($request->status == null){
             $status = 0;
@@ -60,7 +61,7 @@ class TestimonialController extends Controller
         $image_name = uploadImageThumb($request);
         $testimonial = new Testimonials;
         $testimonial->client_name = $request->client_name;
-        $testimonial->list_no = $list_no;
+        $testimonial->item_no = $item_no;
         $testimonial->title = $request->title;
         $testimonial->short_description = $request->short_description;
         $testimonial->full_description= $request->full_description;
@@ -116,13 +117,13 @@ class TestimonialController extends Controller
 
         ]);
 
-        $list_no = Testimonials::orderBy('created_at', 'desc')->first();
-
-        if($list_no){
-            $list_no =  $list_no->id + 1;
+        $item_no = Testimonials::orderBy('item_no', 'desc')->first();
+        if($item_no){
+            $item_no =  $item_no->item_no + 1;
         }else{
-            $list_no = 1;
+            $item_no = 1;
         }
+
         if($request->status == null){
             $status = 1;
         }else{
@@ -137,7 +138,7 @@ class TestimonialController extends Controller
         
         $testimonial =  Testimonials::find($id);
         $testimonial->client_name = $request->client_name;
-        $testimonial->list_no = $list_no;
+        $testimonial->item_no = $item_no;
         $testimonial->title = $request->title;
         $testimonial->short_description = $request->short_description;
         $testimonial->full_description= $request->full_description;

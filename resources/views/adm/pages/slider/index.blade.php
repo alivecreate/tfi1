@@ -6,6 +6,10 @@
 @endsection
 
 @section('custom-js')
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+
 <script>
 $( document ).ready(function() {
   $(".del-modal").click(function(){
@@ -22,6 +26,32 @@ $( document ).ready(function() {
 
 $(".slider").addClass( "menu-is-opening menu-open");
 $(".slider a").addClass( "active-menu");
+
+</script>
+<script type="text/javascript">
+
+$( ".row_position" ).sortable({
+      stop: function() {
+			var selectedData = new Array();
+            $('.row_position>tr').each(function() {
+                selectedData.push($(this).attr("id"));
+            });
+            console.log(selectedData);
+            updateOrder(selectedData);
+        }
+  });
+
+
+function updateOrder(data) {
+  $.ajax({
+      url:"{{url('api')}}/admin/slider/update-status",
+      type:'post',
+      data:{position:data},
+      success:function(result){
+        console.log(result);
+      }
+  })
+}
 
 </script>
 @endsection
@@ -71,7 +101,7 @@ $(".slider a").addClass( "active-menu");
                     <input type="hidden" class="form-control">
                       
                       <input type="text" class="form-control" name="title"
-                         placeholder="Slider Title">
+                         placeholder="Slider Title" required>
                          
                       <span class="text-danger">@error('title') {{$message}} @enderror</span>
                     </div>
@@ -95,21 +125,21 @@ $(".slider a").addClass( "active-menu");
                     </div>
                   </div>
 
-                  <div class="form-group row">
+                  <!-- <div class="form-group row">
                     <div class="col-sm-12">
                       <textarea class="form-control" name="youtube_embed"
                          placeholder="Add Youtube Embed Code"></textarea>
 
                       <span class="text-danger">@error('youtube_embed') {{$message}} @enderror</span>
                     </div>
-                  </div>
+                  </div> -->
                   
                   
                 <div class="form-group row">
                     
                     <div class="col-sm-12">
                     <input type="file" class="" 
-                      name="image" placeholder="Slider Image">
+                      name="image" placeholder="Slider Image" required>
                       </div>
                   </div>
 
@@ -140,9 +170,10 @@ $(".slider a").addClass( "active-menu");
               
             <div class="card">
               <div class="card-body">
-                <table id="example2" class="table table-bordered table-striped">
+                <table id="example2 " class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>Id</th>
                     <th>Image</th>
                     <th>Title</th>
                     <th>Descriptions</th>
@@ -150,9 +181,11 @@ $(".slider a").addClass( "active-menu");
                     <th>Action</th>
                   </tr>
                   </thead>
-                  <tbody>
-                    @foreach($sliders as $slider)
-                      <tr>
+
+                  <tbody class="row_position">
+                    @foreach($sliders as $key => $slider)
+                      <tr id="{{$slider->id}}">
+                      <td>{{$slider->slider_no}}</td>
                         <td><img width="100" src="{{url('web')}}/media/sm/{{$slider->image}}"></td>
                         <td>{{$slider->title}}</td>
                         <td>{{$slider->Descriptions}}</td>
@@ -185,7 +218,6 @@ $(".slider a").addClass( "active-menu");
                 </table>
                 
               </div>
-              <!-- /.card-body -->
             </div>
 
             </div>
