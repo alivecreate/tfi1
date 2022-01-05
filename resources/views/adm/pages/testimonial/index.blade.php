@@ -13,6 +13,21 @@
 }
 </style>
 @section('custom-js')
+<!-- DataTables  & Plugins -->
+<script src="{{url('adm')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{url('adm')}}/plugins/jszip/jszip.min.js"></script>
+<script src="{{url('adm')}}/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{url('adm')}}/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
 <script>
 
 $( document ).ready(function() {
@@ -51,6 +66,27 @@ $( ".row_position" ).sortable({
   })
 }
 
+function updateStatus($id) {
+  $.ajax({
+      url:"{{route('status.update')}}",
+      type:'post',
+      data:{id:$id, table: 'testimonial'},
+      success:function(result){
+        // console.log(result);
+        location.reload();
+
+      }
+  })
+}
+
+
+$(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false,
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+  });
+
 </script>
 @endsection
 
@@ -60,17 +96,34 @@ $( ".row_position" ).sortable({
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Testimonial List</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+
+      
+    <div class="row">
+      
+      <div class="col-sm-6">
+            <ol class="breadcrumb ">
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">Testimonial List</li>
             </ol>
           </div>
+
+        
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+          <ol class="breadcrumb float-sm-right"><a href="{{route('testimonials.create')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                  &nbsp;&nbsp;Add New Testimonial </a>
+              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
+              
+          </ol>
         </div>
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1>Testimonial List</h1>
+          </div>
+        </div>
+    </div>
+
+
       </div>
     </section>
 
@@ -82,19 +135,17 @@ $( ".row_position" ).sortable({
           <div class="col-12">
             <div class="card">
               
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover bg-nowrap" p-1>
+              <div class="card-body table-responsive p-0">                
+                <table  id="example1" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
                       <th>ID</th>
                       <th>Image</th>
                       <th>Client Name</th>
-                      <th>Title</th>
                       <th>Short Description</th>
-                      <th>Full Description</th>
                       <th>Youtube Embed</th>
                       <th>Status</th>
-                      <th>Action</th>
+                      <th width="100">Action</th>
                     </tr>
                   </thead>
 
@@ -102,28 +153,43 @@ $( ".row_position" ).sortable({
                     @foreach($testimonials as $i => $testimonial)
                       <tr id="{{$testimonial->id}}"> 
                         <td>{{$testimonial->item_no}}</td>
-                        @if(isset($testimonial->image))
-                        <td><img class="img-circle elevation-2 object-fit"  height="30" width="30"
-                          src="{{asset('web')}}/media/xs/{{$testimonial->image}}"></td>
-                          @else
+                        
 
-                        <td><img class="img-circle elevation-2"  height="30" width="30"
+                        @if(isset($testimonial->image))
+                          <td><img class="rounded"  width="150"
+                            src="{{asset('web')}}/media/xs/{{$testimonial->image}}"></td>
+                        @else
+
+                          <td><img class="rounded"  width="150"
                           src="{{asset('adm')}}/img/no-item.jpeg"></td>
-                          @endif
+                        @endif
 
                         <td>{{$testimonial->client_name}}</td>
-                        <td>{{$testimonial->title}}</td>
                         <td>{{$testimonial->short_description}}</td>
-                        <td>{!! html_entity_decode($testimonial->full_description) !!}</td>
                         <td class="youtube_embed1">{!! html_entity_decode($testimonial->youtube_embed) !!}</td>
                         
 							
-                        <td>@if($testimonial->status == 0)<p class="badge badge-danger">Inactive</p>@else<p class="badge badge-success">Active</p>@endif</td>
-                        
                         <td>
+                         
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                        id="exampleCheck1"
                         
-                          <a href="{{route('testimonials.edit',$testimonial->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit Testimonials"><i class="far fa-edit"></i></a>
-                           <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete product"  data-id="{{url('admin')}}/testimonials/{{ $testimonial->id}}" data-title="{{ $testimonial->client_name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                          onClick="updateStatus({{$testimonial->id}})"
+                          @if($testimonial->status == 1)checked
+                          @endif 
+                          @if(old('status'))checked
+                          @endif
+                          />
+                          
+                        @if($testimonial->status == 0)
+                        <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
+                    </div>	
+                        </td>
+                        <td width="150">
+                        
+                          <a href="{{route('testimonials.edit',$testimonial->id)}}" class="btn btn-sm btn-info float-left mr-2"  title="Edit Testimonials"><i class="far fa-edit"></i></a>
+                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Testimonial"  data-id="{{route('admin.index')}}/testimonials/{{ $testimonial->id}}" data-title="{{ $testimonial->client_name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                           </button>
                       
                       
@@ -148,7 +214,7 @@ $( ".row_position" ).sortable({
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Delete product</h4>
+              <h4 class="modal-title">Delete Testimonial</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

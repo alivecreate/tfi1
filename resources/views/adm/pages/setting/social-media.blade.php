@@ -38,7 +38,7 @@ $(".setting a").addClass( "active-menu");
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">Settings / Social media</li>
             </ol>
           </div>
@@ -50,12 +50,12 @@ $(".setting a").addClass( "active-menu");
     <div class="card-body">
                 	<div class="row">
                     <div class="col-md-10">
-                    <form role="form" action="{{ route('setting.social-media.store') }}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{ route('admin.setting.social-media.store') }}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                     <h5 class="text-danger text-center">Social Button</h5>
                       <table class="table">
                         <tr>
-                          <td wodth="30%"><label for="title">Facebook</label></td>
+                          <td width="30%"><label for="title">Facebook</label></td>
                           <td><input type="url" class="form-control" id="facebook"  name="facebook" value="@if(old('facebook')){{old('facebook')}}@else{{$socialMedia->facebook}}@endif" placeholder="Facebook Profile"></td>
                         </tr>
                         <tr>
@@ -75,6 +75,16 @@ $(".setting a").addClass( "active-menu");
                           <td><input type="text" class="form-control" id="linkedin"  name="linkedin" value="@if(old('linkedin')){{old('linkedin')}}@else{{$socialMedia->linkedin}}@endif" placeholder="LinkedIn Profile"></td>
                         </tr>
                         <tr>
+                          <td><label for="title">Pinterest</label></td>
+                          <td><input type="text" class="form-control" id="pinterest"  name="pinterest" value="@if(old('pinterest')){{old('pinterest')}}@else{{$socialMedia->pinterest}}@endif" placeholder="pinterest Profile"></td>
+                        </tr>
+                        <tr>
+                          <td><label for="title">Skype</label></td>
+                          <td><input type="text" class="form-control" id="skype"  name="skype" value="@if(old('skype')){{old('skype')}}@else{{$socialMedia->skype}}@endif" placeholder="Skype Profile"></td>
+                        </tr>
+
+                        
+                        <tr>
                           <td><label for="title">Email Id</label></td>
                           <td><input type="text" class="form-control" id="email"  name="email" value="@if(old('email')){{old('email')}}@else{{$socialMedia->email}}@endif" placeholder="Email Id"></td>
                         </tr>
@@ -90,6 +100,11 @@ $(".setting a").addClass( "active-menu");
                         <tr>
                           <td><label for="title">Whatsapp Group</label></td>
                           <td><input type="text" class="form-control" id="whatsapp_group"  name="whatsapp_group" value="@if(old('whatsapp_group')){{old('whatsapp_group')}}@else{{$socialMedia->whatsapp_group}}@endif" placeholder="Whatsapp Group Link"></td>
+                        </tr>
+
+                        <tr>
+                          <td><label for="address">Address</label></td>
+                          <td><textarea type="text" class="form-control" id="address"  name="address" placeholder="Address Here">@if(old('address')){{old('address')}}@else{{$socialMedia->address}}@endif</textarea></td>
                         </tr>
 
                       <tr>

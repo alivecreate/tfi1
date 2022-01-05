@@ -38,7 +38,7 @@
     <div class="card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="{{route('register.save')}}" method="post">
+      <form action="{{route('admin.register.save')}}" method="post">
         @csrf
         <div class="input-group mb-3">
           <input type="text" class="form-control"  name="name" 
@@ -102,7 +102,7 @@
         </a>
       </div> -->
 
-      <a href="{{url('admin')}}/login" class="text-center">I already have a membership</a>
+      <a href="{{route('admin.index')}}/login" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

@@ -26,7 +26,7 @@ $(".task-assign a").addClass( "active-menu");
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">task</li>
             </ol>
           </div>
@@ -107,7 +107,7 @@ $(".task-assign a").addClass( "active-menu");
                                     <span class="direct-chat-timestamp float-right text-sm">{{dateFormat($task_comment->created_at, 'm-d-y')}} {{dateFormatGujDay($task_comment->created_at, 'l')}}
                                         
                                         @if($task_comment->admin_id == session('LoggedUser')->id)
-                                            <form class="float-right" action="{{route('admin.taskComment.delete',$task_comment->id)}}" method="post">
+                                            <form class="float-right" action="{{route('taskComment.delete',$task_comment->id)}}" method="post">
                                                 @csrf
                                                 <button class="mr-2 btn btn-tool"><i class="fas fa-trash-alt"></i></button>
                                             </form>
@@ -186,7 +186,7 @@ $(".task-assign a").addClass( "active-menu");
                             </div>
                             
                             <div class="card-footer">
-                            <form action="{{route('admin.taskComment.store')}}" method="post">
+                            <form action="{{route('taskComment.store')}}" method="post">
                                 @csrf
                                 <div class="input-group">
                                 <input type="hidden" name="admin_id" value="{{session('LoggedUser')->id}}">

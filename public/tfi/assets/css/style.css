@@ -1,0 +1,72 @@
+.animate
+{
+transition: all 0.1s;
+-webkit-transition: all 0.1s;
+}
+.action-button
+{
+position: relative;
+padding:12px 19px 4px 19px;
+border-radius:13px;
+font-size:28px;
+color: #000;
+text-decoration: none; font-weight:bold}
+.btn-secondary {background:url(../images/curve.png) #ff9801 no-repeat 3px 3px;border-bottom: 5px solid #fa7a00; font-family:'BAHNSCHRIFT1'; letter-spacing:2px}
+.btn-secondary:hover {background:url(../images/curve.png) no-repeat 3px 3px #5c5c5c }
+.action-button:active{transform: translate(0px,5px);-webkit-transform: translate(0px,5px);}
+/*nav*/
+
+/*video header*/
+.vimeo-wrapper {
+   position: relative;
+   top:0;
+   left: 0;
+   width: 100%;
+   height:783px;
+   z-index: -1;
+   pointer-events: none;
+   overflow: hidden; margin-top:57px
+}
+.vimeo-wrapper iframe {
+   width: 100vw;
+   height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+   min-height: 100vh;
+   min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+/*video header*/
+
+/*our-clients*/
+.heading-line h2 {font-size: 40px;
+line-height: 34px;
+margin:70px 0 24px 0;
+padding:0 0 14px 0; border-bottom:solid 2px #ff8500}
+.logo-boder { border:solid 1px #c4c3c3; border-radius:20px; overflow:hidden; text-align:center; width:100%;}
+
+/*our-clients*/
+
+
+.social-media a {margin-right:12px; display:inline-block} 
+.social-media a:hover img {opacity:0.9}
+
+/*breadcrumb */
+.breadcrumb-nav2 { margin-top:20px; margin-bottom:20px;}
+.breadcrumb-nav { margin-top:80px; margin-bottom:60px;}
+.breadcrumb  {font-size:20px; color:#000}
+.breadcrumb a:hover {color:#e57d00}
+.breadcrumb a {color:#000}
+.breadcrumb-item.active {color:#e57d00}
+.footer-2 {margin-top:65px!important}
+
+@media (min-width:991px) {.desk { margin-bottom:76px!important}}
+@media (min-width:499px) {.studio-showreel2 { margin:0; position:absolute; top:-50px; right:0;}}
+/*breadcrumb */
+
+
+.awards-logo { margin:0 auto; max-width:1461px}
+.owl-carousel .owl-item img { display:inline-block!important}
+
+.awards-logo  .owl-dots {margin-top:15px!important}

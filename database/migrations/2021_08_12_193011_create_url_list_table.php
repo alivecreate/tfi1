@@ -15,9 +15,11 @@ class CreateUrlListTable extends Migration
     {
         Schema::create('url_list', function (Blueprint $table) {
             $table->id();
+
+            $table->text('item_no')->nullable();
+            $table->text('item_id')->nullable();
+            $table->text('name')->nullable();
             $table->text('type')->nullable();
-            $table->text('title')->nullable();
-            $table->text('target')->nullable();
             $table->text('url')->nullable();
             $table->integer('status')->default(0)->nullable();
             $table->timestamps();

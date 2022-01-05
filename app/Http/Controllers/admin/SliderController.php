@@ -16,7 +16,7 @@ class SliderController extends Controller
     public function index()
     {
         $data = [
-            'sliders' =>  Slider::orderBy('slider_no')->where('status',1)->get()
+            'sliders' =>  Slider::orderBy('slider_no')->get()
         ];
         return view('adm.pages.slider.index', $data);
     }
@@ -39,9 +39,10 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->input());
         $request->validate([
             'title' => 'required',
-            'image' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg|max:'.getMaxUploadSide(),
         ]);
 
         $slider_no = Slider::orderBy('slider_no', 'desc')->first();
@@ -51,6 +52,13 @@ class SliderController extends Controller
         }else{
             $slider_no = 1;
         }
+        
+        if($request->status){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
+        
 
         $image_name = uploadImageThumb($request);
         $slider = new Slider;
@@ -60,8 +68,12 @@ class SliderController extends Controller
         $slider->description = $request->description;
         $slider->url = $request->url;
         $slider->youtube_embed = $request->youtube_embed;
+
+        $slider->meta_title  = $request->meta_title;
+        $slider->meta_keyword  = $request->meta_keyword;
+        $slider->meta_description  = $request->meta_description;
         
-        $slider->status = 1;
+        $slider->status = $status;
         // $slider->admin_id = session('LoggedUser')->id;
         
         $save = $slider->save();
@@ -98,7 +110,20 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+
+        $slider =  Slider::find($id);
+
+        $data = [
+            'sliders' =>  Slider::orderBy('slider_no')->get(),
+            'slider' =>  $slider
+        ];
+        if($slider){
+            return view('adm.pages.slider.edit', $data);
+        }else{
+            return redirect(route('slider.index'))->with('fail', 'Slider Not Available...');
+        }
+
     }
 
     /**
@@ -110,7 +135,50 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        // dd($request->input());
+        $request->validate([
+            'title' => 'required',
+            'image' => 'image|mimes:jpg,png,jpeg|max:'.getMaxUploadSide(),
+        ]);
+
+        if($request->file('image')){
+            $image_name = uploadImageThumb($request);
+        }else{
+            $image_name = $request->old_image;
+        }
+
+        $slider_no = Slider::orderBy('slider_no', 'desc')->first();
+
+        if($request->status){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
+
+        $slider = Slider::find($id);
+        $slider->title = $request->title;
+        $slider->image = $image_name;
+        $slider->description = $request->description;
+        $slider->url = $request->url;
+        $slider->youtube_embed = $request->youtube_embed;
+
+        $slider->meta_title  = $request->meta_title;
+        $slider->meta_keyword  = $request->meta_keyword;
+        $slider->meta_description  = $request->meta_description;
+        
+        $slider->status = $status;
+        // $slider->admin_id = session('LoggedUser')->id;
+        
+        $save = $slider->save();
+
+
+        if($save){
+
+            return back()->with('success', 'Slider Updated...');
+        }else{
+            return back()->with('fail', 'Something went wrong, try again later...');
+        }
     }
 
     /**
@@ -131,21 +199,14 @@ class SliderController extends Controller
     }
 
     public function update_list_no($id){
-        // dd($id);
-        // Slider::find
                  
   	    $i=1;
   		foreach ($data as $key => $value) {
                 $slider = Slider::find($value);
                 $slider->slider_no = $i;
                 $slider->save();
-  			    //  $sql = "Update sliders SET slider_no=".$i." WHERE id=".$value;
-  			    //  //echo $sql.'<br>';
-
-    			// 	$query = $this->db->query($sql);
-
 			$i++;
 		}
-
     }
+    
 }

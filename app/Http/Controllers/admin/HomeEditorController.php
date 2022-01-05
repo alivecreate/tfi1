@@ -26,6 +26,7 @@ public function topInflatableStore(Request $request)
         $request->validate([
             'title' => 'required|max:255',
             'url' => 'url|max:255',
+            'image' => 'image|mimes:jpg,png,jpeg|max:'.getMaxUploadSide()
         ]);
 
         $slider_no = TopInflatables::orderBy('created_at', 'desc')->first();

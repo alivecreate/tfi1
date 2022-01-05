@@ -1,3 +1,8 @@
+<?php
+
+
+
+?>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="SemiColonWeb" />
@@ -13,9 +18,16 @@
 
 	<link rel="stylesheet" href="{{url('home')}}/plugins/summernote/summernote-bs4.min.css">
 
+	<link rel="stylesheet" href="{{asset('adm')}}/plugins/`sweetalert2`-theme-bootstrap-4/bootstrap-4.min.css">
+
 	<link rel="stylesheet" href="{{url('home')}}/css/custom.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset('adm')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{asset('adm')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{asset('adm')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  
     <style>
         .button.button-border.button-fill {
 	overflow: hidden;

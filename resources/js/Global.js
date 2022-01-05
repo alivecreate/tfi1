@@ -1,6 +1,9 @@
 module.exports = {
-    BASE_URL: 'http://localhost/gi/public/',
-    API: 'http://localhost/gi/public/api/',
+    BASE_URL: 'http://localhost/gi2/public/',
+    API: 'http://localhost/gi2/public/api/',
+
+  // BASE_URL: 'https://www.giantinflatables.in/',
+  // API: 'https://www.giantinflatables.in/api/',
 
   };
 

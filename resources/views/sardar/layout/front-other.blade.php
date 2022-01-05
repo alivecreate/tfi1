@@ -2,10 +2,56 @@
 <html dir="ltr" lang="en-US">
 <head>
     @yield('custom-head')
+    
     @include('home.ext.head')
 </head>
 
+<div class="loader" style="height:100vh;">
+    <img 
+     src="{{url('sardar')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" 
+     class="rounded mx-auto d-block" >
+</div>
+
+
 <body class="stretched">
+
+
+<div id="overlay" style="overflow-x: clip;">
+<div class="loading_container">
+    <h4 class="text-center" style="
+    font-size: 2em;
+    left: 67px;
+    color: #b5b5b5;
+    position: relative;
+    ">We are <span style="color: #a90f0f;">INFLATING</span> <span style="color: black;">now</span></h4>
+    <img style="
+    position: relative;
+    width: 83%;
+    max-width: 900px;"
+     src="{{url('sardar')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" 
+     class="rounded mx-auto d-block" >
+
+  <div class="row" 
+    style="
+    position:relative;margin:0 auto;width:30%;margin-top: 18px;/* display: block; */left: 2%;text-align: center;
+    left: 3.5%;
+    align-items: center;
+    ">
+     <img style=" left: -40px;position: relative; width:50px; height:auto"
+     src="{{url('sardar')}}/img/{{getWebsiteOptions()['website_favicon']->option_value}}" height="30" width="30" alt="">
+        
+    <div id="progress"></div>
+
+  <div class="row progrstat_container">
+        <div id="progstat">
+          </div>
+    </div>
+  </div>
+  
+</div>
+</div>
+
+
 
 	<div id="wrapper" class="clearfix">
 

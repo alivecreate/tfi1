@@ -35,18 +35,32 @@ $(".blog a").addClass( "active-menu");
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>ADD: New Blog </h1>
-          </div>
-          
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">New Blog</li>
+
+      <div class="row">
+      
+      <div class="col-sm-6">
+            <ol class="breadcrumb ">
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
+              <li class="breadcrumb-item active">ADD New Blog</li>
             </ol>
           </div>
+
+        
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+          <ol class="breadcrumb float-sm-right"><a href="{{route('blog.index')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                  &nbsp;&nbsp;Manage Blog </a>
+              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
+              
+          </ol>
         </div>
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1>ADD New Blog</h1>
+          </div>
+        </div>
+    </div>
+
       </div>
     </section>
 
@@ -64,54 +78,54 @@ $(".blog a").addClass( "active-menu");
                 @csrf
 
                   <div class="form-group row">
+                    <div class="col-sm-6">
                     <div class="col-sm-12">
                       <label for="title">Title</label>
                       <input type="text" class="form-control" name="title" 
                          placeholder="Blog Name" value="{{old('title')}}">
                          
                     <span class="text-danger">@error('title') {{$message}} @enderror</span>
-                    </div>
-                  </div>
+                    </div> 
                   
-                  
-                  <div class="form-group row">
+                      
                     <div class="col-sm-12">
                       <label for="short_description">Short Desctiption</label>
                       <input type="text" class="form-control" name="short_description" 
                          placeholder="Blog Short Desctiption" value="{{old('short_description')}}">
                          
                     <span class="text-danger">@error('short_description') {{$message}} @enderror</span>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      <label for="full_description">Full Desctiption</label>
-                        <textarea id="summernote" name="full_description" placeholder="Blog Descriptions">{{old('full_description')}}</textarea>
-                                  
-                    <span class="text-danger">@error('full_description') {{$message}} @enderror</span>
-                    </div>
-                    </div>
-                    
+                    </div> 
 
-                  <div class="form-group row">
                     <div class="col-sm-12">
-                      <label for="slug">Slug</label>
+                        <label for="full_description">Full Desctiption</label>
+                          <textarea id="summernote" name="full_description" placeholder="Blog Descriptions">{{old('full_description')}}</textarea>
+                                    
+                      <span class="text-danger">@error('full_description') {{$message}} @enderror</span>
+
+                      <label for="slug">Url Label</label>
                       <input type="text" class="form-control" name="slug" 
-                         placeholder="Blog Slug" value="{{old('slug')}}">
+                         placeholder="Url Label" value="{{old('slug')}}">
                          
-                    <span class="text-danger">@error('slug') {{$message}} @enderror</span>
-                    </div>
-                  </div>
+                      <span class="text-danger">@error('slug') {{$message}} @enderror</span>
                     
+                    </div>
+                    </div>
+
+                    <div class="col-sm-6">
+
                     <div class="form-group row">
-                        <div class="col-sm-4">
-                        <label for="image_alt">Image</label><br>
-                        <input type="file" name="image" class="image " id="image" require><br>
-                        <span class="text-danger">@error('image') {{$message}} @enderror</span>
+                
+
+                    <div class="col-sm-12">
+                            <label for="image_alt">Image</label><br>
+                          <input type="file" name="image" class="image " id="image" require
+                            accept="image/png,image/jpeg" />
+                            <br>
+                          <span class="text-danger">@error('image') {{$message}} @enderror</span>
+                        </div>
                       </div>
-                    </div>
-                    
+
+                      
                   <div class="form-group row">
                     <h5 class="bg-dark pl-4 pr-4">SEO CONTENTS</h5>
                     <div class="col-sm-12">
@@ -133,23 +147,53 @@ $(".blog a").addClass( "active-menu");
                       <span class="text-danger">@error('meta_description') {{$message}} @enderror</span>
                     </div>
                   </div>
-
-
-                    <div class="form-group">
-                      <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                        <input type="checkbox" class="custom-control-input status-switch" 
-                          name="status" value="0" id="customSwitch1">
-                        <label class="custom-control-label" for="customSwitch1">Status</label>
+                  <div class="col-sm-12 row mt-4">
+                      <div class="col-sm-6">
+                        <label  class="text-danger" class="text-danger" for="search_index">Allow search engines ?</label>
+                        <select class="form-control" name="search_index">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                      </div>
+                      
+                      <div class="col-sm-6">
+                        <label  class="text-danger" class="text-danger" for="search_follow">Follow links on this Page?</label>
+                        <select class="form-control" name="search_follow">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
                       </div>
                     </div>
-                  
 
-                  
-                <div class="card-footer">
-                  <button type="submit" class="float-right btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    <div class="col-sm-12">
+                      <label  class="text-danger" for="canonical_url">Canonical URL</label>
+                      <input type="text" class="form-control" name="canonical_url" 
+                        placeholder="Canonical URL" >
+                      <span class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-check mt-4">
+                    <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                      id="exampleCheck1"
+                    checked
+                      />
+                      
+                    <h5> <span class="badge badge-success">Active</span></h5></td>
+                </div>	
+                </div>	
+                </div>	
+
+                <div class="card-footer text-center">
+                  <button type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                     Save Blog</button>
                 </div>
 
+                    </div>
+                    
+                    
+
+                  
               </div>
               </form>
               </div>

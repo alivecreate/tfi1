@@ -47,7 +47,7 @@ class BlogController extends Controller
             'short_description' => 'required',
             'full_description' => 'required',
             'slug' => 'required',
-            'image' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg|max:'.getMaxUploadSide()
         ]);
 
         $list_no = Blog::orderBy('created_at', 'desc')->first();
@@ -57,22 +57,34 @@ class BlogController extends Controller
         }else{
             $list_no = 1;
         }
-        if($request->status == null){
+        
+        
+       
+        if($request->status){
             $status = 1;
         }else{
-            $status = 1;
+            $status = 0;
         }
+
+        
         $image_name = uploadImageThumb($request);
         $blog = new Blog;
         $blog->title = $request->title;
         $blog->short_description = $request->short_description;
         $blog->full_description= $request->full_description;
         $blog->image = $image_name;
+        $blog->image_alt = $request->image_alt;
+        $blog->image_title = $request->image_title;
+
         $blog->slug = $request->slug;
-        
+
         $blog->meta_title  = $request->meta_title;
         $blog->meta_keyword  = $request->meta_keyword;
         $blog->meta_description  = $request->meta_description;
+
+        $blog->search_index = $request->search_index;      
+        $blog->search_follow = $request->search_follow;      
+        $blog->canonical_url = $request->canonical_url;   
 
         $blog->status = $status;
         $save = $blog->save();
@@ -118,6 +130,7 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->input());
         $request->validate([
 
         ]);
@@ -129,10 +142,11 @@ class BlogController extends Controller
         }else{
             $list_no = 1;
         }
-        if($request->status == null){
+ 
+        if($request->status == 'on'){
             $status = 1;
         }else{
-            $status = 1;
+            $status = 0;
         }
 
         if($request->file('image')){
@@ -146,11 +160,18 @@ class BlogController extends Controller
         $blog->short_description = $request->short_description;
         $blog->full_description= $request->full_description;
         $blog->image = $image_name;
+        $blog->image_alt = $request->image_alt;
+        $blog->image_title = $request->image_title;
+        
         $blog->slug = $request->slug;
         
         $blog->meta_title  = $request->meta_title;
         $blog->meta_keyword  = $request->meta_keyword;
         $blog->meta_description  = $request->meta_description;
+
+        $blog->search_index = $request->search_index;      
+        $blog->search_follow = $request->search_follow;      
+        $blog->canonical_url = $request->canonical_url;   
 
         $blog->status = $status;
         $save = $blog->save();
@@ -171,6 +192,7 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         $blog = $blog->delete();
+        deleteTableUrlData($blog->id,'product_link');
         if($blog){
             return back()->with('success', 'Testimonial Deleted...');
         }else{

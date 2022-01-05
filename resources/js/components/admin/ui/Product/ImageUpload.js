@@ -1,8 +1,13 @@
-import React, { Component, useState, useContext } from 'react'
+import React, { Component, useState, useContext, useEffect } from 'react'
 import MediaContext from '../MultipleImg/MediaContext';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import DeleteButton from '../MultipleImg/DeleteButton';
+import JqueryComponent from './JqueryComponent';
+
 const GLOBAL = require('../../../../Global');
+
+import $ from "jquery";
+
 
 const ImageUpload = (props) => {
     // const [name, setName] = useContext(MediaContext);
@@ -13,6 +18,7 @@ const ImageUpload = (props) => {
     const { medias, setMedias, uploadMultipleFiles,
         isLoadding, chooseBtn, fileArrayDesp, uploadFiles,productFileUpload, productFileSave,
         submitBtn, setSubmitBtn, deleteMedia, getProductImages, productImageArray, updateProductImage,
+        updateImageData,
          progress, setProgress } = useContext(MediaContext);
 
     let isLoaddingTab, isLoadingSpinner;
@@ -67,6 +73,7 @@ const onImageTitleChange = (e) =>{
 }
 
 
+
 async function updateProductImage1(e) {
     e.preventDefault();
     
@@ -92,22 +99,37 @@ async function updateProductImage1(e) {
         e.summernote('insertImage', imgFile ,imgFile);
 
     }   
+
+
+    
+
+useEffect(() =>{
+  
+
+  },[]);
+
+
+  
+
     return (
         <>
 
-            <div class="modal-body media-modal-body" id="media-body">
-                <div class="col-md-12">
+            <div className="modal-body media-modal-body  p-0" id="media-body">
+                <div className="col-md-12 p-0">
 
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title float-left">
-                                <i class="fas fa-edit"></i>
-                                Media Panel (Add Multiple Images)
+                    <div className="card card-primary card-outline">
+                        <div className="card-header">
+                            <h3 className="card-title float-left">
+                                <i className="fas fa-edit"></i>
+                                Add Images
                                 
                               </h3>
-                                    {progressInstance}
+
+                              <button type="button" className="add-more pull-right">
+                                        Add More
+                                </button>
                         </div>
-                        <div class="card-body">
+                        <div className="card-body">
                             <div className="row">
                                 <div className="col-12 col-sm-12">
 
@@ -116,32 +138,50 @@ async function updateProductImage1(e) {
                                             <div id="media-upload-tab">
                                                 <div className="col-md-12 mb-4">
                                                     
-                                                        {isLoadingSpinner}
-
                                                         <form id="productImageForm" className="form" onSubmit={productFileSave} >
-                                                        <div class="row">
-                                                                <div className="col-3">
+                                                            <table class="table table-no-border">
+                                                                
+                                                                <tbody className="image-container">
+                                                                <tr className="image-block">
+                                                                    
+                                                                    <td colSpan="2" width="200" style={{width: '200px',overflow: 'hidden',maxWidth: '200px'}} >
+
                                                                     <div className="form-group multi-preview">
                                                                         {(fileArrayDesp || []).map(url => (
-                                                                            <img src={url} key={url} alt="..." style={{ width: '40px', marginRight: '20px' }} />
+                                                                            <img src={url} key={url} alt="..." style={{ width: '200px', marginRight: '20px' }} />
                                                                         ))}
                                                                     </div>
                                                                     <input type="file" className={"chooseBtn"}
                                                                         onChange={(e) => productFileUpload(e)} required/>
-                                                                </div>
+                                                                    </td>
 
-                                                                <div className="col">
-                                                                    <textarea type="text" placeholder="Image Alt Text" className={"float-right form-control image_alt"}></textarea>
-                                                                </div>
-                                                                <div className="col">
-                                                                    <textarea type="text" placeholder="Image Title Text" className={"float-right form-control image_title"}></textarea>
-                                                                </div>
-                                                                <div className="col-2">
-                                                                    <button className="btn btn-success float-right chooseBtn" style={{ marginTop: 4 }}
-                                                                    >
-                                                                     Upload Images</button>
-                                                                </div>
-                                                        </div>
+                                                                    <td className="col-3">
+                                                                        <input type="text" placeholder="Image Title Text" className={"float-right form-control image_title"} />
+                                                                    </td>
+
+                                                                    <td className="col-3">
+                                                                        <input type="text" placeholder="Image Alt Text" className={"float-right form-control image_alt"} />
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colSpan="4">{progressInstance}</td>
+                                                                    <td> 
+                                                                        <button className="btn btn-success btn-sm float-right chooseBtn" style={{ marginTop: 4 }}
+                                                                        ><i  class="fa fa-upload" aria-hidden="true"></i> &nbsp;&nbsp;
+                                                                        Upload Photos</button>
+                                                                     </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colSpan="4">
+                                                                    {isLoadingSpinner}
+                                                                    </td>
+                                                                </tr>
+
+                                                                </tbody>
+
+
+
+                                                            </table>
                                                         </form>
                                                 </div>
                                             </div>
@@ -149,46 +189,68 @@ async function updateProductImage1(e) {
 
                                         <div className="row">
                                             <table className="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Image</th>
-                                                        <th>Alt</th>
-                                                        <th>Title</th>
-                                                        <th>Action</th>
-                                                    </tr>    
-                                                </thead>
-                    {(productImageArray || []).map(productImage => (
+                                            <thead>
+                                                                <td>id</td>                        
+                                                                <td>Photo</td>                        
+                                                                <td colSpan="3">
+                                                                    <div className="col-sm-10 pull-left row">
+                                                                        <label className="col">Title</label>
+                                                                        <label className="col">Alt</label>
+                                                                        <label className="col-sm-2">Update</label>
+                                                                    </div>
+
+                                                                    <div className="col-sm-10 pull-left row">
+                                                                        <label className="col-sm-12 pull-left" style={{textAlign: 'center'}} >Action</label>
+                                                                    </div>
+
+                                                                    </td>                         
+                                                                </thead>
+
                         <tbody>
+                    {(productImageArray || []).map((productImage, index)=>(
                                                                     
                             <tr key={productImage.id}>
-                                <td>{productImage.id}</td>                      
-                                <td> <img className="img-thumbnail" key={productImage.image}  width="50"
+                                <td>{++index}</td>                      
+                                <td> <img className="img-thumbnail" key={productImage.image}  width="220"
                                         src={GLOBAL.BASE_URL+'web/media/sm/'+productImage.image} data-holder-rendered="true"/>
                                 </td>                   
 
-                                <td><textarea disabled onKeyUp={onImageAltChange} defaultValue={productImage.image_alt} className="form-control" type="text" name="image_alt"></textarea> </td>
-                                <td><textarea disabled onKeyUp={onImageTitleChange} defaultValue={productImage.image_title} className="form-control" type="text" name="image_title"></textarea> </td>
-                                
+                                <td colSpan="3">
+                                    <div className="col-sm-10 pull-left">
+                                        
+                                        <form method="POST" className="form row" onSubmit={updateImageData}> 
+                                            <input className="col pull-left px-1 form-control image_title"
+                                                 onKeyUp={onImageTitleChange} defaultValue={productImage.image_title}  type="text" name="image_title"/>
+                                            &nbsp;&nbsp;
+                                            <input className="col pull-left px-1 form-control image_alt"
+                                             onKeyUp={onImageAltChange} defaultValue={productImage.image_alt}  type="text" name="image_alt"/>
+                                            &nbsp;&nbsp;
+
+                                            <input type="hidden" name="id" defaultValue={productImage.id}/>
+                                            
+
+                                            <button className="col-sm-2 px-1 pull-right px-1 btn btn-primary btn-sm m-1">
+                                                <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Update</button>
+
+                                        </form>    
+
+ 
+                                    </div>
+                                    <div className="col-sm-2 pull-left">
+                                        <form method="POST" className="form" onSubmit={deleteMedia}> 
+                                                    <input type="hidden" name="delid" defaultValue={productImage.id}/>
+                                                    <button className="btn btn-danger btn-sm m-1"><i className="far fa-trash-alt"></i>&nbsp;&nbsp;&nbsp;Delete</button>
+                                        </form>
+                                    </div>
+
+                                </td> 
                                 <td>
 
-                                {/* <form method="POST" className="form" onSubmit={updateProductImage1}>   
-                                   <input type="hidden" name="image_alt" defaultValue={imageAlt}/>
-                                    <input type="hidden" name="image_title" defaultValue={imageTitle}/>
-
-                                    <button className="btn btn-warning btn-xs m-1 editProductImage"><i className="far fa-edit"></i></button>
-                                    
-                                    <button className="btn btn-success btn-xs m-1"><i class="far fa-save"></i></button>
-                                    </form> */}
                                         
-                                <form method="POST" className="form" onSubmit={deleteMedia}> 
-                                    <input type="hidden" name="delid" defaultValue={productImage.id}/>
-                                        <button className="btn btn-danger btn-xs m-1"><i className="far fa-trash-alt"></i></button>
-                                    </form>
-                                </td> 
+                                </td>
                             </tr>
-                            </tbody>
                     ))}
+                    </tbody>
                     
 
                                             </table>

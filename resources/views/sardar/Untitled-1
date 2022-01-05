@@ -1,0 +1,17 @@
+
+
+
+
+
+class="lg-outer lg-use-css3 lg-css3 lg-slide lg-show-after-load 
+lg-use-transition-for-zoom lg-animate-thumb lg-has-thumb lg-grab"
+
+class="lg-outer lg-use-css3 lg-css3 lg-slide lg-show-after-load
+
+
+ lg-use-transition-for-zoom lg-animate-thumb lg-has-thumb lg-grab 
+ lg-zoom-from-image lg-components-open"
+
+ .lg-components-open div#lg-components-1 {
+    display: none;
+}

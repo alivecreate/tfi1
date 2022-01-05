@@ -50,15 +50,35 @@ class PageController extends Controller
     }
 
     public function pageEditorStore(Request $request){
+        
+        // dd($request->input());
 
+        
 
         $ifExist = Pages::where('type', $request->type)->first();
+
         if($ifExist){
 
+        if($request->file('image')){
+            $image_name = uploadImageThumb($request);
+        }else{
+            $image_name = $request->old_image;
+        }
+
+        // dd($request->file('image'));
             $pageEditor = Pages::find($ifExist->id);
             $pageEditor->type = $request->type;
             $pageEditor->description = $request->description;
             $pageEditor->url = $request->url;
+            $pageEditor->featured_image = $image_name;
+            
+            $pageEditor->image_alt = $request->image_alt;      
+            $pageEditor->image_title = $request->image_title;   
+
+            $pageEditor->search_index = $request->search_index;   
+            $pageEditor->search_follow = $request->search_follow;   
+            $pageEditor->canonical_url = $request->canonical_url;   
+            
             $pageEditor->meta_title  = $request->meta_title;
             $pageEditor->meta_keyword  = $request->meta_keyword;
             $pageEditor->meta_description  = $request->meta_description;
@@ -71,10 +91,22 @@ class PageController extends Controller
             }
         }
         else{
+            if($request->file('image')){
+                $image_name = uploadImageThumb($request);
+            }else{
+                $image_name = $request->old_image;
+            }
+
+            // dd($image_name);
             $pageEditor = new Pages;
             $pageEditor->type = $request->type;
             $pageEditor->description = $request->description;
             $pageEditor->url = $request->url;
+            $pageEditor->featured_image = $image_name;
+
+            $pageEditor->image_alt = $request->image_alt;      
+            $pageEditor->image_title = $request->image_title;   
+
             $pageEditor->meta_title  = $request->meta_title;
             $pageEditor->meta_keyword  = $request->meta_keyword;
             $pageEditor->meta_description  = $request->meta_description;

@@ -10,6 +10,9 @@ class Product extends Model
     use HasFactory;
 }
 
+function test(){
+    return 'hello';
+}
 
 function category(){
     return $this->belongsTo(Category::class);

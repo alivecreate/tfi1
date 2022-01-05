@@ -20,8 +20,8 @@ $( document ).ready(function() {
 });
 
 
-$(".topInflatable").addClass( "menu-is-opening menu-open");
-$(".topInflatable a").addClass( "active-menu");
+$(".footer-url").addClass( "menu-is-opening menu-open");
+$(".footer-url a").addClass( "active-menu");
 
 </script>
 @endsection
@@ -38,7 +38,7 @@ $(".topInflatable a").addClass( "active-menu");
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">Url Group Manage</li>
             </ol>
           </div>
@@ -59,7 +59,7 @@ $(".topInflatable a").addClass( "active-menu");
                         <h3 class="card-title">Url Group Add</h3>
                     </div>
                 
-                <form method="post" class="form-horizontal" action="{{route('url-list1.store')}}">
+                <form method="post" class="form-horizontal" action="{{route('admin.url-list1.store')}}">
                     @csrf
                     <div class="card-body p-2 pt-4">
                     <div class="form-group row">

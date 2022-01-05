@@ -10,7 +10,14 @@
     <ul class="navbar-nav ml-auto">        
           
 
-      <li class="nav-item ml-3">
+      <li class="nav-item d-none d-sm-inline-block">
+
+        <a target="_blank"  href="{{url('')}}" class="btn btn-sm btn-warning text-dark">
+          <strong><i class="fa fa-eye"></i>&nbsp;&nbsp;&nbsp; View Site</strong></a>
+      </li>
+
+
+      <li class="nav-item d-none d-sm-inline-block">
         <a class="nav-link float-right">{{session('LoggedUser')->name}}</a>
       </li>
 

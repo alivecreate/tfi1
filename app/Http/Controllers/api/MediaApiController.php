@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use App\Models\admin\Media;
-use Image;
+
+use Intervention\Image\Facades\Image;
+// use Image;
 use File;
 use DB; 
 // use Illuminate\Support\Facades\Auth;
@@ -40,7 +42,7 @@ class MediaApiController extends Controller
     }
 
     public function updateProductImage(Request $request){
-        dd($request->input());
+        // dd($request->input());
         $media = Media::find($request->id);
         $media->id = $request->id;
         $media->image_alt = $request->image_alt;
@@ -102,17 +104,35 @@ class MediaApiController extends Controller
                 $media->image_alt = $request->image_alt;
                 $media->image_title = $request->image_title;
                 $media->image = $input['imagename'];
-                if($media->save()){        
-                    return url('web').'/media/icon/'.$input['imagename'];
+                if($media->save()){       
+                    return 'success';;
                 }else{
                     return 'something went wrong, try again later.';
 
                 }
-        
     }
+
+    public function updateImageData(Request $request){
+        header("Access-Control-Allow-Origin: *");
+
+                $media = Media::find($request->id);
+                $media->image_alt = $request->image_alt;
+                $media->image_title = $request->image_title;
+
+                if($media->save()){        
+                    return 'success';
+                }else{
+                    return 'something went wrong, try again later.';
+
+            }
+    }
+
+    
+    
     public function mediaDelete(Request $request){
         header("Access-Control-Allow-Origin: *");
         $media = Media::find($request->id);
+        
         if($media){
             if(File::exists(public_path('web').'/media/lg/'.$media->image)){
                 unlink(public_path('web').'/media/lg/'.$media->image);
@@ -121,15 +141,15 @@ class MediaApiController extends Controller
                 unlink(public_path('web').'/media/xs/'.$media->image);
                 unlink(public_path('web').'/media/icon/'.$media->image);
                 $media->delete();
-                return 'success';
+                return ['status' => 'success', 'message' => 'Image Deleted...', 'deleted_id' => $request->id];
             }
             else{
                 $media->delete();
-                return 'failed';
+                return ['failed' => 'success', 'message' => 'Something went wrong, please try again...'];
             }
         }else{
                 $media->delete();
-        return 'not-exists';
+                return ['failed' => 'success', 'message' => 'Something went wrong, please try again...'];
         }
     }
 }

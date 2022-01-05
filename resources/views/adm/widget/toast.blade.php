@@ -1,3 +1,4 @@
+
 @if(Session::get('success'))
           <script>
             $(function() {
@@ -10,9 +11,9 @@
             });
             toastr.success(`{{ Session::get('success')}}`);
           </script>
-    @endif
+    
 
-    @if(Session::get('fail'))
+    @elseif(Session::get('fail'))
 
     <script>
             $(function() {
@@ -23,7 +24,7 @@
                 timer: 3000
               });
             });
-            toastr.success(`{{Session::get('fail')}}`);
+            toastr.error(`{{Session::get('fail')}}`);
           </script>
 
-    @endif
+@endif

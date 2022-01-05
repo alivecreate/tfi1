@@ -10,7 +10,8 @@
 	<link rel="stylesheet" href="{{url('home')}}/css/font-icons.css" type="text/css" />
 	<link rel="stylesheet" href="{{url('home')}}/css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="{{url('home')}}/css/magnific-popup.css" type="text/css" />
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+				
 	<link rel="stylesheet" href="{{url('home')}}/css/custom.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>

@@ -1,12 +1,80 @@
 @extends('adm.layout.admin-index')
-@section('title','Dashboard - Charotar Corporation')
+@section('title','Product List')
 
 @section('toast')
   @include('adm.widget.toast')
 @endsection
 
 @section('custom-js')
+<!-- DataTables  & Plugins -->
+<script src="{{url('adm')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{url('adm')}}/plugins/jszip/jszip.min.js"></script>
+<script src="{{url('adm')}}/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{url('adm')}}/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
 <script>
+
+// $('body').hide();
+
+  
+$('.category_parent_id').on('change', function() {
+  
+        var parent = $(this).find(':selected').val();
+        $.get( `{{url('api')}}/get/getPetaKacheri/`+parent, { category_parent_id: parent })
+        .done(function( data ) {
+          // alert(JSON.stringify(data));
+
+        if(JSON.stringify(data.length) == 0){
+            $('.sub_category_parent_id').html('<option value="">Select Sub Category</option>');
+        }
+        else{
+                $('.sub_category_parent_id').empty();     
+            $('.sub_category_parent_id').html('<option value="">Select Sub Category</option>');
+            for(var i = 0 ; i < JSON.stringify(data.length); i++){  
+                $('.sub_category_parent_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
+            }
+        }
+    });
+    $('.category_id').val(parent);
+    $('.search').val(parent);
+    $('.search_link').attr('href',`{{route('product.index')}}?search=`+parent);
+
+    });
+
+
+    $('.sub_category_parent_id').on('change', function() {
+        var parent = $(this).find(':selected').val();
+
+        $.get( `{{url('api')}}/get/getDepartment/`+parent, { sub_category_parent_id: parent })
+        .done(function( data ) {
+          // alert(JSON.stringify(data));
+
+        if(JSON.stringify(data.length) == 0){
+            $('.subcategory2_id').html('<option>Select Sub Category2</option>');
+        }
+        else{
+                $('.subcategory2_id').empty();     
+            $('.subcategory2_id').html('<option value="">Select Sub Category2</option>');
+            for(var i = 0 ; i < JSON.stringify(data.length); i++){  
+                $('.subcategory2_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
+            }
+        }
+    });
+    $('.category_id').val(parent);
+    $('.search_link').attr('href',`{{route('product.index')}}?search=`+parent);
+    $('.search').val(parent);
+
+    });
+
 $( document ).ready(function() {
   $(".del-modal").click(function(){
     var delete_id = $(this).attr('data-id');
@@ -18,10 +86,52 @@ $( document ).ready(function() {
 });
 
 
-$(".product").addClass( "menu-is-opening menu-open");
-$(".product a").addClass( "active-menu");
+$(".listing").addClass( "menu-is-opening menu-open");
+$(".listing a").addClass( "active-menu");
 
+function updateStatus($id) {
+  $.ajax({
+      url:"{{route('status.update')}}",
+      type:'post',
+      data:{id:$id, table: 'product'},
+      success:function(result){
+        // console.log(result);
+        location.reload();
+
+      }
+  })
+}
+
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false,
+    }).buttons().container().appendTo('#example1_wrapper .col-md-12:eq(0)');
+
+  });
+  
 </script>
+
+@if(isset(getParentCategory($current_cat->id)['category']))
+	<?php $finalSlug = getParentCategory($current_cat->id)['category']->slug.'/';
+		$mainCategorySlug = $finalSlug;
+	?>
+	@endif
+
+		@if(isset(getParentCategory($current_cat->id)['subcategory']))
+			<?php $finalSlug = $finalSlug.getParentCategory($current_cat->id)['subcategory']->slug.'/' ;
+				$subCategorySlug = $finalSlug;
+				// dd($subCategorySlug);
+
+			?>
+		@endif
+
+		@if(isset(getParentCategory($current_cat->id)['subcategory2']))
+			<?php $finalSlug = $finalSlug.getParentCategory($current_cat->id)['subcategory2']->slug.'/';
+				$subCategory2Slug = $finalSlug;
+				// dd($subCategory2Slug);
+			?>
+		@endif
+    
 @endsection
 
 
@@ -32,12 +142,15 @@ $(".product a").addClass( "active-menu");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>product List</h1>
+            <h1>Manage Photos</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">product</li>
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
+              <li class="breadcrumb-item active">Manage Photos</li>
+
+              <a href="{{route('product.create')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                &nbsp;&nbsp;Add Sub Category </a>
             </ol>
           </div>
         </div>
@@ -52,71 +165,189 @@ $(".product a").addClass( "active-menu");
           <div class="col-12">
             <div class="card">
               
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover bg-nowrap" p-1>
-                  <thead>
-                    <tr>
-                      
-                      <th>ID</th>
-                      <th>Image</th>
-                      <th>Name</th>
-                      <th>Short Description</th>
-                      <th>Full Description</th>
-                      <th>Category</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($products as $i => $product)
-                      <tr> 
-                        <td>{{++$i}}</td>
-                        @if(isset($product->image))
-                        <td><img class="img-circle elevation-2 object-fit"  height="30" width="30"
-                          src="{{asset('web')}}/media/xs/{{$product->image}}"></td>
+            <div class="card card-dark">
+                <div class="card-header">
+                    
+                  <input type="hidden" name="category_id" class="category_id" > 
+                    <div class="row">
+
+                  <form method="get" action="?search=" class="col-sm-12">
+                    <select 
+                    class="form-control form-control-sm  mr-3 col-sm-3 category_parent_id pull-left" required>
+                          <option value="">Select Main Category</option>
+                            @foreach($parent_categories as $parent_category)
+                                <option value="{{$parent_category->id}}"
+                                
+                                @if(getParentCategory($seach_id)['category']->id == $parent_category->id)
+                                  selected
+                                @endif
+                                >{{$parent_category->name}}</option>
+                            @endforeach
+                        </select>
+                        @if( Request::query('search') )
+                          <input type="hidden" name="search" class="search" value="{{Request::query('search')}}" />
+                        @else
+                          <input type="hidden" name="search" class="search" value="" />
+
+                        @endif
+                      <select 
+                      class="form-control form-control-sm mr-3 search-font1 col-sm-3 sub_category_parent_id pull-left" required>
+                          
+                      @if(getParentCategory($seach_id)['subcategory'])
+                           <option value="{{getParentCategory($seach_id)['subcategory']->id}}">{{getParentCategory($seach_id)['subcategory']->name}}</option>
+                          
                           @else
+                           <option value="">Select Sub Category</option>
+                           @endif
+                        </select>
 
-                        <td><img class="img-circle elevation-2"  height="30" width="30"
-                          src="{{asset('adm')}}/img/no-item.jpeg"></td>
-                          @endif
-                        <td>{{$product->name}}</td>
-                        <td>{{$product->short_description}}</td>
-                        <td>{{$product->full_description}}</td>
-                        
 
-                        <td>
-                        @if(getParentCategory($product->category_id)['category'])
-                          <span class='bg-primary p-1'>{{getParentCategory($product->category_id)['category']->name}}</span>
-                        @endif
+                        <button type="submit" class="btn btn-sm btn-info search_link"> 
+                          <i class="fa fa-search" aria-hidden="true"></i>  Search</button>
+                      </div>
+                  </form>
 
-                        
-                        @if(getParentCategory($product->category_id)['subcategory'])
-                          <span class='bg-danger p-1'>{{getParentCategory($product->category_id)['subcategory']->name}}</span>
-                        @endif
-
-                        
-                        @if(getParentCategory($product->category_id)['subcategory2'])
-                          <span class='bg-warning p-1'>{{getParentCategory($product->category_id)['subcategory2']->name}}</span>
-                        @endif
-                                                
-                        
-                        </td>
-                        
-                        <td>
-                        
-                          <a href="{{route('product.edit',$product->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit product"><i class="far fa-edit"></i></a>
-                          {{-- <a href="{{route('product-image.edit',$product->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Upload product Images"><i class="far fa-edit"></i></a> --}}
-                          <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete product"  data-id="{{url('admin')}}/product/{{$product->id}}"  data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
-                          </button>
-                      
-                      
-                      </td>
-                      </tr>
-                    @endforeach
-
-                  </tbody>
-                </table>
+                  
+                </div>
+                </div>
                 
-              </div>
+              @if($productPhotos->count() > 0)
+                <div class="card-body table-responsive p-0 display-data">
+                  <form action="{{route('item.bulk-delete')}}" method="post">
+                  <input type="hidden" name="type" value="product">
+                  @if(isset($request->query))
+                    <input type="hidden" class="media_id" value="{{$$request->query('image')}}">
+                  @endif
+
+                  <input type="hidden" class="image_type" value="product">
+
+
+                    <table id="example2" class="table table-bordered table-striped" p-1>
+                      <thead>
+                        <tr>
+                          <th>
+                            <input type="checkbox" class="checkAll" name="status" 
+                                id="checkAll"
+                            />
+                          </th>
+                          <th>Images</th>
+                          <th width="200">Name</th>
+                          <th width="200">Description</th>
+                          <th  width="">status</th>
+                          <th  width="150">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($productPhotos as $i => $product)
+
+                          <tr> 
+                            <td>
+                            <input type="checkbox" class="checkList" name="checkList[]" 
+                                id="checkList" value="{{$product->id}}"
+                            />    
+                            </td>
+                            <td>
+                            @if($product->count() > 0)
+                                <img class="rounded"  width="250"
+                                  src="{{asset('web')}}/media/sm/{{$product->image}}">  
+                              @else
+                                <img class="rounded"  width="180"
+                                src="{{asset('adm')}}/img/no-item.jpeg">
+                              @endif
+                              </td>
+
+                            <td>{{$product->name}}</td>
+                            <td>{{$product->description}}</td>
+                            
+                            <td>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                            id="exampleCheck1"
+                            
+                              onClick="updateStatus({{$product->id}})"
+                              @if($product->status == 1)checked
+                              @endif 
+                              @if(old('status'))checked
+                              @endif
+                              />
+                            @if($product->status == 0)
+                            <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
+                        </div>	
+                        </td>
+
+
+                            <td class="btn-block">
+                            
+                        @if(isset(getParentCategory($product->category_id)['category']))
+                          <?php $finalSlug = getParentCategory($product->category_id)['category']->slug.'/';
+                            // echo $mainCategorySlug = $finalSlug;
+                          ?>
+                          @endif
+
+                            @if(isset(getParentCategory($product->category_id)['subcategory']))
+                              <?php $finalSlug = $finalSlug.getParentCategory($product->category_id)['subcategory']->slug.'/' ;
+                                $subCategorySlug = $finalSlug;
+                                // echo($subCategorySlug);
+
+                              ?>
+                            @endif
+
+                            @if(isset(getParentCategory($product->category_id)['subcategory2']))
+                              <?php $finalSlug = $finalSlug.getParentCategory($product->category_id)['subcategory2']->slug.'/';
+                                $subCategory2Slug = $finalSlug;
+                                // echo($subCategory2Slug);
+                              ?>
+                            @endif
+                            
+                            <a target="_blank" href="{{url('')}}/{{$finalSlug}}{{$product->slug}}" 
+                              class="btn btn-xs btn-warning float-left mr-2"  title="View Product Details">
+
+                              <i class="fa fa-eye"></i></a> 
+
+                              <a href="{{route('admin.index')}}/product?image={{$product->id}}" class="btn btn-xs btn-info float-left mr-2"  title="Manage Photos"><i class="far fa-edit"></i></a>
+                              
+                              
+                              <button type="button" class="btn btn-xs btn-danger del-modal float-left"  title="Delete product"  data-id="{{route('admin.index')}}/product/{{$product->id}}"  
+                              data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              </button>
+                          
+                          
+
+
+                          </td>
+                          </tr>
+                        @endforeach
+
+                      </tbody>
+                      <tfooter>
+                        <tr>
+                        
+                        <td>
+                            <input type="checkbox" class="checkAll" name="status" 
+                                id="checkAll"
+                            />
+
+                        <td colspan="7">
+                          
+                        <!-- <button type="submit" name="action" value="active"
+                            class="btn btn-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;
+                            Active</button>
+
+                          <button type="submit" name="action" value="deactive"
+                            class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button> -->
+
+                            <button type="submit" name="action" value="delete"
+                            class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+
+                        </td></tr>
+
+                      </tfooter>
+                    </table>
+                    
+                 </form>
+                </div>
+              @endif
+
             </div>
           </div>
         </div>

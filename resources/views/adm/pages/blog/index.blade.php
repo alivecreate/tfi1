@@ -18,6 +18,27 @@
 
 </style>
 @section('custom-js')
+
+<!-- DataTables  & Plugins -->
+<script src="{{url('adm')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{url('adm')}}/plugins/jszip/jszip.min.js"></script>
+<script src="{{url('adm')}}/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{url('adm')}}/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+
+
+
 <script>
 $( document ).ready(function() {
   $(".del-modal").click(function(){
@@ -30,9 +51,48 @@ $( document ).ready(function() {
 });
 
 
+$( ".row_position" ).sortable({
+      stop: function() {
+			var selectedData = new Array();
+            $('.row_position>tr').each(function() {
+                selectedData.push($(this).attr("id"));
+            });
+            updateOrder(selectedData);
+        }
+  });
+
+function updateOrder(data) {
+  $.ajax({
+      url:"{{url('api')}}/admin/item/update-item-priority",
+      type:'post',
+      data:{position:data, table: 'blog'},
+      success:function(result){
+        console.log(result);
+      }
+  })
+}
+
+function updateStatus($id) {
+  $.ajax({
+      url:"{{route('status.update')}}",
+      type:'post',
+      data:{id:$id, table: 'blog'},
+      success:function(result){
+        location.reload();
+
+      }
+  })
+}
+
 $(".blog").addClass( "menu-is-opening menu-open");
 $(".blog a").addClass( "active-menu");
 
+$(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false,
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  });
+  
 </script>
 @endsection
 
@@ -42,17 +102,34 @@ $(".blog a").addClass( "active-menu");
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Blog List</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+
+
+      <div class="row">
+      
+      <div class="col-sm-6">
+            <ol class="breadcrumb ">
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">Blog List</li>
             </ol>
           </div>
+
+        
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+          <ol class="breadcrumb float-sm-right"><a href="{{route('blog.create')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                  &nbsp;&nbsp;Add New Blog </a>
+              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
+              
+          </ol>
         </div>
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1>Blog List</h1>
+          </div>
+        </div>
+    </div>
+
+
       </div>
     </section>
 
@@ -63,46 +140,63 @@ $(".blog a").addClass( "active-menu");
         <div class="row">
           <div class="col-12">
             <div class="card">
-              
+
+
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover bg-nowrap" p-1>
+                <table  id="example1" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
                       <th>ID</th>
                       <th>Image</th>
                       <th>Title</th>
-                      <th>Short Description</th>
-                      <th>Full Description</th>
-                      <th>slug</th>
+                      <th width="400">Short Description</th>
+                      <th width="200">slug</th>
                       <th>Status</th>
-                      <th>Action</th>
+                      <th width="140">Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  
+                  <tbody class="row_position">
                     @foreach($blogs as $i => $blog)
-                      <tr> 
-                        <td>{{++$i}}</td>
+                      <tr id="{{$blog->id}}"> 
+                        <td>{{$blog->item_no}}</td>
+
                         @if(isset($blog->image))
-                        <td><img class="img-circle elevation-2 object-fit"  height="30" width="30"
+                        <td><img class="rounded object-fit"  width="150"
                           src="{{asset('web')}}/media/xs/{{$blog->image}}"></td>
                           @else
 
-                        <td><img class="img-circle elevation-2"  height="30" width="30"
+                        <td><img class="rounded"    width="100"
                           src="{{asset('adm')}}/img/no-item.jpeg"></td>
                           @endif
 
                         <td>{{$blog->title}}</td>
                         <td  class="width-150">{{$blog->short_description}}</td>
-                        <td class="width-300">{!! html_entity_decode($blog->full_description) !!}</td>
                         <td class="width-150">{{$blog->slug}}</td>
                         
 							
-                        <td>@if($blog->status == 0)<p class="badge badge-danger">Inactive</p>@else<p class="badge badge-success">Active</p>@endif</td>
-                        
                         <td>
                         
-                          <a href="{{route('blog.edit',$blog->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit Blogs"><i class="far fa-edit"></i></a>
-                           <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete Blog"  data-id="{{url('admin')}}/blog/{{$blog->id}}" data-title="{{ $blog->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                        id="exampleCheck1"
+                        
+                          onClick="updateStatus({{$blog->id}})"
+                          @if($blog->status == 1)checked
+                          @endif 
+                          @if(old('status'))checked
+                          @endif
+                          />
+                          
+                        @if($blog->status == 0)
+                        <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif
+                    </div>	
+                    </td>
+                        <td width="150">
+                        
+                          <a target="_blank" href="{{url('blog')}}/{{$blog->slug}}" class="btn btn-sm btn-warning float-left mr-2"  title="Edit Blogs"><i class="fa fa-eye"></i></a>
+                          <a href="{{route('blog.edit',$blog->id)}}" class="btn btn-sm btn-info float-left mr-2"  title="Edit Blogs"><i class="far fa-edit"></i></a>
+                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Blog"  data-id="{{route('admin.index')}}/blog/{{$blog->id}}" data-title="{{ $blog->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                           </button>
                       
                       

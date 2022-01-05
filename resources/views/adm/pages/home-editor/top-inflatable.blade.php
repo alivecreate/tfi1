@@ -38,7 +38,7 @@ $(".page a").addClass( "active-menu");
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">Top Inflatables</li>
             </ol>
           </div>
@@ -89,7 +89,8 @@ $(".page a").addClass( "active-menu");
                 <div class="form-group row">
                     <div class="col-sm-12">
                     <input type="file" class="" 
-                      name="image" placeholder="Upload Image">
+                      name="image" placeholder="Upload Image"
+                         accept="image/png,image/jpeg" />
                       </div>
                   </div>
 

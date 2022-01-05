@@ -53,6 +53,18 @@ function updateOrder(data) {
   })
 }
 
+function updateStatus($id) {
+  $.ajax({
+      url:"{{route('status.update')}}",
+      type:'post',
+      data:{id:$id, table: 'slider'},
+      success:function(result){
+        // console.log(result);
+        location.reload();
+
+      }
+  })
+}
 </script>
 @endsection
 
@@ -64,11 +76,11 @@ function updateOrder(data) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Slider Manage</h1>
+            <h1>Add New : Slider</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">Sliders</li>
             </ol>
           </div>
@@ -86,7 +98,7 @@ function updateOrder(data) {
             <div class="col-md-4 card card-info">
               <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Upload Slider</h3>
+                <h3 class="card-title">Add New Slider</h3>
                 <div id="example1_wrapper">
 
                 </div>
@@ -101,7 +113,7 @@ function updateOrder(data) {
                     <input type="hidden" class="form-control">
                       
                       <input type="text" class="form-control" name="title"
-                         placeholder="Slider Title" required>
+                         placeholder="Slider Title" required value="{{old('title')}}">
                          
                       <span class="text-danger">@error('title') {{$message}} @enderror</span>
                     </div>
@@ -110,7 +122,7 @@ function updateOrder(data) {
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <textarea class="form-control" name="description"
-                         placeholder="Slider Description"></textarea>
+                         placeholder="Slider Alt Text / Description">{{old('description')}}</textarea>
 
                       <span class="text-danger">@error('description') {{$message}} @enderror</span>
                     </div>
@@ -119,7 +131,7 @@ function updateOrder(data) {
                   <div class="form-group row">
                     <div class="col-sm-12">
                       <input type="url" class="form-control" name="url"
-                         placeholder="Slider Url">
+                         placeholder="Slider Url" value="{{old('url')}}">
 
                       <span class="text-danger">@error('url') {{$message}} @enderror</span>
                     </div>
@@ -138,19 +150,41 @@ function updateOrder(data) {
                 <div class="form-group row">
                     
                     <div class="col-sm-12">
-                    <input type="file" class="" 
-                      name="image" placeholder="Slider Image" required>
+                      <input type="file" class="" 
+                      name="image" placeholder="Slider Image" required
+                         accept="image/png,image/jpeg" />
+                      <br>
+                      <span class="text-danger col-12">@error('image') {{$message}} @enderror</span>
+
+                        <p class="text-danger">
+                          Image size for should be( 1351Px   X   700Px ).<br>
+                          Supportable Format: JPG,JPEG,PNG
+                        </p>
+
                       </div>
                   </div>
+                  
 
                     
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                         <input type="checkbox" class="custom-control-input status-switch" 
                           name="status" value="0" id="customSwitch1">
                         <label class="custom-control-label float-right" for="customSwitch1">Status</label>
                       </div>
-                    </div>
+                    </div> -->
+
+
+                    <div class="form-check">
+                    <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                        id="exampleCheck1"
+                      checked
+                        />
+                        
+                      <h5> <span class="badge badge-success">Active</span></h5>
+                      
+                      </td>
+                  </div>	
                   
                   </div>
                 </div>
@@ -188,14 +222,29 @@ function updateOrder(data) {
                       <td>{{$slider->slider_no}}</td>
                         <td><img width="100" src="{{url('web')}}/media/sm/{{$slider->image}}"></td>
                         <td>{{$slider->title}}</td>
-                        <td>{{$slider->Descriptions}}</td>
-                        <td>@if($slider->status == 0)<p class="badge badge-danger">Inactive</p>@else<p class="badge badge-success">Active</p>@endif</td>
-                        
+                        <td>{{$slider->description}}</td>
                         <td>
                         
-                          <!-- <a href="{{route('slider.edit',$slider->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit slider"><i class="far fa-edit"></i></a> -->
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="status" value="0" id="exampleCheck1"
+
+                              onClick="updateStatus({{$slider->id}})"
+                              @if($slider->status == 1)checked
+                              @endif 
+                              @if(old('status'))checked
+                              @endif
+                              />
+                              
+                        @if($slider->status == 0)<p class="badge badge-danger">Inactive</p>@else<p class="badge badge-success">Active</p>@endif</td>
+                        
+                          </div>	
+                          
+
+                        <td>
+                        
+                          <a href="{{route('slider.edit',$slider->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit slider"><i class="far fa-edit"></i></a>
                           {{-- <a href="{{route('slider-image.edit',$slider->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Upload slider Images"><i class="far fa-edit"></i></a> --}}
-                          <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete slider"  data-id="{{url('admin')}}/slider/{{$slider->id}}" 
+                          <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete slider"  data-id="{{route('admin.index')}}/slider/{{$slider->id}}" 
                             data-image="{{url('web')}}/media/sm/{{ $slider->image}}" data-title="{{ $slider->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                           </button>
                       
@@ -208,6 +257,7 @@ function updateOrder(data) {
                   </tbody>
                   <tfoot>
                   <tr>
+                    <th>Id</th>
                     <th>Image</th>
                     <th>Title</th>
                     <th>Descriptions</th>
@@ -244,7 +294,7 @@ function updateOrder(data) {
             </div>
             <div class="modal-body">
             <label>Slider Name</label>
-            <h5 class="modal-title delete-title">Delete Category</h5>
+            <h5 class="modal-title delete-title">Delete Slider</h5>
             <img  class="col-md-8 modal-title delete-data-image" src="">
             </div>
             <div class="modal-footer justify-content-between d-block ">

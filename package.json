@@ -14,7 +14,7 @@
         "axios": "^0.21",
         "bootstrap": "^4.6.0",
         "cross-env": "^7.0.3",
-        "jquery": "^3.6",
+        "jquery": "^3.6.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "popper.js": "^1.16.1",
@@ -26,6 +26,9 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "lightgallery": "^2.2.1",
+        "lightgallery.js": "^1.4.0",
+        "mdbootstrap": "^4.20.0",
         "react-bootstrap": "^1.6.1"
     }
 }

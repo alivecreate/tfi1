@@ -5,24 +5,32 @@
 							<img src="{{url('sardar')}}/images/email_icon.png" class="img-fluid">
 							<h2>SEND US YOUR ENQUIRY</h2>
 						</div>	
-						<form class="m-0">
+						<form class="m-0 contact-submission" action="{{route('send-contact')}}" method="post">
+
+						@csrf
+
+						<input type="hidden" name="token_response" class="token_response">
+
+  <input type="hidden" name='page_url' class="form-control card-page-url" value="{{ Request::url() }}">
+
 							<div class="form-group">
 								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/name_icon.png" class="img-fluid"></div> 
-								<input type="text" placeholder="Name" name=""> 
+								<input type="text" placeholder="Name" name="name" required> 
 							</div>
 							<div class="form-group">
 								<div class="frm_dv"><img width="15" src="{{url('sardar')}}/images/mobile_icon.png" class="img-fluid"></div> 
-								<input type="number" placeholder="Phone Number" name=""> 
+								<input type="number" placeholder="Phone Number" name="phone" required> 
 							</div>
 							<div class="form-group">
 								<div class="frm_dv"><img width="25" src="{{url('sardar')}}/images/email_icon_b.png" class="img-fluid"></div> 
-								<input type="text" placeholder="Email" name=""> 
+								<input type="email" placeholder="Email" name="email" required> 
 							</div>
 							<div class="form-group">
-								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/gbl.png" class="img-fluid"></div> 
+								<div class="frm_dv">
+									<img width="20" src="{{url('sardar')}}/images/gbl.png" class="img-fluid"></div> 
 								
 								
-								<select name="country" class="form-control">
+								<select name="country" required>
 
 <option value="">Select Country</option>
 <option value="Afghanistan">Afghanistan</option>
@@ -270,12 +278,17 @@
 							</div>
 							<div class="form-group">
 								<div class="frm_dv"><img width="20" src="{{url('sardar')}}/images/share_icon.png" class="img-fluid"></div> 
-								<textarea name="textarea-326" placeholder="Share Your Inflatables Requirement"></textarea>
+								<textarea placeholder="Share Your Inflatables Requirement" 
+								name="message" required></textarea>
 							</div>
 							<div class="text-center"> 
 								<a href="#;" class="term_Link d-block mb-4"> Your information is sage with us. We do not sell or rent emails. </a> 
-								<a href="#;" class="red_btn">Submit</a>
+								
+								{{ Session::get('success')}}
+
+								<button type="submit" class="red_btn">Submit</a>
 							</div>
 
 						</form>
+
 					</div>		

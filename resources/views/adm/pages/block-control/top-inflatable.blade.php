@@ -9,15 +9,16 @@
 <script>
 $( document ).ready(function() {
   $(".del-modal").click(function(){
+    var delete_form = $(this).attr('data-form');
     var delete_id = $(this).attr('data-id');
     var data_title = $(this).attr('data-title');
     
-    $('.delete-form').attr('action', delete_id);
+    $('.delete-form').attr('action', delete_form);
+
     $('.delete-title').html(data_title);
+    $('.delete-id').val(delete_id);
   });  
 });
-$(".block-control").addClass( "menu-is-opening menu-open");
-$(".block-control a").addClass( "active-menu");
 
 
 $( ".row_position" ).sortable({
@@ -35,13 +36,30 @@ $( ".row_position" ).sortable({
   $.ajax({
       url:"{{url('api')}}/admin/item/update-item-priority",
       type:'post',
-      data:{position:data, table: 'top_inflitable'},
+      data:{position:data, table: 'top_inflatable'},
       success:function(result){
         console.log(result);
       }
   })
 }
 
+function updateStatus($id) {
+  $.ajax({
+      url:"{{route('status.update')}}",
+      type:'post',
+      data:{id:$id, table: 'top_inflatable'},
+      success:function(result){
+        // console.log(result);
+        location.reload();
+      }
+  })
+}
+
+
+
+
+$(".footer-url").addClass( "menu-is-opening menu-open");
+$(".footer-url a").addClass( "active-menu");
 
 </script>
 @endsection
@@ -58,7 +76,7 @@ $( ".row_position" ).sortable({
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">Inflatable</li>
             
             </ol>
@@ -80,7 +98,7 @@ $( ".row_position" ).sortable({
                 
 
                 <form method="post" enctype="multipart/form-data"  class="form-horizontal" 
-                action="{{route('topInflatable.store')}}">
+                action="{{route('admin.topInflatable.store')}}">
 
                   @csrf
 
@@ -89,28 +107,31 @@ $( ".row_position" ).sortable({
                    <div class="form-group row">
                       <div class="col-sm-12">
                         <label for="name">Inflatable Name</label>
-                            <select class="form-control" name="product_id" required>
+                            <select class="form-control" name="category_id" required>
                               <option value="">Select Product</option>
-                              @foreach($products as $product)
-                                <option value="{{$product->id}}">{{$product->name}}</option>
+                              @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
                               @endforeach
                             </select>
-                            <span class="text-danger">@error('product_id') {{$message}} @enderror</span>
+                            <span class="text-danger">@error('category_id') {{$message}} @enderror</span>
                           </div>
 
                       </div>
                       
-                  <div class="form-check">
-                    
-                  <input type="checkbox" class="form-check-input" name="status" value="1" id="exampleCheck1"/>
 
-                    <label class="form-check-label"  for="exampleCheck1">Publish</label>
-                  </div>	
+                  <div class="form-check mt-4">
+                    <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                        id="exampleCheck1"
+                      checked
+                        />
+                        
+                      <h5> <span class="badge badge-success">Active</span></h5>
+                      </div>
 
 
                   </div>
                   <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-info">Save Client</button>
+                    <button type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Top Inflatable</button>
                   </div>
                 </form>
 
@@ -144,22 +165,26 @@ $( ".row_position" ).sortable({
                           @endif
                           </td>
                           <td>
-                          <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="status" value="1" id="exampleCheck1"
-                              @if($topInflatable->status == 1)checked
-                              @endif 
-                              @if(old('status'))checked
-                              @endif
-                              />
-                              <label class="form-check-label"  for="exampleCheck1">Publish</label>
-                          </div>	
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                        id="exampleCheck1"
+                        
+                          onClick="updateStatus({{$topInflatable->id}})"
+                          @if($topInflatable->status == 1)checked
+                          @endif 
+                          @if(old('status'))checked
+                          @endif
+                          />
                           
-                          
+                        @if($topInflatable->status == 0)
+                        <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
+                    </div>	
+                    
                         
                         </td>
                           <td>
-                            <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete topInflatable" 
-                             data-id="{{url('admin')}}/block-control/{{ $topInflatable->id}}" data-title="{{ $topInflatable->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                            <button class="btn btn-xs btn-danger del-modal float-left" title="Delete topInflatable" data-id="{{$topInflatable->id}}"
+                             data-form="{{route('admin.blockControl.delete')}}" data-title="{{ $topInflatable->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                             </button>                      
                         </td>
                         </tr>
@@ -197,6 +222,9 @@ $( ".row_position" ).sortable({
             <form class="delete-form float-right" action="" method="POST">
                     @method('DELETE')
                     @csrf
+                    <input type="hidden" class="delete-id" name="id" >
+                    <input type="hidden" class="table" name="table" value="top_inflatable" >
+                    
               <button type="button" class="btn btn-default mr-4" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger float-right" title="Delete Record"><i class="fas fa-trash-alt"></i> Delete</button>
               

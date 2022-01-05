@@ -1,3 +1,5 @@
+$('.two_controls').toggle('.top-form');
+
 $(".box-shadow1").hover(function(){
     // var listItem = $( "#bar" );
     

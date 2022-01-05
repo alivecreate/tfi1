@@ -43,6 +43,8 @@ class TestimonialController extends Controller
     {
         
         $request->validate([
+
+            'image' => 'required|image|mimes:jpg,png,jpeg|max:'.getMaxUploadSide(),
         ]);
 
          
@@ -53,11 +55,14 @@ class TestimonialController extends Controller
         }else{
             $item_no = 1;
         }
-        if($request->status == null){
-            $status = 0;
-        }else{
+        
+
+        if($request->status){
             $status = 1;
+        }else{
+            $status = 0;
         }
+
         $image_name = uploadImageThumb($request);
         $testimonial = new Testimonials;
         $testimonial->client_name = $request->client_name;
@@ -66,6 +71,10 @@ class TestimonialController extends Controller
         $testimonial->short_description = $request->short_description;
         $testimonial->full_description= $request->full_description;
         $testimonial->image = $image_name;
+
+        $testimonial->image_alt = $request->image_alt;      
+        $testimonial->image_title = $request->image_title;  
+        
         $testimonial->youtube_embed = $request->youtube_embed;
         $testimonial->slug = $request->slug;
         
@@ -98,10 +107,17 @@ class TestimonialController extends Controller
      */
     public function edit($id)
     {
+        $testimonial = Testimonials::find($id);
         $data = [
-            'testimonial' =>  Testimonials::find($id)
+            'testimonial' =>  $testimonial
         ];
-        return view('adm.pages.testimonial.edit', $data);
+
+        if($testimonial){
+            return view('adm.pages.testimonial.edit', $data);
+        }else{
+            return redirect(route('testimonials.index'))->with('fail', 'Testimonials Not Available...');
+        }
+        
     }
 
     /**
@@ -115,6 +131,7 @@ class TestimonialController extends Controller
     {
         $request->validate([
 
+            'image' => 'image|mimes:jpg,png,jpeg|max:'.getMaxUploadSide(),
         ]);
 
         $item_no = Testimonials::orderBy('item_no', 'desc')->first();
@@ -124,10 +141,10 @@ class TestimonialController extends Controller
             $item_no = 1;
         }
 
-        if($request->status == null){
+        if($request->status == 'on'){
             $status = 1;
         }else{
-            $status = 1;
+            $status = 0;
         }
 
         if($request->file('image')){
@@ -138,11 +155,13 @@ class TestimonialController extends Controller
         
         $testimonial =  Testimonials::find($id);
         $testimonial->client_name = $request->client_name;
-        $testimonial->item_no = $item_no;
         $testimonial->title = $request->title;
         $testimonial->short_description = $request->short_description;
         $testimonial->full_description= $request->full_description;
         $testimonial->image = $image_name;
+        $testimonial->image_alt = $request->image_alt;      
+        $testimonial->image_title = $request->image_title;  
+
         $testimonial->youtube_embed = $request->youtube_embed;
         $testimonial->slug = $request->slug;
         
@@ -165,6 +184,9 @@ class TestimonialController extends Controller
     public function destroy(Testimonials $testimonial)
     {
         $testimonial = $testimonial->delete();
+        
+        deleteTableUrlData($testimonial->id, 'category_link');
+
         if($testimonial){
             return back()->with('success', 'Testimonial Deleted...');
         }else{

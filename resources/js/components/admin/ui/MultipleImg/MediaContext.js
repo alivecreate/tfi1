@@ -186,7 +186,8 @@ export const MediaProvider = (props) => {
        }
         resp ++;
         })
-        console.log('res-'+ i + 1  +'total-'+ totalFiles + 'progress - ' + progress);        
+      toastr.success('Product Image Added...')
+
     }
   }
   
@@ -222,23 +223,58 @@ async function updateProductImage(e) {
   axios.post(GLOBAL.API + 'media/update-product-image', formData)
   .then(res => {
     if(res.data == 'success'){
+      alert('1');
+      toastr.success('Product Image Added...')
         getMedias();
         console.log('done');  
     }
     else if(res.data == 'not-exists'){
+      alert('0');
+
         console.log('file Already deleted');
     }
   })
 }
 
 async function deleteMedia(e) {
+  e.preventDefault();
+  var delid = e.target.delid.value;
+  await axios.get(GLOBAL.API + 'media/media-delete/'+delid)
+  .then(res => {
+      console.log(res.data);
+      if(res.data == 'success'){
+        toastr.error('Image Content Deleted...')
+          getProductImages();
+          console.log('done');  
+      }
+      else if(res.data == 'not-exists'){
+          console.log('file Already deleted');
+      }
+      else{
+          console.log('failed');
+      }
+  })
+}
+async function updateImageData(e) {
     e.preventDefault();
-    var delid = e.target.delid.value;
-    await axios.get(GLOBAL.API + 'media/media-delete/'+delid)
+    var image_alt = e.target.image_alt.value;
+    var image_title = e.target.image_title.value;
+    var id = e.target.id.value;
+
+    const formData = new FormData();
+    formData.append('image_alt', image_alt);
+    formData.append('image_title', image_title);
+    formData.append('id', id);
+  
+    axios.post(GLOBAL.API + 'media/update-image-data', formData)
+
     .then(res => {
         console.log(res.data);
         if(res.data == 'success'){
-            getProductImages();
+            // getProductImages();
+            
+            toastr.success('Image Content Updated...')
+            
             console.log('done');  
         }
         else if(res.data == 'not-exists'){
@@ -250,6 +286,8 @@ async function deleteMedia(e) {
     })
 }
 
+
+
     useEffect(() => {
 
       getProductImages();
@@ -257,7 +295,7 @@ async function deleteMedia(e) {
 
     return(
         <MediaContext.Provider value={{ 
-                medias, setMedias, uploadMultipleFiles, isLoadding,
+                medias, setMedias, uploadMultipleFiles, isLoadding, updateImageData,
                 chooseBtn, fileArrayDesp, uploadFiles, submitBtn, setSubmitBtn, deleteMedia,
                 progress, setProgress, productFileUpload, productFileSave, getProductImages, 
                 productImageArray, setProductImageArray, updateProductImage

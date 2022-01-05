@@ -157,7 +157,7 @@ const UploadButton = ({ props }) => {
             <div className="tab-content clearfix" id="">
 
               <button className="btn btn-success float-right" style={{ marginTop: 4 }}>
-                SEND222</button>
+                SEND</button>
               <input type="file" disabled={chooseBtn} className={"float-right chooseBtn"}
                 onChange={(e) => uploadMultipleFiles(e)} multiple />
 

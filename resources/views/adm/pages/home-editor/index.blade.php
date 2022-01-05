@@ -32,17 +32,29 @@ $(".page a").addClass( "active-menu");
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Home Editor Manage</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">Home Editor</li>
+      <div class="row">
+      
+      <div class="col-sm-6">
+            <ol class="breadcrumb ">
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
+              <li class="breadcrumb-item active">Home Page Manage</li>
             </ol>
           </div>
+
+        
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
+              
+          </ol>
         </div>
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1>Home Page Manage</h1>
+          </div>
+        </div>
+    </div>
+    
       </div>
     </section>
 
@@ -62,37 +74,39 @@ $(".page a").addClass( "active-menu");
                   </div>
                 </div>
              
-                <form method="post" enctype="multipart/form-data"  class="form-horizontal" action="{{route('about.store')}}">
+                <form method="post" enctype="multipart/form-data" 
+                class="form-horizontal" 
+                action="{{route('admin.page-editor.store')}}">
+                
                   @csrf
 
                   <div class="card-body p-2 pt-4">
 
                     <div class="form-group row">
-                      <div class="col-sm-12">
-                        <label for="description">About Desctiption</label>
+                      <div class="col-sm-6">
                           <textarea id="summernote" name="description" placeholder="Product Descriptions">
                           {{$homeAbout->description}}</textarea>
-                          <span class="text-danger">@error('description') {{$message}} @enderror</span>
-                          </div>
-                      </div>
+                          @include('adm.widget.seo-content')
                       
-                    <div class="form-group row">
-                      <div class="col-sm-12">
+                      </div>
+
+                      @include('adm.widget.seo-content-2')
+                      
+                      <div class="col-sm-6">
                         <label for="url">Page Url</label>
                       <input type="hidden" class="form-control">
                         <input type="url" class="form-control" name="url"
                           placeholder="Aboutus Page Url" value="{{$homeAbout->url}}">
                         <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
-                      </div>
-                    </div> 
-
-                    @include('adm.widget.seo-content')
+                    
+                        </div>
+                       
                     <input type="hidden" name="type" value="home_page">             
                     </div>
                   </div>
 
-                  <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-info">Save Home About</button>
+                  <div class="card-footer text-center">
+                    <button type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save Home About</button>
                   </div>
                 </form>
             </div>
@@ -103,7 +117,7 @@ $(".page a").addClass( "active-menu");
                         <h3 class="card-title">Click & Explore</h3>
                     </div>
                 
-                  <form method="post" class="form-horizontal" action="{{route('url-list1.store')}}">
+                  <form method="post" class="form-horizontal" action="{{route('admin.url-list1.store')}}">
                       @csrf
                       <div class="card-body p-2 pt-4">
                       <div class="form-group row">

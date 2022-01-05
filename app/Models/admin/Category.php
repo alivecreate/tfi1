@@ -10,6 +10,18 @@ class Category extends Model
 {
     use HasFactory;
 
+    public function products($id){
+         return $this->hasMany(Product::class);
+          
+        }
+
+        // public function products($id){
+        // //  return $this->hasMany(Product::class);
+        //     $data = DB::table('products')
+        //     ->where('category_id',$id)
+        //     ->get();
+        //     return $data;
+        // }
 
     public function subCategories1($id){
         $data = DB::table('categories')

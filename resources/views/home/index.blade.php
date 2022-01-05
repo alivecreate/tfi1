@@ -34,9 +34,10 @@
 				<div class="row col-mb-50 mb-2 block-style-2">
 				
 					<div class="heading-block center">
-						<h3>TOP INFLATABLES</h3>
+						<h3>TOP INFLATABLES00</h3>
 						<hr class="hr1"/>
-						<span>Home to a huge collection of in-stock and custom</span>					
+
+						<span class="testOnload" data-link="http://alivecreate.com">Home to a huge collection of in-stock and custom</span>			
 					</div>
 
 							
@@ -199,8 +200,8 @@
 											<a class="col  text-end link-invert" href=""><i class="icon-email3 align-middle" aria-hidden="true"></i>&nbsp;&nbsp;Enquire Now </a>
 										</div>
 								</div>
-								<div class="col">
 								
+								<div class="col">
 									<div class="title_bg">Custom Giant Infitables</div>
 										<a href="#"><img class="image-bg" src="{{url('home')}}/images/portfolio/4/4-1.jpg" alt="Image 1"></a>
 										<div class="row bottom-button m-0">

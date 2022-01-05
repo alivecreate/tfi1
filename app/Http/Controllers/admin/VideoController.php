@@ -16,7 +16,7 @@ class VideoController extends Controller
     public function index()
     {
         $data = [
-            'videos' =>  Video::orderBy('id', 'DESC')->get()
+            'videos' =>  Video::orderBy('item_no')->get()
         ];
         return view('adm.pages.video.index', $data);
     }
@@ -40,14 +40,14 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request->status);
         $request->validate([
             
             'title' => 'required',
         ]);
 
         
-        $item_no = Video::orderBy('item_no')->first();
+        $item_no = Video::orderBy('item_no','desc')->first();
 
         if($item_no){
             $item_no =  $item_no->item_no + 1;
@@ -55,19 +55,36 @@ class VideoController extends Controller
             $item_no = 1;
         }
 
-        if($request->status == null){
-            $status = 0;
-        }else{
+       
+        if($request->status){
             $status = 1;
+        }else{
+            $status = 0;
         }
+        
+        $youtube1 = "https://www.youtube.com/watch?v=";
+        $youtube2 = "https://youtu.be";
+        $mystring = $request->youtube_embed;
+
+        // if(strpos($mystring, $youtube1) !== false){
+        //     $youtube_embed = str_replace("https://www.youtube.com/watch?v=","https://www.youtube.com/embed/",$request->youtube_embed);
+        // }
+        // else if(strpos($mystring, $youtube2) !== false){
+        //     $youtube_embed = str_replace("https://youtu.be","https://www.youtube.com/embed",$request->youtube_embed);
+        // }else{
+        //     $youtube_embed = null;
+        // }
+
+
         $image_name = uploadImageThumb($request);
         $video = new Video;
         $video->title = $request->title;
+        $video->item_no = $item_no;
         $video->short_description = $request->short_description;
         $video->video_date = $request->video_date;
         $video->youtube_embed = $request->youtube_embed;
 
-        $video->status = 1;
+        $video->status = $status;
         $save = $video->save();
 
         if($save){
@@ -96,10 +113,17 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
+        $video = Video::find($id);
         $data = [
-            'video' =>  Video::find($id)
+            'video' =>  $video
         ];
-        return view('adm.pages.video.edit', $data);
+
+        if($video){
+            return view('adm.pages.video.edit', $data);
+        }else{
+            return redirect(route('video.index'))->with('fail', 'Video Not Available...');
+        }
+
     }
 
     /**
@@ -124,22 +148,21 @@ class VideoController extends Controller
             $item_no = 1;
         }
 
-        if($request->status == null){
-            $status = 0;
-        }else{
+        if($request->status == 'on'){
             $status = 1;
+        }else{
+            $status = 0;
         }
 
 
         
         $video =  Video::find($id);
         $video->title = $request->title;
-        // $video->list_no = $request->list_no;
         $video->short_description = $request->short_description;
         $video->video_date = $request->video_date;
         $video->youtube_embed = $request->youtube_embed;
 
-        $video->status = 1;
+        $video->status = $status;
         $save = $video->save();
 
         if($save){

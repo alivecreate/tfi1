@@ -22,6 +22,8 @@
   });  
 });
 
+
+
 $(".video").addClass( "menu-is-opening menu-open");
 $(".video a").addClass( "active-menu");
 
@@ -35,18 +37,32 @@ $(".video a").addClass( "active-menu");
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Edit: Video </h1>
-          </div>
-          
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">New Video</li>
+        
+      <div class="row">
+      
+      <div class="col-sm-6">
+            <ol class="breadcrumb ">
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
+              <li class="breadcrumb-item active">Edit Video</li>
             </ol>
           </div>
+
+        
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+          <ol class="breadcrumb float-sm-right"><a href="{{route('video.create')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                  &nbsp;&nbsp;Add New Video </a>
+              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
+              
+          </ol>
         </div>
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1>Edit Video</h1>
+          </div>
+        </div>
+</div>
+
       </div>
     </section>
 
@@ -109,18 +125,25 @@ $(".video a").addClass( "active-menu");
                     </div>
                     
 
-                    <div class="form-group">
-                      <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                        <input type="checkbox" class="custom-control-input status-switch" 
-                          name="status" value="0" id="customSwitch1">
-                        <label class="custom-control-label" for="customSwitch1">Status</label>
-                      </div>
-                    </div>
-                  
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                        id="exampleCheck1"
+                        
+                          onClick="updateStatus({{$video->id}})"
+                          @if($video->status == 1)checked
+                          @endif 
+                          @if(old('status'))checked
+                          @endif
+                          />
+                          
+                        @if($video->status == 0)
+                        <h5> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
+                    </div>	
+          
 
                   
-                <div class="card-footer">
-                  <button type="submit" class="float-right btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                <div class="card-footer text-center">
+                  <button type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                     Save Video</button>
                 </div>
 

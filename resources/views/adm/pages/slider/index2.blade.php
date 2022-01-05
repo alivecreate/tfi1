@@ -13,7 +13,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">Sliders</li>
             </ol>
           </div>
@@ -56,7 +56,9 @@
                     
                     <div class="col-sm-12">
                     <input type="file" class="" 
-                      name="slider_img" placeholder="Slider Image">
+                      name="slider_img" placeholder="Slider Image"
+                      accept="image/png,image/jpeg"
+                      >
                       </div>
                   </div>
 
@@ -110,7 +112,9 @@
                     
                     <div class="col-sm-12">
                     <input type="file" class="" 
-                      name="slider_img" placeholder="Slider Image">
+                      name="slider_img" placeholder="Slider Image"
+                      accept="image/png,image/jpeg"
+                      >
                       </div>
                   </div>
 
@@ -164,7 +168,9 @@
                     
                     <div class="col-sm-12">
                     <input type="file" class="" 
-                      name="slider_img" placeholder="Slider Image">
+                      name="slider_img" placeholder="Slider Image"
+                      accept="image/png,image/jpeg"
+                      >
                       </div>
                   </div>
 
@@ -219,7 +225,9 @@
                     
                     <div class="col-sm-12">
                     <input type="file" class="" 
-                      name="slider_img" placeholder="Slider Image">
+                      name="slider_img" placeholder="Slider Image"
+                      accept="image/png,image/jpeg"
+                      >
                       </div>
                   </div>
 
@@ -274,7 +282,9 @@
                     
                     <div class="col-sm-12">
                     <input type="file" class="" 
-                      name="slider_img" placeholder="Slider Image">
+                      name="slider_img" placeholder="Slider Image"
+                      accept="image/png,image/jpeg"
+                      >
                       </div>
                   </div>
 
@@ -328,7 +338,9 @@
                     
                     <div class="col-sm-12">
                     <input type="file" class="" 
-                      name="slider_img" placeholder="Slider Image">
+                      name="slider_img" placeholder="Slider Image"
+                      accept="image/png,image/jpeg"
+                      >
                       </div>
                   </div>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
+  <title>GIA - Admin (Login)</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -34,7 +34,7 @@
       <p class="login-box-msg">Sign in to start your session</p>
 
 
-      <form action="{{route('auth.check')}}" method="post">
+      <form action="{{route('admin.auth.check')}}" method="post">
         @csrf
         <div class="input-group mb-3">
           <input type="email" class="form-control" 
@@ -61,18 +61,22 @@
         
         <span class="text-danger">@error('password') {{$message}} @enderror</span>
 
-        <div class="row">
-          <div class="col-8">
+        <div class="row justify-content-center">
+
+          <!-- <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <label for="remember">
                 Remember Me
               </label>
             </div>
-          </div>
+          </div> -->
+
           <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <div class="col-6 ">
+            
+            <button type="submit" class="btn btn-primary btn-block">
+            <i class="fa fa-lock" aria-hidden="true"></i> &nbsp; Sign In</button>
           </div>
           <!-- /.col -->
         </div>
@@ -80,12 +84,7 @@
 
       <!-- /.social-auth-links -->
 
-      <!-- <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="{{url('admin')}}/register" class="text-center">Register a new membership</a>
-      </p> -->
+      
     </div>
     <!-- /.card-body -->
   </div>

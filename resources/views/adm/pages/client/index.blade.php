@@ -1,11 +1,17 @@
 @extends('adm.layout.admin-index')
-@section('title','Dashboard - Charotar Corporation')
+@section('title','Add: Client')
 
 @section('toast')
   @include('adm.widget.toast')
 @endsection
 
 @section('custom-js')
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+
+
 <script>
 $( document ).ready(function() {
   $(".del-modal").click(function(){
@@ -16,8 +22,45 @@ $( document ).ready(function() {
     $('.delete-title').html(data_title);
   });  
 });
-$(".client").addClass( "menu-is-opening menu-open");
-$(".client a").addClass( "active-menu");
+
+$(".block-control").addClass( "menu-is-opening menu-open");
+$(".block-control a").addClass( "active-menu");
+
+
+function updateStatus($id) {
+  $.ajax({
+      url:"{{route('status.update')}}",
+      type:'post',
+      data:{id:$id, table: 'client'},
+      success:function(result){
+        console.log(result);
+        location.reload();
+
+      }
+  })
+}
+
+$( ".row_position" ).sortable({
+      stop: function() {
+			var selectedData = new Array();
+            $('.row_position>tr').each(function() {
+                selectedData.push($(this).attr("id"));
+            });
+            updateOrder(selectedData);
+        }
+  });
+
+function updateOrder(data) {
+  $.ajax({
+      url:"{{url('api')}}/admin/item/update-item-priority",
+      type:'post',
+      data:{position:data, table: 'client'},
+      success:function(result){
+        console.log(result);
+      }
+  })
+}
+
 </script>
 @endsection
 
@@ -27,18 +70,31 @@ $(".client a").addClass( "active-menu");
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Client List</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">Client</li>
-            
+
+      
+    <div class="row">
+      
+      <div class="col-sm-6">
+            <ol class="breadcrumb ">
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
+              <li class="breadcrumb-item active">Client List</li>
             </ol>
           </div>
+
+        
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
+              
+          </ol>
         </div>
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1>Client List</h1>
+          </div>
+        </div>
+    </div>
+
       </div>
     </section>
 
@@ -48,7 +104,7 @@ $(".client a").addClass( "active-menu");
       
         <div class="row">
 
-          <div class="col-md-5 card card-dark">
+          <div class="col-md-5 card card-info">
               <div class="card-header">
                       <h3 class="card-title">Add Client</h3>
                 </div>
@@ -62,7 +118,7 @@ $(".client a").addClass( "active-menu");
                   <div class="form-group row">
                       <div class="col-sm-12">
                         <label for="name">Client Name</label>
-                          <input class="form-control" type="text" name="name" placeholder="Product name">
+                          <input class="form-control" type="text" name="name" placeholder="Client name">
                           <span class="text-danger">@error('name') {{$message}} @enderror</span>
                           </div>
                       </div>
@@ -70,7 +126,7 @@ $(".client a").addClass( "active-menu");
                       <div class="form-group row">
                       <div class="col-sm-12">
                         <label for="note">Client Note</label>
-                          <textarea class="form-control" type="text" name="note" placeholder="Client Note"></textarea>
+                          <textarea class="form-control" type="text" name="note" placeholder="Alt Text / Client Note"></textarea>
                           <span class="text-danger">@error('note') {{$message}} @enderror</span>
                           </div>
                       </div>
@@ -78,14 +134,26 @@ $(".client a").addClass( "active-menu");
                       <div class="form-group row">
                         <div class="col-sm-12">
                         <label for="image_alt">Logo</label><br>
-                        <input type="file" name="image" class="image " id="image" require>
+                        <input type="file" name="image" class="image " id="image" required>
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                       </div>
+
+
+
+                  <div class="form-check mt-4">
+                    <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                        id="exampleCheck1"
+                      checked
+                        />
+                        
+                      <h5> <span class="badge badge-success">Active</span></h5>
+                      </div>
+
 
                     </div>
                   </div>
                   <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-info">Save Client</button>
+                    <button type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Client</button>
                   </div>
                 </form>
 
@@ -93,38 +161,60 @@ $(".client a").addClass( "active-menu");
            
            <div class="col-md-7 card card-info">
               <div class="card-header">
-                      <h3 class="card-title">Clien Lists</h3>
+                      <h3 class="card-title">Client Lists</h3>
                 </div>
                 <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap">
+                  <table class="table table-hover text-nowrap" id="example2">
                     <thead>
                       <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Logo</th>
                         <th>Note</th>
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    
+                  <tbody class="row_position">
                       @foreach($clients as $i => $client)
-                        <tr>
-                          <td>{{++$i}}</td>
+                      <tr id="{{$client->id}}"> 
+                        <td>{{$client->item_no}}</td>
+
                           <td>{{$client->name}}</td>
-                          @if($client->image)
-                          <td><img class="img-circle elevation-2 object-fit-sm" 
-                              src="{{asset('web')}}/media/lg/{{$client->image}}"></td>
+                          @if($client->logo)
+                          <td><img class="rounded" style="width:150px"
+                              src="{{asset('web')}}/media/lg/{{$client->logo}}"></td>
                               @else
                               
-                          <td><img class="img-circle elevation-2 object-fit-sm" 
+                          <td><img class="rounded" style="width:150px"
                               src="{{asset('adm')}}/img/no-user.jpeg"></td>
                           @endif
 
                           <td>{{$client->note}}</td>
                           <td>
-                          <!-- <a href="{{route('client.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit client"><i class="far fa-edit"></i></a> -->
+                          
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                                id="exampleCheck1"
+                                
+                                  onClick="updateStatus({{$client->id}})"
+                                  @if($client->status == 1)checked
+                                  @endif 
+                                  @if(old('status'))checked
+                                  @endif
+                                  />
+                                  
+                                @if($client->status == 0)
+                                <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
+                            </div>	
+                            
+                          </td>
+                          <td>
+                          <a href="{{route('client.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit client"><i class="far fa-edit"></i></a>
                             <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete client" 
-                             data-id="{{url('admin')}}/client/{{ $client->id}}" data-title="{{ $client->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                             data-id="{{route('admin.index')}}/client/{{ $client->id}}" data-title="{{ $client->name}}" 
+                              data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                             </button>                      
                         </td>
                         </tr>

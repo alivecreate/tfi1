@@ -16,7 +16,9 @@ class CategoryController extends Controller
      */
 
     public function __construct(){
-        $this->parent_categories = category::where(['parent_id'=>0])->orderBy('id','DESC')->get();
+        $this->parent_categories = category::where(['parent_id'=>0])->orderBy('item_no')->get();
+
+        
 
         // function customRedirect($routeName, $id, $type){
         //     return redirect(route($routeName, $id, $type))->with('success', 'Category Updated...');
@@ -26,8 +28,32 @@ class CategoryController extends Controller
 
     public function index()
     {
+        $subCategories = array();
+        $productRangeCategories = array();
+        $productRangeSubcategories = array();
+
+        foreach($this->parent_categories as $parent_category){
+            $subCats = category::where(['parent_id'=>$parent_category->id])->orderBy('id','DESC')->get();
+            foreach($subCats as $subCat){
+                $subCategories[] = $subCat;
+            }
+        }
+
+        foreach($this->parent_categories as $parent_category){
+            $subCats = category::where(['parent_id'=>$parent_category->id])->orderBy('id','DESC')->get();
+
+            foreach($subCats as $subCat){
+                $productRanges = category::where(['parent_id'=>$subCat->id])->orderBy('id','DESC')->get();
+                foreach($productRanges as $productRange){
+                    $productRangeCategories[] = $productRange;
+                }
+                $productRangeSubcategories[] = $subCat;
+            }
+        }
         
-        $data = ['parent_categories' =>  $this->parent_categories];
+        $data = ['parent_categories' =>  $this->parent_categories, 
+        'sub_categories' => $subCategories, 'productRangeCategories' => $productRangeCategories,
+         'productRangeSubcategories' => $productRangeSubcategories, ];
         return view('adm.pages.category.index', $data);
         
     }
@@ -37,10 +63,15 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $data = ['parent_categories' =>  $this->parent_categories];
-        return view('adm.pages.category.create',$data);
+        if((isset($request->type) && $request->type == 'main_category') || (isset($request->type) && $request->type == 'sub_category')){
+
+            $data = ['parent_categories' =>  $this->parent_categories];
+            return view('adm.pages.category.create',$data);
+        }else{
+            return redirect(route('admin.category.create').'?type=main_category');
+        }
     }
 
     /**
@@ -51,16 +82,27 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd(getMaxUploadSide()-500);
+        // dd($request->input());
         $request->validate([
             'name' => 'required|max:255',
+            // 'image' => 'required|image|mimes:jpg,png,jpeg|max:'.getMaxUploadSide(),
+            'slug' => 'unique:categories,slug'
         ]);
 
-        // if($request->parent_id == null){
-        //     $parent_id = 0;
-        // }else{
-        //     $parent_id = 0;
-        // }
+        
+
+        if($request->status){
+            $status = $request->status;
+        }else{
+            $status = 0;
+        }
+
+        if(isset($request->category_parent_id)){
+            $parent_id = $request->category_parent_id;
+        }else{
+            $parent_id = 0;
+        }
 
         $image_name = uploadImageThumb($request);
         $status = ($request->status == null ? 0 : 1);
@@ -76,85 +118,32 @@ class CategoryController extends Controller
         $category->meta_keyword  = $request->meta_keyword;
         $category->meta_description  = $request->meta_description;
 
+        $category->search_index = $request->search_index;      
+        $category->search_follow = $request->search_follow;      
+        $category->canonical_url = $request->canonical_url;    
+
         $category->status  = $status;
+
+        $category->parent_id  = $parent_id;
 
         // if($request->parent_id == null){
         //     $parent_id = 0;
         // }else{
         //     $parent_id = $request->parent_id;
         // }
-
-        $category->parent_id  = $request->parent_id;
-
-        $save = $category->save();
-
-        if($save){
-            return back()->with('success', 'New Category Added...');
-        }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
-        }
-    }
-
-    public function subCategoryStore(Request $request)
-    {
-        // dd($request->input());
-        $request->validate([
-            'subcategory_name' => 'required|max:255',
-            'subcategory_description' => 'required|max:255',
-            'category_parent_id1' => 'required',
-            
-        ]);
-
-        $category = new Category;
-        $category->name = $request->subcategory_name;
-        $category->description  = $request->subcategory_description ;
-        $category->parent_id  = $request->category_parent_id1;
-        $status = ($request->status == null ? 0 : 1);
-        $category->status  = $status;
-        
-        $category->image  = $image_name ; 
-        $category->image_alt = $request->image_alt;      
-        $category->slug  = $request->slug;
-        $category->meta_title  = $request->meta_title;
-        $category->meta_keyword  = $request->meta_keyword;
-        $category->meta_description  = $request->meta_description;
-        $category->status  = 1;
-
+            // dd($request->input());
 
         $save = $category->save();
-
         if($save){
-            return back()->with('success', 'New Sub Category Added...');
-        }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
-        }
+            // return back()->with('success', 'New Category Added...');
 
-    }
-
-
-    public function subCategory2Store(Request $request)
-    {
-        // dd($request->input());
-        $request->validate([
-            'subcategory2_name' => 'required|max:255',
-            'subcategory2_description' => 'required|max:255',
-            'category_parent_id' => 'required',
-            'subcategory_parent_id' => 'required',
-            
-        ]);
-
-        $category = new Category;
-        $category->name = $request->subcategory2_name;
-        $category->description  = $request->subcategory2_description ;
-        $category->parent_id  = $request->subcategory_parent_id;
-        $status = ($request->status == null ? 0 : 1);
-
-        $category->status  = $status;
-
-        $save = $category->save();
-
-        if($save){
-            return back()->with('success', 'New Sub Category2 Added...');
+            if($request->page_type == 'main_category'){
+                return(redirect(route('admin.category.edit',$parent_id).'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
+            }
+            elseif($request->page_type == 'sub_category'){
+                return(redirect(route('admin.index').'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
+            }
+            return(redirect(route('admin.index').'/category/create?type=sub_category&id='.$category->id))->with('success', 'Main Category Added...');   
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }
@@ -181,22 +170,22 @@ class CategoryController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        // return $id;
-        editPageErrorHelper('category', $id);
-        
-        $cat = category::where(['parent_id'=>0])->whereNotIn('id',[$id])
-        ->orderBy('id','DESC')->get();
-        // dd($cat);
 
-        $data = ['type'=> $request->type, 
+        $category = Category::where('id', $id)->first();
+        // $this->parent_categories
+
+        $data = ['type'=> $request->type, 'parent_categories' => $this->parent_categories,
                 'categories' =>  category::where(['parent_id'=>0])->whereNotIn('id',[$id])
                                 ->orderBy('id','DESC')->get(),
-                
-                 'data'=> Category::where('id', $id)->first()];
-                //  dd($data);
+                 'category'=> $category ];
 
-        // dd(Category::where('id', $id)->first());
-        return view('adm.pages.category.edit',$data);
+                
+        if($category){
+            return view('adm.pages.category.edit',$data);
+        }else{
+            return redirect(route('admin.category.list'))->with('fail', 'Category Not Available...');
+        }
+        
     }
 
     /**
@@ -212,6 +201,7 @@ class CategoryController extends Controller
         // dd($request->input());
         $request->validate([
             'name' => 'required|max:255',
+            'image' => 'image|mimes:jpg,png,jpeg|max:'.getMaxUploadSide()
             
         ]);
   
@@ -221,9 +211,20 @@ class CategoryController extends Controller
             $image_name = $request->old_image;
         }
 
+        if(isset($request->category_parent_id)){
+            $parent_id = $request->category_parent_id;
+        }else{
+            $parent_id = 0;
+        }
+        if($request->status){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
+
         $category = Category::find($id);
         $category->name = $request->name;
-        $category->description  = $request->description ;
+        $category->description  = $request->description;
         
         $category->image  = $image_name ; 
         $category->image_alt = $request->image_alt;      
@@ -233,17 +234,35 @@ class CategoryController extends Controller
         $category->meta_keyword  = $request->meta_keyword;
         $category->meta_description  = $request->meta_description;
 
-        $category->parent_id  = $request->parent_id;
-        $category->status  = 1;
+        $category->search_index = $request->search_index;      
+        $category->search_follow = $request->search_follow;      
+        $category->canonical_url = $request->canonical_url;    
+
+        $category->parent_id  = $parent_id;
+        $category->status  = $status;
         $save = $category->save();
 
             if($save){
-                return back()->with('success', 'Category Updated...');
+                if($request->pageType == 'main_category'){
+                    // dd('dg');
+                    // dd('main');route('admin.category.edit',$sub_category->id)}}?type=sub_category&id=
+                    return(redirect(route('admin.category.create').'?type=sub_category&id='.$id))->with('success', 'Sub Category Added...');   
+                }
+                elseif($request->pageType == 'sub_category'){
+                    // dd('sub');
+                    return(redirect(route('admin.index').'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Updated...');   
+                }
+    
+                
+                return(redirect(route('admin.index').'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
+            
+                // return redirect(route('admin.category.create').'?type=sub_category&id='.$category->id)->with('success', 'Category Updated...');
+                // return back()->with('success', 'Category Updated...');
             }else{
                 return back()->with('fail', 'Something went wrong, try again later...');
             }
 
-    }
+}
 
     /**
      * Remove the specified resource from storage.
@@ -255,25 +274,67 @@ class CategoryController extends Controller
     {
         $category = $category->delete();
         if($category){
+            // $subCategories = DB::table('categories')->where('parent_id')
+            // $category
             return back()->with('success', 'category Deleted... 000 ');
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }
     }
+  
     public function categoryDelete($id)
     {
+        // dd('test');
+
         $category = Category::find($id);
-        $delete = $category->delete();
-        
-        if($delete){
-            DB::table('categories')
-            ->where('parent_id',$id)
-            ->update(['parent_id'=>0]);
-            return back()->with('success', 'Category Deleted... 111');
-        }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+        if(!$category){
+            return redirect(route('admin.category.list'))->with('fail', 'Category Not Available...');
         }
 
+        $checkCurrent = DB::table('categories')->where('id', $id)->first();
+        // dd($checkCurrent);
+
+        checkProductIsEXist($checkCurrent->id);
+        if(isset($checkCurrent->image)){
+            deleteBulkImage($checkCurrent->image);
+        }
+        // deleteUrlList($checkCurrent->id, 'category_link');
+
+        deleteTableUrlData($id, 'category_link');
+
+        
+        $checkSubCategories = DB::table('categories')->where('parent_id', $checkCurrent->id)->get();
+        //del main
+        DB::table('categories')->where('id', $id)->delete();
+        if($checkSubCategories->count() > 0){
+            foreach($checkSubCategories as $checkSubCategory){
+                checkProductIsEXist($checkSubCategory->id);
+                    if(isset($checkSubCategory->image)){
+                        deleteBulkImage($checkSubCategory->image);
+                    }
+                // deleteUrlList($checkSubCategory->id, 'category_link');
+                deleteTableUrlData($checkSubCategory->id, 'category_link');
+
+                //del sub cateogry
+                DB::table('categories')->where('id', $checkSubCategory->id)->delete();
+                $checkSubCategories2 = DB::table('categories')->where('parent_id', $checkSubCategory->id)->get();
+                if($checkSubCategories2->count() > 0){
+                    foreach($checkSubCategories2 as $checkSubCategories22){
+                        //del sub cateogry2
+                        DB::table('categories')->where('id', $checkSubCategories22->id)->delete();
+                        checkProductIsEXist($checkSubCategories22->id);
+                            if(isset($checkSubCategories22->image)){
+                                deleteBulkImage($checkSubCategories22->image);
+                            }
+                        // deleteUrlList($checkSubCategories22->id, 'category_link');
+                        deleteTableUrlData($checkSubCategories22->id, 'category_link');
+                    }
+                }
+            }
+        }
+        return back()->with('success', 'Category Deleted... bulk');
+     
+        
     }
 
     

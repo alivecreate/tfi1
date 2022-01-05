@@ -8,10 +8,119 @@
     height: auto !important;
 }
 
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-5px);}
+  }
+  
+  .bounce {
+    animation-name: bounce;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes flash {
+    0%, 50%, 100% {opacity: 1;}
+    25%, 75% {opacity: 0;}
+  }
+  
+  .flash {
+    animation-name: flash;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes color_black_red {
+    0%, 50%, 100% { background-color: black;}
+    25%, 75% {background-color: #a11111;}
+  }
+  
+  .color_black_red {
+    animation-name: color_black_red;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+  }
+
+  
+/* DASHBOARD */
+.info-box{
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-top-button .block{
+    padding: 9px 0px;
+    cursor: pointer;
+}
+
+.dashboard-top-button input{
+    cursor: pointer;
+}
+
+.dashboard-top-button .block:hover{
+    border: 2px solid silver;
+    background: whitesmoke;
+}
+
+
+.btn-save i{
+    font-size: 24px;
+    vertical-align: inherit;
+    margin-right: 12px;
+  }
+  .table-no-border, .table-no-border th, .table-no-border td{
+      border: none;
+  }
+
+  .selected-images:nth-child(odd){
+    position: relative;
+    align-items: center;
+    background: whitesmoke;
+  }
+  .Biginflatables.slick-slide {
+    max-height: 300px;
+}
+
+  .selected-images:nth-child(even){
+    position: relative;
+    align-items: center;
+    background: white;
+    border-bottom: 1px solid silver;
+    padding: 7px 0px;
+  }
+
+  .btn-save{
+      
+    }
+    .btn-block a, .btn-block button {
+        font-size: 17px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+    }
+    
+.search-font1{
+    
+}
+
+span.info-box-icon {
+    padding: 4px;
+}
+.info-box:hover {
+    border: 1px solid;
+}
 .row_position td:hover{
     cursor:move;
 }
-
+.table input[type=checkbox]{
+    width: 17px;
+    height: 17px;
+    }
+    
 .table-border-none tr td:hover, .table-border-none tr:hover{
 color: #212529;
 background-color: transparent !important;

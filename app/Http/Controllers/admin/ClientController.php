@@ -19,7 +19,7 @@ class ClientController extends Controller
      */
     
     public function __construct(){
-        $this->clients = Client::orderBy('id', 'DESC')->get();
+        $this->clients = Client::orderBy('item_no')->get();
     }
     
 
@@ -37,6 +37,7 @@ class ClientController extends Controller
      */
     public function create()
     {
+
         return view('adm.pages.client.create');
     }
 
@@ -51,8 +52,14 @@ class ClientController extends Controller
         // dd($request->file('image'));
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg|max:'.getMaxUploadSide()
         ]);
+
+        if($request->status){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
 
         $image_name = uploadImageThumb($request);
 
@@ -61,6 +68,7 @@ class ClientController extends Controller
         $client->logo = $image_name;
         $client->note = $request->note;
         $client->admin_id = session('LoggedUser')->id;
+        $client->status = $status;
                
         $save = $client->save();
 
@@ -90,8 +98,12 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
+        $client = Client::find($id);
+        if(!isset($client)){
+            return redirect(route('client.index'));
+        }
         
-        $data = ['client' =>  Client::find($id)];
+        $data = ['client' =>  Client::find($id), 'clients' => $this->clients];
         return view('adm.pages.client.edit', $data);
     }
 
@@ -104,10 +116,13 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'phone1' => 'required',
-        ]);
+        // dd($request->input());
+        
+        if($request->status == 'on'){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
 
         
         if($request->file('image')){
@@ -117,15 +132,9 @@ class ClientController extends Controller
         }
         $client = Client::find($id);
         $client->name = $request->name;
-        $client->ref_name  = $request->ref_name ;
-        $client->phone1  = $request->phone1;
-        $client->phone2  = $request->phone2;
-        $client->ref_phone  = $request->ref_phone;
-        $client->email  = $request->email;
-        $client->ref_email  = $request->ref_email;
-        $client->address  = $request->address;
-        $client->image = $image_name;        
-        $client->note = $request->note;       
+        $client->note  = $request->note ;  
+        $client->status = $status;     
+          
         $save = $client->save();
 
         if($save){

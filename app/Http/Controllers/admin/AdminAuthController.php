@@ -58,9 +58,9 @@ class AdminAuthController extends Controller
         }else{
             if(Hash::check($request->password, $userInfo->password)){
                 $request->session()->put('LoggedUser', $userInfo);
-                return redirect(route('admin.dashboard'));
+                return redirect(route('admin.index'));
             }else{
-                return back()->with('fail', 'Incorrectt Passord');
+                return back()->with('fail', 'Incorrectt Password');
             }
         }
 

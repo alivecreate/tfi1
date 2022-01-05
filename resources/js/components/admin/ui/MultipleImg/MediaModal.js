@@ -56,20 +56,20 @@ const MediaModal = (props) => {
     return (
         <>
 
-            <div class="modal-body media-modal-body" id="media-body">
-                <div class="col-md-12">
+            <div className="modal-body media-modal-body" id="media-body">
+                <div className="col-md-12">
 
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title float-left">
-                                <i class="fas fa-edit"></i>
-                                Media Panel (Add Multiple Images)
+                    <div className="card card-primary card-outline">
+                        <div className="card-header">
+                            <h3 className="card-title float-left">
+                                <i className="fas fa-edit"></i>
+                                Add Images
                                 
                               </h3>
                                     {progressInstance}
                                     
                         </div>
-                        <div class="card-body">
+                        <div className="card-body">
                             <div className="row">
                                 <div className="col-5 col-sm-3">
                                     <div className="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">

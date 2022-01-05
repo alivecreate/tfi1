@@ -29,12 +29,14 @@ const [randomNo, setRandomNo] = React.useState(55555);
         async function getMedias() {
             const formData = new FormData();
             formData.append('id',userId);
+
             axios.get(GLOBAL.API+'media/get-media',formData,{
             })
             .then(res => {
                 console.log(res.data);
                 setMedias(res.data);
             })
+            
         }
         getMedias();
     }, [])

@@ -38,7 +38,7 @@ $( document ).ready(function() {
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
               <li class="breadcrumb-item active">task</li>
             </ol>
           </div>
@@ -138,7 +138,7 @@ $( document ).ready(function() {
                   </div>
                   
                   <div class="card-footer">
-                    <form action="{{route('admin.taskComment.store')}}" method="post">
+                    <form action="{{route('taskComment.store')}}" method="post">
                       @csrf
                       <div class="input-group">
                         <input type="hidden" name="admin_id" value="{{session('LoggedUser')->id}}">

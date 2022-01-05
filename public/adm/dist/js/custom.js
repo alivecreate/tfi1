@@ -21,4 +21,14 @@ $( document ).ready(function() {
       
 });
 
+$(".checkAll").click(function (e) { 
+    // $(".checkList").attr('checked', true);
+    $('.checkList').each(function () { this.checked = !this.checked; });
 });
+
+
+});
+
+function goBack() {
+    window.history.back();
+  }
